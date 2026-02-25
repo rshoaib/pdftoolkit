@@ -9,9 +9,9 @@ const features = [
 
 const About = () => (
   <div className="static-page">
-    <h1>About PDF Toolkit</h1>
+    <h1>About Tiny PDF Tools</h1>
     <p className="about-intro">
-      PDF Toolkit is a free, privacy-first collection of PDF tools that run entirely in your web browser.
+      Tiny PDF Tools is a free, privacy-first collection of PDF tools that run entirely in your web browser.
       Built with modern web technologies, every operation happens client-side — your files are never uploaded to any server.
     </p>
 

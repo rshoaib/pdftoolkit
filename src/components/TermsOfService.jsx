@@ -5,12 +5,12 @@ const TermsOfService = () => (
 
     <section>
       <h2>1. Acceptance</h2>
-      <p>By using PDF Toolkit, you agree to these terms. If you do not agree, please do not use the service.</p>
+      <p>By using Tiny PDF Tools, you agree to these terms. If you do not agree, please do not use the service.</p>
     </section>
 
     <section>
       <h2>2. Service Description</h2>
-      <p>PDF Toolkit provides free, browser-based PDF manipulation tools. All processing occurs on your device. We do not store, transmit, or have access to your files.</p>
+      <p>Tiny PDF Tools provides free, browser-based PDF manipulation tools. All processing occurs on your device. We do not store, transmit, or have access to your files.</p>
     </section>
 
     <section>
@@ -20,7 +20,7 @@ const TermsOfService = () => (
 
     <section>
       <h2>4. Limitation of Liability</h2>
-      <p>PDF Toolkit shall not be liable for any damages arising from the use of, or inability to use, this service. Always keep backup copies of your original files.</p>
+      <p>Tiny PDF Tools shall not be liable for any damages arising from the use of, or inability to use, this service. Always keep backup copies of your original files.</p>
     </section>
 
     <section>

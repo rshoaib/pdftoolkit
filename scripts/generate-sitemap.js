@@ -3,7 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const DOMAIN = 'https://pdftoolkit.com';
+const DOMAIN = 'https://tinypdftools.com';
 
 const routes = [
   '/',

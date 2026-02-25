@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://pdftoolkit.com/sitemap.xml
+Sitemap: https://tinypdftools.com/sitemap.xml

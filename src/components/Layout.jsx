@@ -14,7 +14,7 @@ const Layout = ({ children, onNavigate }) => {
             <FileText size={24} />
           </div>
           <div className="logo-text">
-            PDF<span className="text-highlight">Toolkit</span>
+            Tiny<span className="text-highlight">PDFTools</span>
           </div>
         </div>
         <nav className="nav">
@@ -37,7 +37,7 @@ const Layout = ({ children, onNavigate }) => {
 
       <footer className="footer">
         <p className="footer-text">
-          &copy; {new Date().getFullYear()} PDF Toolkit. 100% Client-Side Privacy.
+          &copy; {new Date().getFullYear()} Tiny PDF Tools. 100% Client-Side Privacy.
         </p>
         <div className="footer-links">
           <a href="https://www.buymeacoffee.com/rshoaib" target="_blank" rel="noopener noreferrer" className="footer-link coffee-link">

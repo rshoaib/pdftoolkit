@@ -44,7 +44,7 @@ const ToolSelector = () => {
     <div className="tool-selector">
       {/* Hero */}
       <section className="hero">
-        <div className="hero-badge">100% Free & Private</div>
+        <div className="hero-badge">✨ 100% Free & Private — No Uploads</div>
         <h1 className="hero-title">
           All-in-One <span className="gradient-text">PDF Tools</span>
         </h1>

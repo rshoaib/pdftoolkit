@@ -5,7 +5,7 @@ const PrivacyPolicy = () => (
 
     <section>
       <h2>Your Privacy is Our Priority</h2>
-      <p>PDF Toolkit is a 100% client-side web application. <strong>None of your files are ever uploaded to any server.</strong> All PDF processing happens entirely within your browser using JavaScript.</p>
+      <p>Tiny PDF Tools is a 100% client-side web application. <strong>None of your files are ever uploaded to any server.</strong> All PDF processing happens entirely within your browser using JavaScript.</p>
     </section>
 
     <section>

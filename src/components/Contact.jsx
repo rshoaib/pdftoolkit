@@ -14,7 +14,7 @@ const Contact = () => (
         </div>
         <h3>Email</h3>
         <p>For general inquiries and support</p>
-        <a href="mailto:hello@pdftoolkit.com" className="contact-link">hello@pdftoolkit.com</a>
+        <a href="mailto:hello@tinypdftools.com" className="contact-link">hello@tinypdftools.com</a>
       </div>
       <div className="contact-card">
         <div className="contact-icon">
@@ -22,7 +22,7 @@ const Contact = () => (
         </div>
         <h3>Feature Requests</h3>
         <p>Suggest new tools or improvements</p>
-        <a href="mailto:hello@pdftoolkit.com?subject=Feature%20Request" className="contact-link">Send a request</a>
+        <a href="mailto:hello@tinypdftools.com?subject=Feature%20Request" className="contact-link">Send a request</a>
       </div>
     </div>
 
