@@ -11,6 +11,8 @@ const PdfToImage = lazy(() => import('./components/PdfToImage'));
 const ImageToPdf = lazy(() => import('./components/ImageToPdf'));
 const RotatePdf = lazy(() => import('./components/RotatePdf'));
 const ProtectPdf = lazy(() => import('./components/ProtectPdf'));
+const BlogList = lazy(() => import('./components/BlogList'));
+const BlogPost = lazy(() => import('./components/BlogPost'));
 const PrivacyPolicy = lazy(() => import('./components/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('./components/TermsOfService'));
 const About = lazy(() => import('./components/About'));
@@ -50,6 +52,8 @@ const AppContent = () => {
             <Route path="/terms" element={<TermsOfService />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/blog" element={<BlogList />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
           </Routes>
         </Suspense>
       </Layout>

@@ -20,6 +20,10 @@ const routes = [
   { path: '/contact', title: 'Contact — Tiny PDF Tools', desc: 'Get in touch with the Tiny PDF Tools team.', priority: '0.5', freq: 'monthly' },
   { path: '/privacy', title: 'Privacy Policy — Tiny PDF Tools', desc: 'Privacy policy for Tiny PDF Tools. Your files never leave your device.', priority: '0.3', freq: 'monthly' },
   { path: '/terms', title: 'Terms of Service — Tiny PDF Tools', desc: 'Terms of service for Tiny PDF Tools.', priority: '0.3', freq: 'monthly' },
+  { path: '/blog', title: 'Blog — PDF Tips, Tutorials & Guides | Tiny PDF Tools', desc: 'Tips, tutorials, and guides for working with PDFs. Learn how to merge, split, compress, and protect your documents.', priority: '0.7', freq: 'weekly' },
+  { path: '/blog/how-to-merge-pdf-files-free', title: 'How to Merge PDF Files for Free in 2026 | Tiny PDF Tools', desc: 'Learn how to merge PDFs securely in your browser — no signup, no file uploads, 100% private.', priority: '0.7', freq: 'monthly' },
+  { path: '/blog/pdf-security-best-practices-2026', title: 'PDF Security in 2026: How to Protect Sensitive Documents | Tiny PDF Tools', desc: 'From password protection to AES-256 encryption — learn how to secure your PDF documents.', priority: '0.7', freq: 'monthly' },
+  { path: '/blog/compress-pdf-without-losing-quality', title: 'How to Compress PDFs Without Losing Quality | Tiny PDF Tools', desc: 'Reduce PDF file size by up to 90% while keeping text sharp and images clear.', priority: '0.7', freq: 'monthly' },
 ];
 
 // Ensure dist directory exists

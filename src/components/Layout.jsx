@@ -24,6 +24,7 @@ const Layout = ({ children, onNavigate }) => {
           <a href="/" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('/'); }} className="nav-link">Home</a>
           <a href="/about" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('/about'); }} className="nav-link">About</a>
           <a href="/contact" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('/contact'); }} className="nav-link">Contact</a>
+          <a href="/blog" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('/blog'); }} className="nav-link">Blog</a>
         </nav>
       </header>
 
@@ -47,6 +48,7 @@ const Layout = ({ children, onNavigate }) => {
           <a href="/terms" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('/terms'); }} className="footer-link">Terms</a>
           <a href="/contact" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('/contact'); }} className="footer-link">Contact</a>
           <a href="/about" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('/about'); }} className="footer-link">About Us</a>
+          <a href="/blog" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('/blog'); }} className="footer-link">Blog</a>
         </div>
       </footer>
 
