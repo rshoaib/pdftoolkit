@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Merge, Scissors, Minimize2, Image, FileImage, ArrowRight } from 'lucide-react';
+import { Merge, Scissors, Minimize2, Image, FileImage, RotateCw, Lock, ArrowRight } from 'lucide-react';
 
 const tools = [
   {
@@ -36,6 +36,20 @@ const tools = [
     description: 'Combine JPG, PNG, or WebP images into a single PDF document.',
     icon: FileImage,
     color: '#0ea5e9',
+  },
+  {
+    id: 'rotate-pdf',
+    title: 'Rotate PDF',
+    description: 'Rotate all pages by 90°, 180°, or 270°. Lossless and instant.',
+    icon: RotateCw,
+    color: '#14b8a6',
+  },
+  {
+    id: 'protect-pdf',
+    title: 'Protect PDF',
+    description: 'Add password protection with AES-256 encryption to secure your PDFs.',
+    icon: Lock,
+    color: '#f59e0b',
   },
 ];
 

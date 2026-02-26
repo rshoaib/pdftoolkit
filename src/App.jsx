@@ -9,6 +9,8 @@ const SplitPdf = lazy(() => import('./components/SplitPdf'));
 const CompressPdf = lazy(() => import('./components/CompressPdf'));
 const PdfToImage = lazy(() => import('./components/PdfToImage'));
 const ImageToPdf = lazy(() => import('./components/ImageToPdf'));
+const RotatePdf = lazy(() => import('./components/RotatePdf'));
+const ProtectPdf = lazy(() => import('./components/ProtectPdf'));
 const PrivacyPolicy = lazy(() => import('./components/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('./components/TermsOfService'));
 const About = lazy(() => import('./components/About'));
@@ -42,6 +44,8 @@ const AppContent = () => {
             <Route path="/compress-pdf" element={<CompressPdf />} />
             <Route path="/pdf-to-image" element={<PdfToImage />} />
             <Route path="/image-to-pdf" element={<ImageToPdf />} />
+            <Route path="/rotate-pdf" element={<RotatePdf />} />
+            <Route path="/protect-pdf" element={<ProtectPdf />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<TermsOfService />} />
             <Route path="/about" element={<About />} />

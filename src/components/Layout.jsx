@@ -57,6 +57,8 @@ const Layout = ({ children, onNavigate }) => {
         <a href="/compress-pdf" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('/compress-pdf'); }}>Compress PDF</a>
         <a href="/pdf-to-image" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('/pdf-to-image'); }}>PDF to Image</a>
         <a href="/image-to-pdf" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('/image-to-pdf'); }}>Image to PDF</a>
+        <a href="/rotate-pdf" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('/rotate-pdf'); }}>Rotate PDF</a>
+        <a href="/protect-pdf" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('/protect-pdf'); }}>Protect PDF</a>
       </div>
 
       <div className="quick-links" style={{ borderTop: 'none', paddingTop: '0' }}>
