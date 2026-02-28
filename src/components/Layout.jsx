@@ -61,6 +61,7 @@ const Layout = ({ children, onNavigate }) => {
         <a href="/image-to-pdf" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('/image-to-pdf'); }}>Image to PDF</a>
         <a href="/rotate-pdf" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('/rotate-pdf'); }}>Rotate PDF</a>
         <a href="/protect-pdf" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('/protect-pdf'); }}>Protect PDF</a>
+        <a href="/watermark-pdf" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('/watermark-pdf'); }}>Watermark PDF</a>
       </div>
 
       <div className="quick-links" style={{ borderTop: 'none', paddingTop: '0' }}>

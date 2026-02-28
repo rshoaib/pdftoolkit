@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Merge, Scissors, Minimize2, Image, FileImage, RotateCw, Lock, ArrowRight } from 'lucide-react';
+import { Merge, Scissors, Minimize2, Image, FileImage, RotateCw, Lock, Droplets, ArrowRight } from 'lucide-react';
 
 const tools = [
   {
@@ -50,6 +50,13 @@ const tools = [
     description: 'Add password protection with AES-256 encryption to secure your PDFs.',
     icon: Lock,
     color: '#f59e0b',
+  },
+  {
+    id: 'watermark-pdf',
+    title: 'Watermark PDF',
+    description: 'Add text watermarks with custom size, opacity, rotation, and color.',
+    icon: Droplets,
+    color: '#6366f1',
   },
 ];
 
