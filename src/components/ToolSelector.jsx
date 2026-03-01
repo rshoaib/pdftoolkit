@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Merge, Scissors, Minimize2, Image, FileImage, RotateCw, Lock, Droplets, ArrowRight } from 'lucide-react';
+import { Merge, Scissors, Minimize2, Image, FileImage, RotateCw, Lock, Unlock, Droplets, ArrowRight } from 'lucide-react';
 
 const tools = [
   {
@@ -50,6 +50,13 @@ const tools = [
     description: 'Add password protection with AES-256 encryption to secure your PDFs.',
     icon: Lock,
     color: '#f59e0b',
+  },
+  {
+    id: 'unlock-pdf',
+    title: 'Unlock PDF',
+    description: 'Remove password protection from PDFs you own. Enter password, get unlocked copy.',
+    icon: Unlock,
+    color: '#22c55e',
   },
   {
     id: 'watermark-pdf',

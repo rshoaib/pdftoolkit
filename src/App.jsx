@@ -11,6 +11,7 @@ const PdfToImage = lazy(() => import('./components/PdfToImage'));
 const ImageToPdf = lazy(() => import('./components/ImageToPdf'));
 const RotatePdf = lazy(() => import('./components/RotatePdf'));
 const ProtectPdf = lazy(() => import('./components/ProtectPdf'));
+const UnlockPdf = lazy(() => import('./components/UnlockPdf'));
 const WatermarkPdf = lazy(() => import('./components/WatermarkPdf'));
 const BlogList = lazy(() => import('./components/BlogList'));
 const BlogPost = lazy(() => import('./components/BlogPost'));
@@ -49,6 +50,7 @@ const AppContent = () => {
             <Route path="/image-to-pdf" element={<ImageToPdf />} />
             <Route path="/rotate-pdf" element={<RotatePdf />} />
             <Route path="/protect-pdf" element={<ProtectPdf />} />
+            <Route path="/unlock-pdf" element={<UnlockPdf />} />
             <Route path="/watermark-pdf" element={<WatermarkPdf />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<TermsOfService />} />
