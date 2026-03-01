@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Calendar, Clock, ArrowLeft, Share2 } from 'lucide-react';
 import { getPostBySlug } from '../lib/blogService';
+import SEO from './SEO';
 
 // Simple markdown-to-HTML converter
 function renderMarkdown(md) {
@@ -85,6 +86,22 @@ const BlogPost = () => {
 
   return (
     <div className="blog-post-page">
+      <SEO 
+        title={`${post.title} | Tiny PDF Tools`}
+        description={post.excerpt || post.title}
+        schemaType="Article"
+        schemaData={{
+          headline: post.title,
+          image: post.image ? [window.location.origin + post.image] : [],
+          datePublished: post.date, // Assuming post.date exists
+          author: { "@type": "Person", "name": "Rizwan" },
+          publisher: {
+            "@type": "Organization",
+            "name": "Tiny PDF Tools",
+            "logo": { "@type": "ImageObject", "url": window.location.origin + "/favicon.svg" }
+          }
+        }}
+      />
       <div className="blog-post-nav">
         <Link to="/blog" className="blog-back-link">
           <ArrowLeft size={16} /> All Posts

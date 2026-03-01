@@ -25,6 +25,7 @@ const routes = [
   { path: '/blog/how-to-merge-pdf-files-free', title: 'How to Merge PDF Files for Free in 2026 | Tiny PDF Tools', desc: 'Learn how to merge PDFs securely in your browser — no signup, no file uploads, 100% private.', priority: '0.7', freq: 'monthly' },
   { path: '/blog/pdf-security-best-practices-2026', title: 'PDF Security in 2026: How to Protect Sensitive Documents | Tiny PDF Tools', desc: 'From password protection to AES-256 encryption — learn how to secure your PDF documents.', priority: '0.7', freq: 'monthly' },
   { path: '/blog/compress-pdf-without-losing-quality', title: 'How to Compress PDFs Without Losing Quality | Tiny PDF Tools', desc: 'Reduce PDF file size by up to 90% while keeping text sharp and images clear.', priority: '0.7', freq: 'monthly' },
+  { path: '/blog/how-to-add-watermark-to-pdf-free', title: 'How to Add a Watermark to a PDF for Free in 2026 | Tiny PDF Tools', desc: 'Mark your PDFs as DRAFT, CONFIDENTIAL, or branded — with full control over size, opacity, rotation, and color. 100% free, in your browser.', priority: '0.7', freq: 'monthly' },
 ];
 
 // Ensure dist directory exists

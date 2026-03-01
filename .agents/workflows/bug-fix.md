@@ -2,7 +2,7 @@
 description: Systematic bug fix workflow with Claude Opus 4.5
 ---
 
-# Bug Fix Workflow (Use Claude Opus 4.5)
+# Bug Fix Workflow (Use Claude Opus 4.6)
 
 ## Step 1: Reproduce
 1. Open the affected page in browser
