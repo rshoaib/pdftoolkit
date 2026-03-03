@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Merge, Scissors, Minimize2, Image, FileImage, RotateCw, Lock, Unlock, Droplets, ArrowRight } from 'lucide-react';
+import { Merge, Scissors, Minimize2, Image, FileImage, RotateCw, Lock, Unlock, Droplets, GripVertical, ArrowRight } from 'lucide-react';
 
 const tools = [
   {
@@ -64,6 +64,13 @@ const tools = [
     description: 'Add text watermarks with custom size, opacity, rotation, and color.',
     icon: Droplets,
     color: '#6366f1',
+  },
+  {
+    id: 'organize-pdf',
+    title: 'Organize PDF',
+    description: 'Drag and drop to rearrange pages, delete unwanted pages, or duplicate them.',
+    icon: GripVertical,
+    color: '#0d9488',
   },
 ];
 
