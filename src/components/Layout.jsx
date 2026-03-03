@@ -64,6 +64,7 @@ const Layout = ({ children, onNavigate }) => {
         <a href="/unlock-pdf" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('/unlock-pdf'); }}>Unlock PDF</a>
         <a href="/watermark-pdf" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('/watermark-pdf'); }}>Watermark PDF</a>
         <a href="/organize-pdf" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('/organize-pdf'); }}>Organize PDF</a>
+        <a href="/add-page-numbers" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('/add-page-numbers'); }}>Add Page Numbers</a>
       </div>
 
       <div className="quick-links" style={{ borderTop: 'none', paddingTop: '0' }}>

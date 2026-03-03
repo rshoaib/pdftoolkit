@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Merge, Scissors, Minimize2, Image, FileImage, RotateCw, Lock, Unlock, Droplets, GripVertical, ArrowRight } from 'lucide-react';
+import { Merge, Scissors, Minimize2, Image, FileImage, RotateCw, Lock, Unlock, Droplets, GripVertical, ListOrdered, ArrowRight } from 'lucide-react';
 
 const tools = [
   {
@@ -71,6 +71,13 @@ const tools = [
     description: 'Drag and drop to rearrange pages, delete unwanted pages, or duplicate them.',
     icon: GripVertical,
     color: '#0d9488',
+  },
+  {
+    id: 'add-page-numbers',
+    title: 'Add Page Numbers',
+    description: 'Stamp page numbers on every page. Choose position, format, and style.',
+    icon: ListOrdered,
+    color: '#dc2626',
   },
 ];
 
