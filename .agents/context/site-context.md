@@ -28,6 +28,7 @@ description: Brand voice, internal links, and target keywords for pdftoolkit (Ti
 | Watermark PDF | `/watermark-pdf` | stamp, watermark, brand |
 | PDF to Image | `/pdf-to-image` | convert, export, PNG, JPG |
 | Rotate PDF | `/rotate-pdf` | rotate pages, flip, orientation |
+| Crop PDF | `/crop-pdf` | crop, trim margins, cut pages, resize |
 | Blog | `/blog/[slug]` | Guides and tutorials |
 
 ## Target Keywords
@@ -40,10 +41,12 @@ description: Brand voice, internal links, and target keywords for pdftoolkit (Ti
 | add page numbers to pdf | ✅ Tool + blog |
 | split pdf online | ✅ Tool exists |
 | pdf to image converter | ✅ Tool exists |
+| crop pdf online free | ✅ Tool + blog |
 
 ### Content Calendar
-1. "How to Unlock a PDF Without the Password (Free Online Tool)"
-2. "Merge Multiple PDFs Into One: Step-by-Step Guide"
-3. "How to Compress PDF to Under 1MB (Without Quality Loss)"
+1. ~~"How to Unlock a PDF Without the Password (Free Online Tool)"~~ ✅
+2. ~~"Merge Multiple PDFs Into One: Step-by-Step Guide"~~ ✅
+3. ~~"How to Compress PDF to Under 1MB (Without Quality Loss)"~~ ✅
 4. "PDF to Image: Convert PDF Pages to PNG or JPG"
-5. "How to Add Page Numbers to PDF (Free, No Upload Required)"
+5. ~~"How to Add Page Numbers to PDF (Free, No Upload Required)"~~ ✅
+6. ~~"How to Crop a PDF Online for Free (No Uploads Required)"~~ ✅
