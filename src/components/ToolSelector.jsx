@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Merge, Scissors, Minimize2, Image, FileImage, RotateCw, Lock, Unlock, Droplets, GripVertical, ListOrdered, ArrowRight } from 'lucide-react';
+import { Merge, Scissors, Minimize2, Image, FileImage, RotateCw, Lock, Unlock, Droplets, GripVertical, ListOrdered, Crop, ArrowRight } from 'lucide-react';
 
 const tools = [
   {
@@ -78,6 +78,13 @@ const tools = [
     description: 'Stamp page numbers on every page. Choose position, format, and style.',
     icon: ListOrdered,
     color: '#dc2626',
+  },
+  {
+    id: 'crop-pdf',
+    title: 'Crop PDF',
+    description: 'Visually trim margins or cut specific areas from PDF pages. Drag to crop.',
+    icon: Crop,
+    color: '#7c3aed',
   },
 ];
 
