@@ -47,6 +47,6 @@ description: Brand voice, internal links, and target keywords for pdftoolkit (Ti
 1. ~~"How to Unlock a PDF Without the Password (Free Online Tool)"~~ ✅
 2. ~~"Merge Multiple PDFs Into One: Step-by-Step Guide"~~ ✅
 3. ~~"How to Compress PDF to Under 1MB (Without Quality Loss)"~~ ✅
-4. "PDF to Image: Convert PDF Pages to PNG or JPG"
+4. ~~"PDF to Image: Convert PDF Pages to PNG or JPG"~~ ✅
 5. ~~"How to Add Page Numbers to PDF (Free, No Upload Required)"~~ ✅
 6. ~~"How to Crop a PDF Online for Free (No Uploads Required)"~~ ✅
