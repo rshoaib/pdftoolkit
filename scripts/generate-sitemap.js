@@ -94,11 +94,25 @@ if (fs.existsSync(indexPath)) {
   console.warn('⚠️  dist/index.html not found — skipping meta injection');
 }
 
-// ── 3. Ping IndexNow (Bing / Yandex / Naver instant indexing) ────
+// ── 3. Ping search engines with updated sitemap ─────────────────
 const INDEXNOW_KEY = 'c8e4e439a7f74991b6d1d82301c21aae';
+const SITEMAP_URL = `${DOMAIN}/sitemap.xml`;
 const urlList = routes.map(r => `${DOMAIN}${r.path}`);
 
-async function pingIndexNow() {
+async function pingSearchEngines() {
+  // Google sitemap ping
+  try {
+    const googleRes = await fetch(`https://www.google.com/ping?sitemap=${encodeURIComponent(SITEMAP_URL)}`);
+    if (googleRes.ok) {
+      console.log(`✅ Google pinged with sitemap (status ${googleRes.status})`);
+    } else {
+      console.warn(`⚠️  Google returned ${googleRes.status}`);
+    }
+  } catch (err) {
+    console.warn(`⚠️  Google ping failed: ${err.message}`);
+  }
+
+  // IndexNow (Bing / Yandex / Naver)
   try {
     const res = await fetch('https://api.indexnow.org/indexnow', {
       method: 'POST',
@@ -120,4 +134,4 @@ async function pingIndexNow() {
   }
 }
 
-pingIndexNow();
+pingSearchEngines();
