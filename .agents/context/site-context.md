@@ -55,3 +55,4 @@ description: Brand voice, internal links, and target keywords for pdftoolkit (Ti
 6. ~~"How to Crop a PDF Online for Free (No Uploads Required)"~~ ✅
 7. ~~"How to Rotate a PDF Online for Free (No Upload Required) — 2026 Guide"~~ ✅
 8. ~~"How to Split a PDF Online for Free (No Upload Required) — 2026 Guide"~~ ✅
+9. ~~"How to Sign a PDF Online for Free (No Upload Required) — 2026 Guide"~~ ✅

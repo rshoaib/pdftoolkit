@@ -36,6 +36,7 @@ const routes = [
   { path: '/blog/how-to-crop-pdf-online-free', title: 'How to Crop a PDF Online for Free in 2026 (No Uploads Required) | Tiny PDF Tools', desc: 'Trim margins, cut whitespace, or resize PDF pages visually — all in your browser. No uploads, no software, no subscriptions.', priority: '0.7', freq: 'monthly' },
   { path: '/blog/how-to-rotate-pdf-online-free', title: 'How to Rotate a PDF Online for Free (No Upload Required) — 2026 Guide | Tiny PDF Tools', desc: 'Rotate PDF pages 90°, 180°, or 270° in your browser. Free, private — no uploads, no software. Step-by-step guide with privacy comparison.', priority: '0.7', freq: 'monthly' },
   { path: '/blog/how-to-split-pdf-online-free', title: 'How to Split a PDF Online for Free (No Upload Required) — 2026 Guide | Tiny PDF Tools', desc: 'Extract specific pages or split a large PDF into smaller files in seconds. Free, private — no uploads, no software.', priority: '0.7', freq: 'monthly' },
+  { path: '/blog/how-to-sign-pdf-online-free', title: 'How to Sign a PDF Online for Free (No Upload Required) — 2026 Guide | Tiny PDF Tools', desc: 'Draw or type your signature and place it on any PDF page. 100% free, no uploads — your signature never leaves your browser.', priority: '0.7', freq: 'monthly' },
 ];
 
 // Ensure dist directory exists
