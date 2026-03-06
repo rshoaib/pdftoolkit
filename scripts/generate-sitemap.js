@@ -93,3 +93,31 @@ if (fs.existsSync(indexPath)) {
 } else {
   console.warn('⚠️  dist/index.html not found — skipping meta injection');
 }
+
+// ── 3. Ping IndexNow (Bing / Yandex / Naver instant indexing) ────
+const INDEXNOW_KEY = 'c8e4e439a7f74991b6d1d82301c21aae';
+const urlList = routes.map(r => `${DOMAIN}${r.path}`);
+
+async function pingIndexNow() {
+  try {
+    const res = await fetch('https://api.indexnow.org/indexnow', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        host: 'tinypdftools.com',
+        key: INDEXNOW_KEY,
+        keyLocation: `${DOMAIN}/${INDEXNOW_KEY}.txt`,
+        urlList,
+      }),
+    });
+    if (res.ok || res.status === 202) {
+      console.log(`✅ IndexNow pinged with ${urlList.length} URLs (status ${res.status})`);
+    } else {
+      console.warn(`⚠️  IndexNow returned ${res.status}: ${await res.text()}`);
+    }
+  } catch (err) {
+    console.warn(`⚠️  IndexNow ping failed: ${err.message}`);
+  }
+}
+
+pingIndexNow();
