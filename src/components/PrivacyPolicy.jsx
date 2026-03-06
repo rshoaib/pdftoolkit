@@ -35,6 +35,14 @@ const PrivacyPolicy = () => (
     </section>
 
     <section>
+      <h2>Advertising</h2>
+      <p>We use Google AdSense to display advertisements. Google, as a third-party vendor, uses the DoubleClick DART cookie to serve ads based on your visits to this and other websites.</p>
+      <p>You can opt out of the DART cookie by visiting the <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer">Google Ads Settings</a> page.</p>
+      <p>For more information about how Google uses your data in advertising, see <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer">Google's advertising privacy policy</a>.</p>
+      <p>Third-party ad vendors may also use cookies, scripts, or web beacons to measure ad effectiveness and personalize content. We have no access to or control over these cookies.</p>
+    </section>
+
+    <section>
       <h2>Contact</h2>
       <p>Questions about this policy? Reach out via our <a href="/contact">Contact page</a>.</p>
     </section>
