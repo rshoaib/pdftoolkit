@@ -57,3 +57,4 @@ description: Brand voice, internal links, and target keywords for pdftoolkit (Ti
 8. ~~"How to Split a PDF Online for Free (No Upload Required) — 2026 Guide"~~ ✅
 9. ~~"How to Sign a PDF Online for Free (No Upload Required) — 2026 Guide"~~ ✅
 10. ~~"How to Password Protect a PDF for Free (AES-256, No Upload) — 2026 Guide"~~ ✅
+11. ~~"How to Delete Pages From a PDF for Free (No Upload Required) — 2026 Guide"~~ ✅

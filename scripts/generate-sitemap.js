@@ -38,6 +38,7 @@ const routes = [
   { path: '/blog/how-to-split-pdf-online-free', title: 'How to Split a PDF Online for Free (No Upload Required) — 2026 Guide | Tiny PDF Tools', desc: 'Extract specific pages or split a large PDF into smaller files in seconds. Free, private — no uploads, no software.', priority: '0.7', freq: 'monthly' },
   { path: '/blog/how-to-sign-pdf-online-free', title: 'How to Sign a PDF Online for Free (No Upload Required) — 2026 Guide | Tiny PDF Tools', desc: 'Draw or type your signature and place it on any PDF page. 100% free, no uploads — your signature never leaves your browser.', priority: '0.7', freq: 'monthly' },
   { path: '/blog/how-to-password-protect-pdf-free', title: 'How to Password Protect a PDF for Free (AES-256, No Upload) — 2026 Guide | Tiny PDF Tools', desc: 'Encrypt your PDF with AES-256 password protection in your browser. No upload, no account, no software.', priority: '0.7', freq: 'monthly' },
+  { path: '/blog/how-to-delete-pages-from-pdf-free', title: 'How to Delete Pages From a PDF for Free (No Upload Required) — 2026 Guide | Tiny PDF Tools', desc: 'Remove unwanted pages from any PDF in seconds. Click to select, download the trimmed file. 100% free, no uploads.', priority: '0.7', freq: 'monthly' },
 ];
 
 // Ensure dist directory exists
