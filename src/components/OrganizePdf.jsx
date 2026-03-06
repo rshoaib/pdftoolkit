@@ -148,6 +148,7 @@ const OrganizePdf = () => {
       <SEO
         title="Organize PDF — Rearrange, Delete & Duplicate Pages Online | Tiny PDF Tools"
         description="Drag and drop to reorder PDF pages, delete unwanted pages, or duplicate them. 100% free, no uploads, runs in your browser."
+        canonicalUrl="https://tinypdftools.com/organize-pdf"
         schemaType="WebApplication"
         schemaData={{
           name: 'Organize PDF',

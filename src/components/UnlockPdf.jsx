@@ -3,6 +3,7 @@ import { PDFDocument } from 'pdf-lib';
 import { Unlock, Download, RefreshCw, Eye, EyeOff, KeyRound } from 'lucide-react';
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
+import SEO from './SEO';
 
 const faqs = [
   { q: 'How does PDF unlocking work?', a: 'You provide the password for the protected PDF. The tool decrypts it in your browser and saves a new copy without any password protection.' },
@@ -72,6 +73,20 @@ const UnlockPdf = () => {
 
   return (
     <div className="tool-page">
+      <SEO
+        title="Unlock PDF — Remove Password Protection Online for Free | Tiny PDF Tools"
+        description="Remove password protection from your PDF files. Enter the password you know, get an unlocked copy. 100% free, no uploads, runs in your browser."
+        canonicalUrl="https://tinypdftools.com/unlock-pdf"
+        schemaType="WebApplication"
+        schemaData={{
+          name: 'Unlock PDF',
+          url: 'https://tinypdftools.com/unlock-pdf',
+          applicationCategory: 'Utility',
+          operatingSystem: 'Any',
+          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+          description: 'Remove PDF password protection securely in your browser. 100% free and private.',
+        }}
+      />
       <div className="tool-header">
         <h1 className="tool-title">Unlock PDF</h1>
         <p className="tool-desc">Remove password protection from your PDF files. Enter the password you know, get an unlocked copy — 100% in your browser.</p>

@@ -31,6 +31,7 @@ const routes = [
   { path: '/blog/how-to-add-watermark-to-pdf-free', title: 'How to Add a Watermark to a PDF for Free in 2026 | Tiny PDF Tools', desc: 'Mark your PDFs as DRAFT, CONFIDENTIAL, or branded — with full control over size, opacity, rotation, and color. 100% free, in your browser.', priority: '0.7', freq: 'monthly' },
   { path: '/blog/how-to-organize-rearrange-pdf-pages-free', title: 'How to Organize and Rearrange PDF Pages for Free in 2026 | Tiny PDF Tools', desc: 'Learn how to reorder, delete, and duplicate PDF pages without uploading files. A step-by-step guide using free browser-based tools.', priority: '0.7', freq: 'monthly' },
   { path: '/blog/how-to-crop-pdf-online-free', title: 'How to Crop a PDF Online for Free in 2026 (No Uploads Required) | Tiny PDF Tools', desc: 'Trim margins, cut whitespace, or resize PDF pages visually — all in your browser. No uploads, no software, no subscriptions.', priority: '0.7', freq: 'monthly' },
+  { path: '/blog/how-to-rotate-pdf-online-free', title: 'How to Rotate a PDF Online for Free (No Upload Required) — 2026 Guide | Tiny PDF Tools', desc: 'Rotate PDF pages 90°, 180°, or 270° in your browser. Free, private — no uploads, no software. Step-by-step guide with privacy comparison.', priority: '0.7', freq: 'monthly' },
 ];
 
 // Ensure dist directory exists

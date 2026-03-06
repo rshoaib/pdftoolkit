@@ -155,6 +155,7 @@ const AddPageNumbers = () => {
       <SEO
         title="Add Page Numbers to PDF — Free Online Tool | TinyPDFTools"
         description="Add page numbers to your PDF for free. Choose position, format, font size, and color. 100% client-side, no uploads."
+        canonicalUrl="https://tinypdftools.com/add-page-numbers"
         schemaType="WebApplication"
         schemaData={{
           name: 'Add Page Numbers to PDF',

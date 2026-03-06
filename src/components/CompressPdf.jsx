@@ -3,6 +3,7 @@ import { PDFDocument } from 'pdf-lib';
 import { Download, TrendingDown } from 'lucide-react';
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
+import SEO from './SEO';
 
 const faqs = [
   { q: 'How does PDF compression work?', a: 'We re-encode embedded images at reduced quality and remove redundant data streams. Text and vector graphics remain untouched.' },
@@ -84,6 +85,20 @@ const CompressPdf = () => {
 
   return (
     <div className="tool-page">
+      <SEO
+        title="Compress PDF — Reduce PDF File Size Online for Free | Tiny PDF Tools"
+        description="Compress PDF files by optimizing embedded images. Choose quality levels. 100% free, no uploads, runs in your browser."
+        canonicalUrl="https://tinypdftools.com/compress-pdf"
+        schemaType="WebApplication"
+        schemaData={{
+          name: 'Compress PDF',
+          url: 'https://tinypdftools.com/compress-pdf',
+          applicationCategory: 'Utility',
+          operatingSystem: 'Any',
+          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+          description: 'Compress PDF files by optimizing embedded images. 100% free and private.',
+        }}
+      />
       <div className="tool-header">
         <h1 className="tool-title">Compress PDF</h1>
         <p className="tool-desc">Reduce PDF file size while maintaining quality. Perfect for email attachments.</p>

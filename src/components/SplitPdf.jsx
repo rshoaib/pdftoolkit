@@ -4,6 +4,7 @@ import * as pdfjsLib from 'pdfjs-dist';
 import { Download, Check, ChevronLeft, ChevronRight } from 'lucide-react';
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
+import SEO from './SEO';
 
 // Configure PDF.js worker
 pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`;
@@ -128,6 +129,20 @@ const SplitPdf = () => {
 
   return (
     <div className="tool-page">
+      <SEO
+        title="Split PDF — Extract Pages from PDF Online for Free | Tiny PDF Tools"
+        description="Split a PDF into separate files or extract specific pages. 100% free, no uploads, runs entirely in your browser."
+        canonicalUrl="https://tinypdftools.com/split-pdf"
+        schemaType="WebApplication"
+        schemaData={{
+          name: 'Split PDF',
+          url: 'https://tinypdftools.com/split-pdf',
+          applicationCategory: 'Utility',
+          operatingSystem: 'Any',
+          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+          description: 'Split a PDF into separate files or extract specific pages. 100% free and private.',
+        }}
+      />
       <div className="tool-header">
         <h1 className="tool-title">Split PDF</h1>
         <p className="tool-desc">Select pages to extract from your PDF document.</p>

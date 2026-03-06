@@ -321,6 +321,7 @@ const CropPdf = () => {
       <SEO
         title="Crop PDF — Trim PDF Margins & Pages Online for Free | Tiny PDF Tools"
         description="Crop and trim PDF pages visually. Drag to select the area to keep, then download instantly. 100% free, no uploads — runs in your browser."
+        canonicalUrl="https://tinypdftools.com/crop-pdf"
         schemaType="WebApplication"
         schemaData={{
           name: 'Crop PDF',

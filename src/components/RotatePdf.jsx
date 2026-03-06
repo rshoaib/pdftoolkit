@@ -3,6 +3,7 @@ import { PDFDocument, degrees } from 'pdf-lib';
 import { RotateCw, Download, RefreshCw } from 'lucide-react';
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
+import SEO from './SEO';
 
 const faqs = [
   { q: 'How do I rotate a PDF?', a: 'Upload your PDF, choose the rotation angle (90°, 180°, or 270°), then click "Rotate & Download". The rotated PDF downloads instantly.' },
@@ -61,6 +62,20 @@ const RotatePdf = () => {
 
   return (
     <div className="tool-page">
+      <SEO
+        title="Rotate PDF — Rotate PDF Pages Online for Free | Tiny PDF Tools"
+        description="Rotate all pages in your PDF by 90°, 180°, or 270°. Lossless rotation, instant download. 100% free, no uploads."
+        canonicalUrl="https://tinypdftools.com/rotate-pdf"
+        schemaType="WebApplication"
+        schemaData={{
+          name: 'Rotate PDF',
+          url: 'https://tinypdftools.com/rotate-pdf',
+          applicationCategory: 'Utility',
+          operatingSystem: 'Any',
+          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+          description: 'Rotate all PDF pages by 90°, 180°, or 270°. Lossless, instant. 100% free and private.',
+        }}
+      />
       <div className="tool-header">
         <h1 className="tool-title">Rotate PDF</h1>
         <p className="tool-desc">Rotate all pages in your PDF by 90°, 180°, or 270°. Lossless and instant.</p>

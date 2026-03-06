@@ -3,6 +3,7 @@ import { PDFDocument, rgb, degrees, StandardFonts } from 'pdf-lib';
 import { Droplets, Download, RefreshCw, Type, Settings } from 'lucide-react';
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
+import SEO from './SEO';
 
 const faqs = [
   { q: 'What types of watermarks can I add?', a: 'You can add custom text watermarks with full control over font size, opacity, rotation angle, and color. The watermark is applied to every page of your PDF.' },
@@ -96,6 +97,20 @@ const WatermarkPdf = () => {
 
   return (
     <div className="tool-page">
+      <SEO
+        title="Watermark PDF — Add Text Watermarks Online for Free | Tiny PDF Tools"
+        description="Add custom text watermarks to your PDF pages. Choose font size, opacity, rotation, and color. 100% free, no uploads, 100% in your browser."
+        canonicalUrl="https://tinypdftools.com/watermark-pdf"
+        schemaType="WebApplication"
+        schemaData={{
+          name: 'Watermark PDF',
+          url: 'https://tinypdftools.com/watermark-pdf',
+          applicationCategory: 'Utility',
+          operatingSystem: 'Any',
+          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+          description: 'Add custom text watermarks to PDFs with full control over style. 100% free and private.',
+        }}
+      />
       <div className="tool-header">
         <h1 className="tool-title">Watermark PDF</h1>
         <p className="tool-desc">Add custom text watermarks to your PDF pages. Choose font size, opacity, rotation, and color — 100% in your browser.</p>

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const SEO = ({ title, description, schemaType, schemaData }) => {
+const SEO = ({ title, description, schemaType, schemaData, canonicalUrl }) => {
   useEffect(() => {
     // We optionally update the document title and description if provided dynamically
     if (title) {
@@ -14,6 +14,21 @@ const SEO = ({ title, description, schemaType, schemaData }) => {
       if (metaDesc) metaDesc.content = description;
       const ogDesc = document.querySelector('meta[property="og:description"]');
       if (ogDesc) ogDesc.content = description;
+    }
+
+    // Canonical URL
+    if (canonicalUrl) {
+      let link = document.querySelector('link[rel="canonical"]');
+      if (!link) {
+        link = document.createElement('link');
+        link.rel = 'canonical';
+        document.head.appendChild(link);
+      }
+      link.href = canonicalUrl;
+
+      // Also update og:url
+      const ogUrl = document.querySelector('meta[property="og:url"]');
+      if (ogUrl) ogUrl.content = canonicalUrl;
     }
 
     // JSON-LD Injection
@@ -39,11 +54,17 @@ const SEO = ({ title, description, schemaType, schemaData }) => {
         if (script && script.parentNode) {
           script.parentNode.removeChild(script);
         }
+        // Cleanup canonical
+        const canonicalLink = document.querySelector('link[rel="canonical"]');
+        if (canonicalLink && canonicalLink.parentNode) {
+          canonicalLink.parentNode.removeChild(canonicalLink);
+        }
       };
     }
-  }, [title, description, schemaType, schemaData]);
+  }, [title, description, schemaType, schemaData, canonicalUrl]);
 
   return null;
 };
 
 export default SEO;
+

@@ -3,6 +3,7 @@ import { PDFDocument } from 'pdf-lib';
 import { Lock, Download, RefreshCw, Eye, EyeOff, ShieldCheck } from 'lucide-react';
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
+import SEO from './SEO';
 
 const faqs = [
   { q: 'How does PDF password protection work?', a: 'A user password is required to open the PDF. An owner password controls editing permissions. Both are set during protection.' },
@@ -56,6 +57,20 @@ const ProtectPdf = () => {
 
   return (
     <div className="tool-page">
+      <SEO
+        title="Protect PDF — Add Password to PDF Online for Free | Tiny PDF Tools"
+        description="Add password protection with AES-256 encryption to your PDFs. 100% free, no uploads — encryption runs in your browser."
+        canonicalUrl="https://tinypdftools.com/protect-pdf"
+        schemaType="WebApplication"
+        schemaData={{
+          name: 'Protect PDF',
+          url: 'https://tinypdftools.com/protect-pdf',
+          applicationCategory: 'Utility',
+          operatingSystem: 'Any',
+          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+          description: 'Add AES-256 password protection to your PDFs. 100% free and private.',
+        }}
+      />
       <div className="tool-header">
         <h1 className="tool-title">Protect PDF</h1>
         <p className="tool-desc">Add password protection to your PDF files. AES-256 encryption, 100% in your browser.</p>

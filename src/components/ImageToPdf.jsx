@@ -3,6 +3,7 @@ import { PDFDocument } from 'pdf-lib';
 import { Download, GripVertical, Trash2, Plus, FileImage } from 'lucide-react';
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
+import SEO from './SEO';
 
 const faqs = [
   { q: 'What image formats are supported?', a: 'You can upload JPG, JPEG, PNG, and WebP images. They will be automatically embedded into the PDF.' },
@@ -127,6 +128,20 @@ const ImageToPdf = () => {
 
   return (
     <div className="tool-page">
+      <SEO
+        title="Image to PDF — Convert JPG/PNG to PDF Online for Free | Tiny PDF Tools"
+        description="Combine JPG, PNG, or WebP images into a single PDF document. Drag to reorder. 100% free, no uploads, runs in your browser."
+        canonicalUrl="https://tinypdftools.com/image-to-pdf"
+        schemaType="WebApplication"
+        schemaData={{
+          name: 'Image to PDF',
+          url: 'https://tinypdftools.com/image-to-pdf',
+          applicationCategory: 'Utility',
+          operatingSystem: 'Any',
+          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+          description: 'Combine JPG, PNG, or WebP images into a single PDF document. 100% free and private.',
+        }}
+      />
       <div className="tool-header">
         <h1 className="tool-title">Image to PDF</h1>
         <p className="tool-desc">Combine your images into a single PDF document.</p>

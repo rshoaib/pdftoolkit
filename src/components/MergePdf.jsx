@@ -3,6 +3,7 @@ import { PDFDocument } from 'pdf-lib';
 import { FileText, GripVertical, Trash2, Download, Plus } from 'lucide-react';
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
+import SEO from './SEO';
 
 const faqs = [
   { q: 'How do I merge PDF files?', a: 'Upload two or more PDF files, drag them to set the order, then click "Merge PDFs". Your merged file will download instantly.' },
@@ -65,6 +66,20 @@ const MergePdf = () => {
 
   return (
     <div className="tool-page">
+      <SEO
+        title="Merge PDF — Combine PDF Files Online for Free | Tiny PDF Tools"
+        description="Merge multiple PDF files into one document. Drag to reorder, then download instantly. 100% free, no uploads, runs in your browser."
+        canonicalUrl="https://tinypdftools.com/merge-pdf"
+        schemaType="WebApplication"
+        schemaData={{
+          name: 'Merge PDF',
+          url: 'https://tinypdftools.com/merge-pdf',
+          applicationCategory: 'Utility',
+          operatingSystem: 'Any',
+          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+          description: 'Merge multiple PDF files into one document. Drag to reorder, then download instantly. 100% free and private.',
+        }}
+      />
       <div className="tool-header">
         <h1 className="tool-title">Merge PDF</h1>
         <p className="tool-desc">Combine multiple PDF files into a single document. Drag to reorder.</p>

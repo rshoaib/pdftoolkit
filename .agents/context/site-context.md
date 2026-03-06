@@ -50,3 +50,4 @@ description: Brand voice, internal links, and target keywords for pdftoolkit (Ti
 4. ~~"PDF to Image: Convert PDF Pages to PNG or JPG"~~ ✅
 5. ~~"How to Add Page Numbers to PDF (Free, No Upload Required)"~~ ✅
 6. ~~"How to Crop a PDF Online for Free (No Uploads Required)"~~ ✅
+7. ~~"How to Rotate a PDF Online for Free (No Upload Required) — 2026 Guide"~~ ✅

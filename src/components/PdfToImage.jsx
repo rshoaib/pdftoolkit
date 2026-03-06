@@ -5,6 +5,7 @@ import { saveAs } from 'file-saver';
 import { Download, Image as ImageIcon } from 'lucide-react';
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
+import SEO from './SEO';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`;
 
@@ -96,6 +97,20 @@ const PdfToImage = () => {
 
   return (
     <div className="tool-page">
+      <SEO
+        title="PDF to Image — Convert PDF Pages to JPG/PNG Online | Tiny PDF Tools"
+        description="Convert PDF pages to high-quality JPG or PNG images. Download individually or as a ZIP. 100% free, no uploads required."
+        canonicalUrl="https://tinypdftools.com/pdf-to-image"
+        schemaType="WebApplication"
+        schemaData={{
+          name: 'PDF to Image',
+          url: 'https://tinypdftools.com/pdf-to-image',
+          applicationCategory: 'Utility',
+          operatingSystem: 'Any',
+          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+          description: 'Convert PDF pages to high-quality JPG or PNG images. 100% free and private.',
+        }}
+      />
       <div className="tool-header">
         <h1 className="tool-title">PDF to Image</h1>
         <p className="tool-desc">Convert PDF pages to high-quality JPG or PNG images.</p>
