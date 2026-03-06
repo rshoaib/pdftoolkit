@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Merge, Scissors, Minimize2, Image, FileImage, RotateCw, Lock, Unlock, Droplets, GripVertical, ListOrdered, Crop, ArrowRight } from 'lucide-react';
+import { Merge, Scissors, Minimize2, Image, FileImage, RotateCw, Lock, Unlock, Droplets, GripVertical, ListOrdered, Crop, ArrowRight, Trash2, Layers, PenTool } from 'lucide-react';
 
 const tools = [
   {
@@ -85,6 +85,27 @@ const tools = [
     description: 'Visually trim margins or cut specific areas from PDF pages. Drag to crop.',
     icon: Crop,
     color: '#7c3aed',
+  },
+  {
+    id: 'delete-pdf-pages',
+    title: 'Delete Pages',
+    description: 'Remove unwanted pages from your PDF. Click to select, download the trimmed file.',
+    icon: Trash2,
+    color: '#ef4444',
+  },
+  {
+    id: 'flatten-pdf',
+    title: 'Flatten PDF',
+    description: 'Merge form fields and annotations into a static, non-editable document.',
+    icon: Layers,
+    color: '#64748b',
+  },
+  {
+    id: 'sign-pdf',
+    title: 'Sign PDF',
+    description: 'Draw or type your signature and place it on any page of your PDF.',
+    icon: PenTool,
+    color: '#2563eb',
   },
 ];
 

@@ -20,6 +20,9 @@ const routes = [
   { path: '/unlock-pdf', title: 'Unlock PDF — Remove Password Protection Online for Free | Tiny PDF Tools', desc: 'Remove password protection from your PDF files. Enter the password you know, get an unlocked copy. 100% free, no uploads, runs in your browser.', priority: '0.9', freq: 'weekly' },
   { path: '/organize-pdf', title: 'Organize PDF — Rearrange, Delete & Duplicate Pages Online | Tiny PDF Tools', desc: 'Drag and drop to reorder PDF pages, delete unwanted pages, or duplicate them. 100% free, no uploads, runs in your browser.', priority: '0.9', freq: 'weekly' },
   { path: '/crop-pdf', title: 'Crop PDF — Trim PDF Margins & Pages Online for Free | Tiny PDF Tools', desc: 'Crop and trim PDF pages visually. Drag to select the area to keep, then download instantly. 100% free, no uploads — runs in your browser.', priority: '0.9', freq: 'weekly' },
+  { path: '/delete-pdf-pages', title: 'Delete PDF Pages — Remove Pages from PDF Online for Free | Tiny PDF Tools', desc: 'Remove unwanted pages from your PDF in seconds. Click to select, download the trimmed file. 100% free, no uploads — runs in your browser.', priority: '0.9', freq: 'weekly' },
+  { path: '/flatten-pdf', title: 'Flatten PDF — Make PDF Non-Editable Online for Free | Tiny PDF Tools', desc: 'Flatten PDF form fields and annotations into a static, non-editable document. 100% free, no uploads — runs in your browser.', priority: '0.9', freq: 'weekly' },
+  { path: '/sign-pdf', title: 'Sign PDF — Add Signature to PDF Online for Free | Tiny PDF Tools', desc: 'Draw or type your signature and place it on any PDF page. 100% free, no uploads — your signature never leaves your browser.', priority: '0.9', freq: 'weekly' },
   { path: '/about', title: 'About — Tiny PDF Tools', desc: 'Learn about Tiny PDF Tools — free, private, browser-based PDF utilities.', priority: '0.5', freq: 'monthly' },
   { path: '/contact', title: 'Contact — Tiny PDF Tools', desc: 'Get in touch with the Tiny PDF Tools team.', priority: '0.5', freq: 'monthly' },
   { path: '/privacy', title: 'Privacy Policy — Tiny PDF Tools', desc: 'Privacy policy for Tiny PDF Tools. Your files never leave your device.', priority: '0.3', freq: 'monthly' },
@@ -32,6 +35,7 @@ const routes = [
   { path: '/blog/how-to-organize-rearrange-pdf-pages-free', title: 'How to Organize and Rearrange PDF Pages for Free in 2026 | Tiny PDF Tools', desc: 'Learn how to reorder, delete, and duplicate PDF pages without uploading files. A step-by-step guide using free browser-based tools.', priority: '0.7', freq: 'monthly' },
   { path: '/blog/how-to-crop-pdf-online-free', title: 'How to Crop a PDF Online for Free in 2026 (No Uploads Required) | Tiny PDF Tools', desc: 'Trim margins, cut whitespace, or resize PDF pages visually — all in your browser. No uploads, no software, no subscriptions.', priority: '0.7', freq: 'monthly' },
   { path: '/blog/how-to-rotate-pdf-online-free', title: 'How to Rotate a PDF Online for Free (No Upload Required) — 2026 Guide | Tiny PDF Tools', desc: 'Rotate PDF pages 90°, 180°, or 270° in your browser. Free, private — no uploads, no software. Step-by-step guide with privacy comparison.', priority: '0.7', freq: 'monthly' },
+  { path: '/blog/how-to-split-pdf-online-free', title: 'How to Split a PDF Online for Free (No Upload Required) — 2026 Guide | Tiny PDF Tools', desc: 'Extract specific pages or split a large PDF into smaller files in seconds. Free, private — no uploads, no software.', priority: '0.7', freq: 'monthly' },
 ];
 
 // Ensure dist directory exists

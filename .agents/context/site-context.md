@@ -29,6 +29,9 @@ description: Brand voice, internal links, and target keywords for pdftoolkit (Ti
 | PDF to Image | `/pdf-to-image` | convert, export, PNG, JPG |
 | Rotate PDF | `/rotate-pdf` | rotate pages, flip, orientation |
 | Crop PDF | `/crop-pdf` | crop, trim margins, cut pages, resize |
+| Delete Pages | `/delete-pdf-pages` | delete pages, remove pages |
+| Flatten PDF | `/flatten-pdf` | flatten, make non-editable, static |
+| Sign PDF | `/sign-pdf` | sign, signature, e-sign |
 | Blog | `/blog/[slug]` | Guides and tutorials |
 
 ## Target Keywords

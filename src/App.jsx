@@ -16,6 +16,9 @@ const WatermarkPdf = lazy(() => import('./components/WatermarkPdf'));
 const OrganizePdf = lazy(() => import('./components/OrganizePdf'));
 const AddPageNumbers = lazy(() => import('./components/AddPageNumbers'));
 const CropPdf = lazy(() => import('./components/CropPdf'));
+const DeletePdfPages = lazy(() => import('./components/DeletePdfPages'));
+const FlattenPdf = lazy(() => import('./components/FlattenPdf'));
+const SignPdf = lazy(() => import('./components/SignPdf'));
 const BlogList = lazy(() => import('./components/BlogList'));
 const BlogPost = lazy(() => import('./components/BlogPost'));
 const PrivacyPolicy = lazy(() => import('./components/PrivacyPolicy'));
@@ -58,6 +61,9 @@ const AppContent = () => {
             <Route path="/organize-pdf" element={<OrganizePdf />} />
             <Route path="/add-page-numbers" element={<AddPageNumbers />} />
             <Route path="/crop-pdf" element={<CropPdf />} />
+            <Route path="/delete-pdf-pages" element={<DeletePdfPages />} />
+            <Route path="/flatten-pdf" element={<FlattenPdf />} />
+            <Route path="/sign-pdf" element={<SignPdf />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<TermsOfService />} />
             <Route path="/about" element={<About />} />

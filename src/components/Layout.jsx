@@ -65,6 +65,9 @@ const Layout = ({ children, onNavigate }) => {
         <a href="/watermark-pdf" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('/watermark-pdf'); }}>Watermark PDF</a>
         <a href="/organize-pdf" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('/organize-pdf'); }}>Organize PDF</a>
         <a href="/add-page-numbers" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('/add-page-numbers'); }}>Add Page Numbers</a>
+        <a href="/delete-pdf-pages" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('/delete-pdf-pages'); }}>Delete Pages</a>
+        <a href="/flatten-pdf" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('/flatten-pdf'); }}>Flatten PDF</a>
+        <a href="/sign-pdf" onClick={(e) => { e.preventDefault(); onNavigate && onNavigate('/sign-pdf'); }}>Sign PDF</a>
       </div>
 
       <div className="quick-links" style={{ borderTop: 'none', paddingTop: '0' }}>
