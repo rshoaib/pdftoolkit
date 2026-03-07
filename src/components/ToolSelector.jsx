@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Merge, Scissors, Minimize2, Image, FileImage, RotateCw, Lock, Unlock, Droplets, GripVertical, ListOrdered, Crop, ArrowRight, Trash2, Layers, PenTool } from 'lucide-react';
+import { Merge, Scissors, Minimize2, Image, FileImage, RotateCw, Lock, Unlock, Droplets, GripVertical, ListOrdered, Crop, ArrowRight, Trash2, Layers, PenTool, FileOutput } from 'lucide-react';
 
 const tools = [
   {
@@ -106,6 +106,13 @@ const tools = [
     description: 'Draw or type your signature and place it on any page of your PDF.',
     icon: PenTool,
     color: '#2563eb',
+  },
+  {
+    id: 'extract-pdf-pages',
+    title: 'Extract Pages',
+    description: 'Select and extract specific pages from a PDF into a new file.',
+    icon: FileOutput,
+    color: '#059669',
   },
 ];
 
