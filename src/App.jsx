@@ -20,6 +20,7 @@ const DeletePdfPages = lazy(() => import('./components/DeletePdfPages'));
 const FlattenPdf = lazy(() => import('./components/FlattenPdf'));
 const SignPdf = lazy(() => import('./components/SignPdf'));
 const ExtractPdfPages = lazy(() => import('./components/ExtractPdfPages'));
+const PdfReader = lazy(() => import('./components/PdfReader'));
 const BlogList = lazy(() => import('./components/BlogList'));
 const BlogPost = lazy(() => import('./components/BlogPost'));
 const PrivacyPolicy = lazy(() => import('./components/PrivacyPolicy'));
@@ -66,6 +67,7 @@ const AppContent = () => {
             <Route path="/flatten-pdf" element={<FlattenPdf />} />
             <Route path="/sign-pdf" element={<SignPdf />} />
             <Route path="/extract-pdf-pages" element={<ExtractPdfPages />} />
+            <Route path="/pdf-reader" element={<PdfReader />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<TermsOfService />} />
             <Route path="/about" element={<About />} />

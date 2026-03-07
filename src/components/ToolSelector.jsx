@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Merge, Scissors, Minimize2, Image, FileImage, RotateCw, Lock, Unlock, Droplets, GripVertical, ListOrdered, Crop, ArrowRight, Trash2, Layers, PenTool, FileOutput } from 'lucide-react';
+import { Merge, Scissors, Minimize2, Image, FileImage, RotateCw, Lock, Unlock, Droplets, GripVertical, ListOrdered, Crop, ArrowRight, Trash2, Layers, PenTool, FileOutput, BookOpen } from 'lucide-react';
 
 const tools = [
   {
@@ -113,6 +113,13 @@ const tools = [
     description: 'Select and extract specific pages from a PDF into a new file.',
     icon: FileOutput,
     color: '#059669',
+  },
+  {
+    id: 'pdf-reader',
+    title: 'PDF Reader',
+    description: 'Open and read PDFs in your browser. Zoom, navigate, rotate, and search.',
+    icon: BookOpen,
+    color: '#0891b2',
   },
 ];
 
