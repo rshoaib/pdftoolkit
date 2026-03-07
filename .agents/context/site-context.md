@@ -32,6 +32,7 @@ description: Brand voice, internal links, and target keywords for pdftoolkit (Ti
 | Delete Pages | `/delete-pdf-pages` | delete pages, remove pages |
 | Flatten PDF | `/flatten-pdf` | flatten, make non-editable, static |
 | Sign PDF | `/sign-pdf` | sign, signature, e-sign |
+| PDF Reader | `/pdf-reader` | read pdf, view pdf, open pdf online |
 | Blog | `/blog/[slug]` | Guides and tutorials |
 
 ## Target Keywords
@@ -45,6 +46,7 @@ description: Brand voice, internal links, and target keywords for pdftoolkit (Ti
 | split pdf online | ✅ Tool exists |
 | pdf to image converter | ✅ Tool exists |
 | crop pdf online free | ✅ Tool + blog |
+| read pdf online free | ✅ Tool + blog |
 
 ### Content Calendar
 1. ~~"How to Unlock a PDF Without the Password (Free Online Tool)"~~ ✅
@@ -64,3 +66,4 @@ description: Brand voice, internal links, and target keywords for pdftoolkit (Ti
 15. ~~"How to Organize PDF Pages Online for Free (No Upload Required) — 2026 Guide"~~ ✅
 16. ~~"The Complete PDF Security Guide: Watermark, Encrypt & Flatten (Free, No Upload) — 2026"~~ ✅
 17. ~~"15 Best Free PDF Tools Online (No Upload, No Sign-Up) — 2026 Guide"~~ ✅
+18. ~~"How to Read a PDF Online for Free (No Upload, No Download) — 2026 Guide"~~ ✅
