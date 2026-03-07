@@ -4,6 +4,7 @@ import { Download, GripVertical, Trash2, Plus, FileImage } from 'lucide-react';
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
 import SEO from './SEO';
+import ToolIntro from './ToolIntro';
 
 const faqs = [
   { q: 'What image formats are supported?', a: 'You can upload JPG, JPEG, PNG, and WebP images. They will be automatically embedded into the PDF.' },
@@ -146,6 +147,11 @@ const ImageToPdf = () => {
         <h1 className="tool-title">Image to PDF</h1>
         <p className="tool-desc">Combine your images into a single PDF document.</p>
       </div>
+
+      <ToolIntro
+        paragraphs={['Combine JPG, PNG, or WebP images into a single PDF document. This is commonly used for converting scanned receipts, photos, whiteboard notes, or design mockups into a shareable, printable PDF format.', 'Upload multiple images, rearrange them in any order, and generate a PDF where each image fills its own page. The output preserves the original image quality and dimensions. Everything is processed in your browser — your images never leave your device.']}
+        bestFor={['Scanned receipts', 'Photo albums', 'Design portfolios', 'Whiteboard captures']}
+      />
 
       {images.length === 0 ? (
         <DropZone

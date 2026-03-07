@@ -4,6 +4,7 @@ import { Lock, Download, RefreshCw, Eye, EyeOff, ShieldCheck } from 'lucide-reac
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
 import SEO from './SEO';
+import ToolIntro from './ToolIntro';
 
 const faqs = [
   { q: 'How does PDF password protection work?', a: 'A user password is required to open the PDF. An owner password controls editing permissions. Both are set during protection.' },
@@ -75,6 +76,11 @@ const ProtectPdf = () => {
         <h1 className="tool-title">Protect PDF</h1>
         <p className="tool-desc">Add password protection to your PDF files. AES-256 encryption, 100% in your browser.</p>
       </div>
+
+      <ToolIntro
+        paragraphs={['Add password protection and AES-256 encryption to your PDF files. This prevents unauthorized users from opening, copying, or printing your sensitive documents. Essential for contracts, financial reports, medical records, and any confidential material shared digitally.', 'You set the password, and the tool encrypts the entire document in your browser. The encrypted PDF can only be opened by someone who knows the password. Since encryption happens client-side, your unprotected document is never sent to any server.']}
+        bestFor={['Contracts and agreements', 'Financial documents', 'Medical records', 'Confidential reports']}
+      />
 
       {!file ? (
         <DropZone onFiles={handleFiles} accept=".pdf" multiple={false} label="Drop your PDF file here to protect" />

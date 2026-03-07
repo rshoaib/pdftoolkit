@@ -4,6 +4,7 @@ import { Download, RotateCcw, Layers, ShieldCheck } from 'lucide-react';
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
 import SEO from './SEO';
+import ToolIntro from './ToolIntro';
 
 const faqs = [
   { q: 'What does flattening a PDF do?', a: 'Flattening merges all interactive elements — form fields, annotations, comments — into the page background. The result is a static, non-editable PDF.' },
@@ -106,6 +107,11 @@ const FlattenPdf = () => {
         <h1 className="tool-title">Flatten PDF</h1>
         <p className="tool-desc">Merge form fields, annotations, and comments into a static, non-editable PDF.</p>
       </div>
+
+      <ToolIntro
+        paragraphs={['Merge interactive form fields, annotations, comments, and digital signatures into a static, non-editable PDF layer. Flattening is essential before archiving forms, submitting completed applications, or sharing filled documents where recipients should not modify the content.', 'The flattened PDF looks identical to the original but all interactive elements become permanent, static content. This also reduces file size and ensures the document displays consistently across all PDF viewers and printers.']}
+        bestFor={['Archiving filled forms', 'Submitting applications', 'Locking annotations', 'Print preparation']}
+      />
 
       {!file ? (
         <DropZone onFiles={handleFiles} accept=".pdf" multiple={false} label="Drop your PDF file here to flatten" />

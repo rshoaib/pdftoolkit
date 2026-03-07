@@ -5,6 +5,7 @@ import { Download, Check, ChevronLeft, ChevronRight } from 'lucide-react';
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
 import SEO from './SEO';
+import ToolIntro from './ToolIntro';
 
 // Configure PDF.js worker
 pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`;
@@ -147,6 +148,11 @@ const SplitPdf = () => {
         <h1 className="tool-title">Split PDF</h1>
         <p className="tool-desc">Select pages to extract from your PDF document.</p>
       </div>
+
+      <ToolIntro
+        paragraphs={['Extract specific pages from a PDF or break a large document into smaller, more manageable files. This is essential when you need to send only certain pages from a report, separate chapters from a textbook, or pull out a single form from a multi-page document.', 'Select exactly which pages to extract by specifying page ranges. The original document remains untouched — you get a new PDF containing only the pages you selected. All processing runs locally in your browser for complete privacy.']}
+        bestFor={['Extracting chapters', 'Sending partial documents', 'Separating forms', 'Academic papers']}
+      />
 
       {!file ? (
         <DropZone onFiles={handleFiles} accept=".pdf" multiple={false} label="Drop your PDF file here to split" />

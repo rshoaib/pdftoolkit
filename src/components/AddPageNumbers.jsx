@@ -4,6 +4,7 @@ import { ListOrdered, Download, RefreshCw, Settings } from 'lucide-react';
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
 import SEO from './SEO';
+import ToolIntro from './ToolIntro';
 
 const faqs = [
   { q: 'What page number formats are available?', a: 'You can choose from four formats: plain number (1, 2, 3), "Page 1", "Page 1 of N", or centered dashes (- 1 -). Each format is applied consistently to every page.' },
@@ -171,6 +172,11 @@ const AddPageNumbers = () => {
         <h1 className="tool-title">Add Page Numbers to PDF</h1>
         <p className="tool-desc">Stamp page numbers on every page of your PDF. Choose position, format, size, and color — 100% in your browser.</p>
       </div>
+
+      <ToolIntro
+        paragraphs={['Stamp page numbers on every page of your PDF document. Choose the position (top or bottom, left, center, or right), number format, font size, and starting number. Essential for multi-page reports, manuscripts, and official documents.', 'Page numbers are embedded as text directly onto the PDF pages. You can preview the placement before downloading. The operation runs entirely in your browser, so your document never touches a remote server.']}
+        bestFor={['Reports and manuscripts', 'Academic papers', 'Legal filings', 'Multi-page proposals']}
+      />
 
       {!file ? (
         <DropZone onFiles={handleFiles} accept=".pdf" multiple={false} label="Drop your PDF file here to add page numbers" />

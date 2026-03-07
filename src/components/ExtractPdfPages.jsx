@@ -5,6 +5,7 @@ import { Download, FileOutput, RotateCcw, CheckSquare, Square } from 'lucide-rea
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
 import SEO from './SEO';
+import ToolIntro from './ToolIntro';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`;
 
@@ -131,6 +132,11 @@ const ExtractPdfPages = () => {
         <h1 className="tool-title">Extract PDF Pages</h1>
         <p className="tool-desc">Select the pages you want to keep, then download your new PDF.</p>
       </div>
+
+      <ToolIntro
+        paragraphs={['Select and extract specific pages from a PDF into a new, standalone file. Unlike splitting, extraction lets you pick individual pages by number or range — even non-consecutive pages — and combine them into a single output document.', 'This is perfect when you need specific pages from a large document without downloading the entire file. Browse page thumbnails, select the pages you need, and download a clean PDF containing only your selections.']}
+        bestFor={['Pulling specific pages', 'Creating document excerpts', 'Selective sharing', 'Reference compilation']}
+      />
 
       {!file ? (
         <DropZone onFiles={handleFiles} accept=".pdf" multiple={false} label="Drop your PDF file here to extract pages" />

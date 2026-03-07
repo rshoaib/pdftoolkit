@@ -5,6 +5,7 @@ import { Crop, Download, RefreshCw, Maximize2 } from 'lucide-react';
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
 import SEO from './SEO';
+import ToolIntro from './ToolIntro';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`;
 
@@ -336,6 +337,11 @@ const CropPdf = () => {
         <h1 className="tool-title">Crop PDF</h1>
         <p className="tool-desc">Visually trim margins or cut specific areas from your PDF pages. Drag the handles to define the crop area.</p>
       </div>
+
+      <ToolIntro
+        paragraphs={['Visually trim margins or cut specific areas from PDF pages. Draw a crop rectangle directly on the page preview to define exactly which area to keep. This is useful for removing headers, footers, whitespace, or focusing on specific content areas.', 'The crop tool modifies the visible area of the page without destroying the underlying content. You can apply the same crop to all pages or set different crops per page. Everything runs in your browser for instant, private processing.']}
+        bestFor={['Removing margins', 'Trimming headers/footers', 'Focusing on content areas', 'Print preparation']}
+      />
 
       {!file ? (
         <DropZone onFiles={handleFiles} accept=".pdf" multiple={false} label="Drop your PDF file here to crop" />

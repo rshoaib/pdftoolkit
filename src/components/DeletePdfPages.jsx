@@ -5,6 +5,7 @@ import { Download, Trash2, RotateCcw, CheckSquare, Square } from 'lucide-react';
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
 import SEO from './SEO';
+import ToolIntro from './ToolIntro';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`;
 
@@ -133,6 +134,11 @@ const DeletePdfPages = () => {
         <h1 className="tool-title">Delete PDF Pages</h1>
         <p className="tool-desc">Select the pages you want to remove, then download your trimmed PDF.</p>
       </div>
+
+      <ToolIntro
+        paragraphs={['Remove unwanted pages from your PDF document. Browse page thumbnails, click to select the pages you want to remove, and download a clean copy with those pages stripped out.', 'This is the fastest way to eliminate blank pages, duplicate sections, cover pages, or any content you do not need. The original document is never modified — you always download a new, trimmed copy. Processing is instant and fully browser-based.']}
+        bestFor={['Removing blank pages', 'Stripping cover pages', 'Cleaning scanned documents', 'Trimming appendices']}
+      />
 
       {!file ? (
         <DropZone onFiles={handleFiles} accept=".pdf" multiple={false} label="Drop your PDF file here to remove pages" />

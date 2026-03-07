@@ -5,6 +5,7 @@ import { Download, Trash2, Copy, GripVertical, RotateCcw } from 'lucide-react';
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
 import SEO from './SEO';
+import ToolIntro from './ToolIntro';
 
 // Configure PDF.js worker
 pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`;
@@ -164,6 +165,11 @@ const OrganizePdf = () => {
         <h1 className="tool-title">Organize PDF</h1>
         <p className="tool-desc">Drag &amp; drop to rearrange pages, delete or duplicate — then download your reorganized PDF.</p>
       </div>
+
+      <ToolIntro
+        paragraphs={['Rearrange, delete, or duplicate pages within a PDF using an intuitive drag-and-drop interface. This gives you complete control over your document\'s page order without needing to split and merge manually.', 'Visual page thumbnails make it easy to identify and move pages. Delete unwanted pages, duplicate important ones, or reorder sections to create the exact document structure you need. Changes are applied instantly in your browser.']}
+        bestFor={['Report restructuring', 'Removing blank pages', 'Reordering sections', 'Document cleanup']}
+      />
 
       {!file ? (
         <DropZone onFiles={handleFiles} accept=".pdf" multiple={false} label="Drop your PDF file here to organize pages" />

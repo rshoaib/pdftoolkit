@@ -4,6 +4,7 @@ import { RotateCw, Download, RefreshCw } from 'lucide-react';
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
 import SEO from './SEO';
+import ToolIntro from './ToolIntro';
 
 const faqs = [
   { q: 'How do I rotate a PDF?', a: 'Upload your PDF, choose the rotation angle (90°, 180°, or 270°), then click "Rotate & Download". The rotated PDF downloads instantly.' },
@@ -80,6 +81,11 @@ const RotatePdf = () => {
         <h1 className="tool-title">Rotate PDF</h1>
         <p className="tool-desc">Rotate all pages in your PDF by 90°, 180°, or 270°. Lossless and instant.</p>
       </div>
+
+      <ToolIntro
+        paragraphs={['Fix wrongly oriented PDF pages by rotating them 90°, 180°, or 270° clockwise. This commonly happens with scanned documents, mobile photos converted to PDF, or documents saved in landscape format that should be portrait.', 'The rotation is lossless — it modifies only the page orientation metadata without re-encoding the content. Your text, images, and formatting remain pixel-perfect. The operation is instant and runs entirely in your browser.']}
+        bestFor={['Scanned documents', 'Mobile captures', 'Landscape-to-portrait fixes', 'Presentation formatting']}
+      />
 
       {!file ? (
         <DropZone onFiles={handleFiles} accept=".pdf" multiple={false} label="Drop your PDF file here to rotate" />

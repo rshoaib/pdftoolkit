@@ -4,6 +4,7 @@ import { Droplets, Download, RefreshCw, Type, Settings } from 'lucide-react';
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
 import SEO from './SEO';
+import ToolIntro from './ToolIntro';
 
 const faqs = [
   { q: 'What types of watermarks can I add?', a: 'You can add custom text watermarks with full control over font size, opacity, rotation angle, and color. The watermark is applied to every page of your PDF.' },
@@ -115,6 +116,11 @@ const WatermarkPdf = () => {
         <h1 className="tool-title">Watermark PDF</h1>
         <p className="tool-desc">Add custom text watermarks to your PDF pages. Choose font size, opacity, rotation, and color — 100% in your browser.</p>
       </div>
+
+      <ToolIntro
+        paragraphs={['Add text watermarks to every page of your PDF. Commonly used to mark documents as "DRAFT", "CONFIDENTIAL", "SAMPLE", or with your company name to protect intellectual property and establish ownership.', 'Customize the watermark text, font size, opacity, rotation angle, and color. The watermark is embedded directly into the PDF pages. You can preview the result before downloading. Processing happens locally in your browser for complete privacy.']}
+        bestFor={['Draft documents', 'Confidential markings', 'Brand protection', 'Legal documents']}
+      />
 
       {!file ? (
         <DropZone onFiles={handleFiles} accept=".pdf" multiple={false} label="Drop your PDF file here to watermark" />

@@ -4,6 +4,7 @@ import { FileText, GripVertical, Trash2, Download, Plus } from 'lucide-react';
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
 import SEO from './SEO';
+import ToolIntro from './ToolIntro';
 
 const faqs = [
   { q: 'How do I merge PDF files?', a: 'Upload two or more PDF files, drag them to set the order, then click "Merge PDFs". Your merged file will download instantly.' },
@@ -84,6 +85,11 @@ const MergePdf = () => {
         <h1 className="tool-title">Merge PDF</h1>
         <p className="tool-desc">Combine multiple PDF files into a single document. Drag to reorder.</p>
       </div>
+
+      <ToolIntro
+        paragraphs={['Need to combine multiple PDF files into a single document? Whether you are assembling a job application package, compiling reports, or merging scanned pages, this tool lets you join any number of PDFs into one cohesive file.', 'Simply drag and drop your PDFs, rearrange them in any order, and click merge. The combined document preserves all formatting, fonts, images, and hyperlinks from the original files. Processing happens entirely in your browser — your files are never uploaded to any server.']}
+        bestFor={['Job applications', 'Report compilation', 'Scanned documents', 'Document packages']}
+      />
 
       {files.length === 0 ? (
         <DropZone onFiles={handleFiles} accept=".pdf" label="Drop your PDF files here to merge" />

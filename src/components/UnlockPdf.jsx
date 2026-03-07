@@ -4,6 +4,7 @@ import { Unlock, Download, RefreshCw, Eye, EyeOff, KeyRound } from 'lucide-react
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
 import SEO from './SEO';
+import ToolIntro from './ToolIntro';
 
 const faqs = [
   { q: 'How does PDF unlocking work?', a: 'You provide the password for the protected PDF. The tool decrypts it in your browser and saves a new copy without any password protection.' },
@@ -91,6 +92,11 @@ const UnlockPdf = () => {
         <h1 className="tool-title">Unlock PDF</h1>
         <p className="tool-desc">Remove password protection from your PDF files. Enter the password you know, get an unlocked copy — 100% in your browser.</p>
       </div>
+
+      <ToolIntro
+        paragraphs={['Remove password protection from PDF files that you own. If you have the correct password but want to create an unlocked copy for easier access, this tool decrypts the document and saves a new, password-free version.', 'Enter the existing password, and the tool creates an unprotected copy. This is useful when you frequently reference a password-protected document. The decryption runs entirely in your browser — your password and document never leave your device.']}
+        bestFor={['Frequently accessed documents', 'Document archiving', 'Removing own passwords', 'Team sharing']}
+      />
 
       {!file ? (
         <DropZone onFiles={handleFiles} accept=".pdf" multiple={false} label="Drop your password-protected PDF here" />

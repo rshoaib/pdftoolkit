@@ -117,8 +117,54 @@ const tools = [
 ];
 
 const ToolSelector = () => {
+  const faqData = [
+    {
+      question: 'Are all 16 PDF tools really free?',
+      answer: 'Yes. Every tool on Tiny PDF Tools is completely free with no usage limits, no daily caps, and no premium tiers. There is no account to create and nothing to install. We generate revenue through non-intrusive display ads, which allows us to keep every tool free for everyone.',
+    },
+    {
+      question: 'Do my PDF files get uploaded to a server?',
+      answer: 'No. Every tool processes files 100% in your browser using JavaScript and the pdf-lib library. Your files never leave your device. You can verify this yourself by opening Developer Tools (F12), going to the Network tab, and processing any PDF — you will see zero file uploads.',
+    },
+    {
+      question: 'What browsers and devices are supported?',
+      answer: 'Tiny PDF Tools works on all modern browsers including Chrome, Firefox, Edge, Safari, and Brave. The tools work on desktop computers, laptops, tablets, and mobile phones. No software installation or browser extension is required.',
+    },
+    {
+      question: 'Is there a file size limit for PDFs?',
+      answer: 'There is no hard file size limit. Since all processing happens in your browser\'s memory, very large PDFs (over 100 MB) may take longer to process depending on your device\'s available RAM. For most documents under 50 MB, processing is near-instant.',
+    },
+    {
+      question: 'How is this different from Adobe Acrobat or Smallpdf?',
+      answer: 'The key difference is privacy and cost. Adobe Acrobat costs $22.99/month and requires account creation. Smallpdf limits free users to 2 tasks per day and uploads files to their servers. Tiny PDF Tools is completely free, requires no account, and processes everything in your browser — your files never touch a remote server.',
+    },
+    {
+      question: 'Can I use these tools for business and commercial documents?',
+      answer: 'Absolutely. Many professionals use Tiny PDF Tools for contracts, invoices, proposals, and financial reports. Since files are processed entirely in your browser, there is no risk of data exposure through third-party servers. This makes our tools particularly well-suited for sensitive business documents.',
+    },
+  ];
+
   return (
     <div className="tool-selector">
+      {/* FAQ JSON-LD Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: faqData.map((faq) => ({
+              '@type': 'Question',
+              name: faq.question,
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: faq.answer,
+              },
+            })),
+          }),
+        }}
+      />
+
       {/* Hero */}
       <section className="hero">
         <div className="hero-badge">✨ 100% Free & Private — No Uploads</div>
@@ -126,8 +172,8 @@ const ToolSelector = () => {
           All-in-One <span className="gradient-text">PDF Tools</span>
         </h1>
         <p className="hero-subtitle">
-          Merge, split, compress, and convert PDFs entirely in your browser.
-          No uploads to any server — your files never leave your device.
+          Merge, split, compress, sign, watermark, encrypt, and convert PDFs entirely in your browser.
+          No uploads to any server — your files never leave your device. 16 professional tools, completely free.
         </p>
       </section>
 
@@ -162,6 +208,92 @@ const ToolSelector = () => {
         </div>
         <div className="trust-badge">
           <strong>🆓</strong> 100% free
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section className="content-section">
+        <h2 className="section-title">How It Works</h2>
+        <p className="section-intro">Every tool follows the same simple, three-step process. No accounts, no installations, no waiting.</p>
+        <div className="steps-grid">
+          <div className="step-card">
+            <div className="step-number">1</div>
+            <h3>Choose Your Tool</h3>
+            <p>Select any of the 16 PDF tools above. Each tool is purpose-built for a specific task — from merging and splitting to signing and encrypting. Click the tool card to get started instantly.</p>
+          </div>
+          <div className="step-card">
+            <div className="step-number">2</div>
+            <h3>Upload Your PDF</h3>
+            <p>Drag and drop your PDF file onto the upload area, or click to browse your device. The file loads directly into your browser's memory — it is never sent to any external server or cloud storage.</p>
+          </div>
+          <div className="step-card">
+            <div className="step-number">3</div>
+            <h3>Download the Result</h3>
+            <p>Make your changes and click the action button. The processed PDF downloads directly to your device in seconds. The original file is never modified, preserved, or stored anywhere — once you close the tab, it is gone.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Privacy Matters */}
+      <section className="content-section">
+        <h2 className="section-title">Why Client-Side Processing Matters</h2>
+        <p className="section-intro">
+          Most PDF tools upload your files to remote servers for processing. That means your contracts, financial statements, medical records, and personal documents pass through third-party infrastructure you cannot audit or control. Tiny PDF Tools takes a fundamentally different approach.
+        </p>
+        <div className="comparison-table-wrap">
+          <table className="comparison-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Server-Based Tools</th>
+                <th>Tiny PDF Tools</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>File handling</td><td>Uploaded to remote servers</td><td><strong>Never leaves your device</strong></td></tr>
+              <tr><td>Account required</td><td>Yes — email + password</td><td><strong>No account needed</strong></td></tr>
+              <tr><td>Data retention</td><td>Files may be stored</td><td><strong>Zero data retention</strong></td></tr>
+              <tr><td>Usage limits</td><td>2–5 tasks/day (free tier)</td><td><strong>Unlimited, always</strong></td></tr>
+              <tr><td>Cost</td><td>$12–$23/month</td><td><strong>$0 — forever free</strong></td></tr>
+              <tr><td>Privacy verification</td><td>Trust the provider</td><td><strong>Check Network tab (F12)</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="section-note">
+          <strong>How to verify:</strong> Open Developer Tools (F12 → Network tab), process any PDF, and inspect the network log. You will see zero outgoing file transfers. This is not a marketing promise — it is a verifiable technical fact.
+        </p>
+      </section>
+
+      {/* Stats */}
+      <section className="stats-section">
+        <div className="stat-card">
+          <div className="stat-number">16</div>
+          <div className="stat-label">Free PDF Tools</div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-number">0</div>
+          <div className="stat-label">Files Uploaded</div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-number">0</div>
+          <div className="stat-label">Accounts Required</div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-number">∞</div>
+          <div className="stat-label">Usage Limit</div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="content-section">
+        <h2 className="section-title">Frequently Asked Questions</h2>
+        <div className="faq-list">
+          {faqData.map((faq, i) => (
+            <details key={i} className="faq-item">
+              <summary className="faq-question">{faq.question}</summary>
+              <p className="faq-answer">{faq.answer}</p>
+            </details>
+          ))}
         </div>
       </section>
 
@@ -293,6 +425,171 @@ const ToolSelector = () => {
           font-weight: 500;
         }
 
+
+        .content-section {
+          max-width: 900px;
+          margin: 0 auto;
+          width: 100%;
+        }
+        .section-title {
+          font-size: 1.8rem;
+          font-weight: 800;
+          text-align: center;
+          margin-bottom: var(--spacing-sm);
+        }
+        .section-intro {
+          text-align: center;
+          color: var(--text-muted);
+          font-size: 1.05rem;
+          line-height: 1.7;
+          max-width: 700px;
+          margin: 0 auto var(--spacing-xl);
+        }
+        .section-note {
+          color: var(--text-muted);
+          font-size: 0.95rem;
+          line-height: 1.7;
+          margin-top: var(--spacing-lg);
+          padding: var(--spacing-md) var(--spacing-lg);
+          background: var(--bg-surface);
+          border-radius: var(--radius-md);
+          border-left: 3px solid var(--primary);
+        }
+
+        .steps-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: var(--spacing-lg);
+        }
+        .step-card {
+          padding: var(--spacing-xl);
+          background: var(--bg-panel);
+          border: 1px solid var(--border-light);
+          border-radius: var(--radius-lg);
+          text-align: center;
+        }
+        .step-card h3 {
+          font-size: 1.1rem;
+          font-weight: 700;
+          margin-bottom: var(--spacing-sm);
+        }
+        .step-card p {
+          font-size: 0.9rem;
+          color: var(--text-muted);
+          line-height: 1.6;
+        }
+        .step-number {
+          width: 48px;
+          height: 48px;
+          margin: 0 auto var(--spacing-md);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: var(--gradient);
+          color: #fff;
+          font-weight: 800;
+          font-size: 1.3rem;
+          border-radius: var(--radius-full);
+        }
+
+        .comparison-table-wrap {
+          overflow-x: auto;
+          margin-bottom: var(--spacing-md);
+        }
+        .comparison-table {
+          width: 100%;
+          border-collapse: collapse;
+          font-size: 0.92rem;
+        }
+        .comparison-table th,
+        .comparison-table td {
+          padding: 12px 16px;
+          text-align: left;
+          border-bottom: 1px solid var(--border-light);
+        }
+        .comparison-table th {
+          background: var(--bg-surface);
+          font-weight: 700;
+          font-size: 0.85rem;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          color: var(--text-muted);
+        }
+        .comparison-table td:last-child {
+          color: var(--primary);
+        }
+
+        .stats-section {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: var(--spacing-lg);
+        }
+        .stat-card {
+          text-align: center;
+          padding: var(--spacing-xl);
+          background: var(--bg-panel);
+          border: 1px solid var(--border-light);
+          border-radius: var(--radius-lg);
+        }
+        .stat-number {
+          font-size: 2.5rem;
+          font-weight: 800;
+          background: var(--gradient);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          margin-bottom: 4px;
+        }
+        .stat-label {
+          font-size: 0.9rem;
+          color: var(--text-muted);
+          font-weight: 500;
+        }
+
+        .faq-list {
+          display: flex;
+          flex-direction: column;
+          gap: var(--spacing-sm);
+        }
+        .faq-item {
+          background: var(--bg-panel);
+          border: 1px solid var(--border-light);
+          border-radius: var(--radius-md);
+          overflow: hidden;
+          transition: var(--transition-smooth);
+        }
+        .faq-item[open] {
+          border-color: var(--primary);
+        }
+        .faq-question {
+          padding: var(--spacing-lg);
+          font-weight: 600;
+          font-size: 1rem;
+          cursor: pointer;
+          list-style: none;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+        .faq-question::-webkit-details-marker { display: none; }
+        .faq-question::after {
+          content: '+';
+          font-size: 1.3rem;
+          font-weight: 300;
+          color: var(--text-muted);
+          transition: transform 0.2s;
+        }
+        .faq-item[open] .faq-question::after {
+          content: '−';
+          color: var(--primary);
+        }
+        .faq-answer {
+          padding: 0 var(--spacing-lg) var(--spacing-lg);
+          color: var(--text-muted);
+          font-size: 0.95rem;
+          line-height: 1.7;
+        }
+
         @media (max-width: 768px) {
           .tools-grid {
             grid-template-columns: 1fr;
@@ -303,6 +600,15 @@ const ToolSelector = () => {
           .trust-badge {
             font-size: 0.8rem;
             padding: 8px 14px;
+          }
+          .steps-grid {
+            grid-template-columns: 1fr;
+          }
+          .stats-section {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          .section-title {
+            font-size: 1.4rem;
           }
         }
       `}</style>

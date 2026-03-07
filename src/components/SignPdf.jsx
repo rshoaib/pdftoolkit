@@ -5,6 +5,7 @@ import { Download, RotateCcw, PenTool, Type, Trash2 } from 'lucide-react';
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
 import SEO from './SEO';
+import ToolIntro from './ToolIntro';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`;
 
@@ -222,6 +223,11 @@ const SignPdf = () => {
         <h1 className="tool-title">Sign PDF</h1>
         <p className="tool-desc">Draw or type your signature, place it on any page, then download your signed PDF.</p>
       </div>
+
+      <ToolIntro
+        paragraphs={['Draw or type your signature and place it on any page of your PDF document. Position, resize, and adjust the signature until it fits perfectly. Ideal for signing contracts, approvals, letters, and any document that requires a personal signature.', 'Your signature is embedded directly into the PDF as a visual element. You can use a mouse, trackpad, or touchscreen to draw a freehand signature, or type your name for a clean text-based signature. Everything happens in your browser — your signed documents are never uploaded.']}
+        bestFor={['Contract signing', 'Approval workflows', 'Letters and memos', 'Permission forms']}
+      />
 
       {!file ? (
         <DropZone onFiles={handleFiles} accept=".pdf" multiple={false} label="Drop your PDF file here to sign" />

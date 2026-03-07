@@ -6,6 +6,7 @@ import { Download, Image as ImageIcon } from 'lucide-react';
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
 import SEO from './SEO';
+import ToolIntro from './ToolIntro';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`;
 
@@ -115,6 +116,11 @@ const PdfToImage = () => {
         <h1 className="tool-title">PDF to Image</h1>
         <p className="tool-desc">Convert PDF pages to high-quality JPG or PNG images.</p>
       </div>
+
+      <ToolIntro
+        paragraphs={['Convert PDF pages into high-quality JPG or PNG images. This is useful for embedding PDF content in presentations, social media posts, websites, or image-editing tools that do not support PDF format natively.', 'Each page of your PDF is rendered as a separate image at your chosen resolution. PNG format preserves transparency and crisp text, while JPG offers smaller file sizes. The conversion happens entirely in your browser using PDF.js rendering.']}
+        bestFor={['Presentation slides', 'Social media', 'Website content', 'Thumbnail generation']}
+      />
 
       {!file ? (
         <DropZone onFiles={handleFiles} accept=".pdf" multiple={false} label="Drop your PDF file here to convert" />

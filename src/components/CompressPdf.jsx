@@ -4,6 +4,7 @@ import { Download, TrendingDown } from 'lucide-react';
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
 import SEO from './SEO';
+import ToolIntro from './ToolIntro';
 
 const faqs = [
   { q: 'How does PDF compression work?', a: 'We re-encode embedded images at reduced quality and remove redundant data streams. Text and vector graphics remain untouched.' },
@@ -103,6 +104,11 @@ const CompressPdf = () => {
         <h1 className="tool-title">Compress PDF</h1>
         <p className="tool-desc">Reduce PDF file size while maintaining quality. Perfect for email attachments.</p>
       </div>
+
+      <ToolIntro
+        paragraphs={['Large PDF files can be difficult to share via email, upload to portals, or store efficiently. This compression tool reduces file size by optimizing internal data structures, downsampling embedded images, and removing redundant metadata — all without noticeably affecting visual quality.', 'Most users see a 40–70% reduction in file size for image-heavy PDFs. Text-only documents are already compact, so compression results may vary. Choose from three compression levels depending on whether you prioritize quality or file size.']}
+        bestFor={['Email attachments', 'Portal uploads', 'Archiving', 'Cloud storage optimization']}
+      />
 
       {!file ? (
         <DropZone onFiles={handleFiles} accept=".pdf" multiple={false} label="Drop your PDF file here to compress" />
