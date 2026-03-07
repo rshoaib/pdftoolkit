@@ -48,6 +48,7 @@ description: Brand voice, internal links, and target keywords for pdftoolkit (Ti
 | crop pdf online free | ✅ Tool + blog |
 | read pdf online free | ✅ Tool + blog |
 | extract pages from pdf | ✅ Tool + blog |
+| make pdf smaller for email | ✅ Blog |
 
 ### Content Calendar
 1. ~~"How to Unlock a PDF Without the Password (Free Online Tool)"~~ ✅
@@ -69,3 +70,4 @@ description: Brand voice, internal links, and target keywords for pdftoolkit (Ti
 17. ~~"15 Best Free PDF Tools Online (No Upload, No Sign-Up) — 2026 Guide"~~ ✅
 18. ~~"How to Read a PDF Online for Free (No Upload, No Download) — 2026 Guide"~~ ✅
 19. ~~"How to Extract Pages from a PDF Online for Free (No Upload) — 2026 Guide"~~ ✅
+20. ~~"How to Make a PDF Smaller for Email (Free, No Upload) — 2026 Guide"~~ ✅
