@@ -57,10 +57,52 @@ Before writing ANY content, read the context files for the target site:
 
 ---
 
-## 🔄 Content Pipeline Phases (7 Phases)
+## 📅 Recommended Publishing Schedule
+
+| Tier | Site | Articles/Week |
+|------|------|---------------|
+| 🔴 A | **imrizwan.com** | 3 |
+| 🔴 A | **orderviachat.com** | 2 |
+| 🟡 B | **onlineimageshrinker.com** | 1 |
+| 🟡 B | **mycalcfinance.com** | 1 |
+| 🟢 C | **dailysmartcalc.com** | 1 every 2 weeks |
+| 🟢 C | **legalpolicygen.com** | 1 every 2 weeks |
+
+> **Rule:** Never publish 2+ articles on the same site in one day. Consistency > volume.
+
+---
+
+## 🔄 Content Pipeline Phases (8 Phases)
+
+### Phase 0: Publishing Frequency Check
+<!-- progress: "📊 Phase 0/8: Checking publishing frequency..." -->
+// turbo
+1. **Identify the site's blog data file** (e.g., `data/blog.ts`, `src/data/articles.js`)
+2. **Count and report** the following stats by scanning the `date` field of each article:
+   - 📦 **Total articles** on this site
+   - 📅 **Last published date** (most recent article's date)
+   - 📌 **Published today** (articles with today's date)
+   - 📌 **Published this week** (articles with dates in the current Mon–Sun week)
+3. **Display the stats** in a summary table, for example:
+   ```
+   📊 Publishing Stats for imrizwan.com
+   ┌─────────────────────┬────────┐
+   │ Total articles       │ 28     │
+   │ Last published       │ Mar 8  │
+   │ Published today      │ 1      │
+   │ Published this week  │ 3      │
+   │ Weekly target        │ 3      │
+   │ Remaining this week  │ 0      │
+   └─────────────────────┴────────┘
+   ```
+4. **Go / No-Go recommendation:**
+   - ✅ **GO** if published today = 0 AND remaining this week > 0
+   - ⚠️ **CAUTION** if published today ≥ 1 (warn: "Already published today — consider another site")
+   - 🛑 **STOP** if published this week ≥ weekly target ("Weekly target reached — switch to another site")
+5. If STOP, suggest which site to publish on next based on the schedule above
 
 ### Phase 1: Research & Plan (Gemini 3.1 Pro)
-<!-- progress: "🔍 Phase 1/7: Researching keywords & reading context files..." -->
+<!-- progress: "🔍 Phase 1/8: Researching keywords & reading context files..." -->
 // turbo
 1. **Read context files** — target keywords for content calendar, brand voice for tone
 2. Research trending keywords for the target site (web search)
@@ -69,7 +111,7 @@ Before writing ANY content, read the context files for the target site:
 5. Validate AdSense compliance for ad placement
 
 ### Phase 2: Competitor Scan (Gemini 3.1 Pro)
-<!-- progress: "📊 Phase 2/7: Scanning top 3 competitors for [keyword]..." -->
+<!-- progress: "📊 Phase 2/8: Scanning top 3 competitors for [keyword]..." -->
 6. **Search Google for the target keyword** and read the top 3 ranking articles
 7. Note what each competitor covers — headings, depth, examples, media
 8. Identify **gaps they missed** — angles, tools, data, or sections you can add
@@ -79,7 +121,7 @@ Before writing ANY content, read the context files for the target site:
 > **Goal:** Never publish a weaker article than what already ranks. Your article must be equal or better in depth AND offer something unique (usually your tool).
 
 ### Phase 3: Content Creation (Gemini 3.1 Pro)
-<!-- progress: "✍️ Phase 3/7: Writing article — [title]..." -->
+<!-- progress: "✍️ Phase 3/8: Writing article — [title]..." -->
 11. **Read brand voice** — apply tone, sentence length, and formatting rules
 12. Generate blog post draft with SEO-optimized headings
 13. **Read internal links map** — add 3-6 internal links using natural anchor text
@@ -89,7 +131,7 @@ Before writing ANY content, read the context files for the target site:
 17. **Generate a hero image** using the `generate_image` tool — a custom illustration that matches the article topic. Save to the site's `/public/images/blog/` directory.
 
 ### Phase 4: Quality Check (before code)
-<!-- progress: "✅ Phase 4/7: Running quality checks (readability, links, SEO)..." -->
+<!-- progress: "✅ Phase 4/8: Running quality checks (readability, links, SEO)..." -->
 18. **Readability check** — verify:
     - Average sentence length < 25 words
     - No paragraph longer than 4 lines
@@ -111,14 +153,14 @@ Before writing ANY content, read the context files for the target site:
     - [ ] Hero image generated and referenced
 
 ### Phase 5: Code Implementation (Claude Opus 4.5)
-<!-- progress: "💻 Phase 5/7: Adding article to codebase..." -->
+<!-- progress: "💻 Phase 5/8: Adding article to codebase..." -->
 21. Add article to site's data file (e.g., `articles.js`)
 22. Reference the hero image in the article metadata (if supported)
 23. Verify icon is imported in BlogList component
 24. Add programmatic SEO pages if applicable
 
 ### Phase 6: Build & Deployment (Claude Opus 4.5)
-<!-- progress: "🚀 Phase 6/7: Building & deploying to production..." -->
+<!-- progress: "🚀 Phase 6/8: Building & deploying to production..." -->
 // turbo-all
 25. `npm run build` — Verify production build
 26. `git add -A` — Stage all changes
@@ -126,7 +168,7 @@ Before writing ANY content, read the context files for the target site:
 28. `git push origin master` — Push to production
 
 ### Phase 7: Verify & Index (Gemini 3.1 Pro)
-<!-- progress: "🎯 Phase 7/7: Verifying on production & requesting indexing..." -->
+<!-- progress: "🎯 Phase 7/8: Verifying on production & requesting indexing..." -->
 29. Open the article URL in browser and verify rendering
 30. Verify hero image loads correctly
 31. Submit new URL to Google Search Console
