@@ -57,18 +57,14 @@ Before writing ANY content, read the context files for the target site:
 
 ---
 
-## 📅 Recommended Publishing Schedule
+## 📅 Publishing Limits (HARD RULES)
 
-| Tier | Site | Articles/Week |
-|------|------|---------------|
-| 🔴 A | **imrizwan.com** | 3 |
-| 🔴 A | **orderviachat.com** | 2 |
-| 🟡 B | **onlineimageshrinker.com** | 1 |
-| 🟡 B | **mycalcfinance.com** | 1 |
-| 🟢 C | **dailysmartcalc.com** | 1 every 2 weeks |
-| 🟢 C | **legalpolicygen.com** | 1 every 2 weeks |
+| Rule | Limit | Applies To |
+|------|-------|------------|
+| 🚫 **Max per DAY** | **1 article** | Every site |
+| 🚫 **Max per WEEK** | **3 articles** | Every site |
 
-> **Rule:** Never publish 2+ articles on the same site in one day. Consistency > volume.
+> **Week = Monday through Sunday.** These limits are HARD — no exceptions. Consistency beats volume. If a site hits its limit, suggest publishing on another site instead.
 
 ---
 
@@ -77,29 +73,40 @@ Before writing ANY content, read the context files for the target site:
 ### Phase 0: Publishing Frequency Check
 <!-- progress: "📊 Phase 0/8: Checking publishing frequency..." -->
 // turbo
-1. **Identify the site's blog data file** (e.g., `data/blog.ts`, `src/data/articles.js`)
-2. **Count and report** the following stats by scanning the `date` field of each article:
-   - 📦 **Total articles** on this site
-   - 📅 **Last published date** (most recent article's date)
-   - 📌 **Published today** (articles with today's date)
-   - 📌 **Published this week** (articles with dates in the current Mon–Sun week)
-3. **Display the stats** in a summary table, for example:
+1. **Identify the site's blog data source** — scan the data file (e.g., `data/blog.ts`, `src/data/articles.js`) or query the database (Supabase `blog_posts` table) to get all articles with their `published_at` / `date` fields.
+2. **Calculate stats** using today's date and the current Mon–Sun week:
+   - 📦 Total articles ever published
+   - 📅 Last published date
+   - ✍️ Published today (count)
+   - 📆 Published this week (count + list titles)
+   - 🎯 Slots remaining today (1 − published today)
+   - 🎯 Slots remaining this week (3 − published this week)
+3. **Display the dashboard** — present results in this engaging format:
+
    ```
-   📊 Publishing Stats for imrizwan.com
-   ┌─────────────────────┬────────┐
-   │ Total articles       │ 28     │
-   │ Last published       │ Mar 8  │
-   │ Published today      │ 1      │
-   │ Published this week  │ 3      │
-   │ Weekly target        │ 3      │
-   │ Remaining this week  │ 0      │
-   └─────────────────────┴────────┘
+   ╔══════════════════════════════════════════════════════╗
+   ║  📊 Content Dashboard — mycalcfinance.com           ║
+   ╠══════════════════════════════════════════════════════╣
+   ║  📦 Total Articles       │ 25                       ║
+   ║  📅 Last Published       │ Mar 8 — Credit Card...   ║
+   ╠──────────────────────────┼──────────────────────────╣
+   ║  ✍️ Published Today       │ 1 of 1 ⬛               ║
+   ║  📆 Published This Week  │ 2 of 3 ⬛⬛⬜            ║
+   ╠──────────────────────────┼──────────────────────────╣
+   ║  🟢 Today Slots Left     │ 0                        ║
+   ║  🟢 Week Slots Left      │ 1                        ║
+   ╠══════════════════════════════════════════════════════╣
+   ║  This week's articles:                              ║
+   ║  • Mar 6 — CD Calculator Guide (2026)               ║
+   ║  • Mar 8 — Credit Card Payoff Guide (2026)          ║
+   ╚══════════════════════════════════════════════════════╝
    ```
-4. **Go / No-Go recommendation:**
-   - ✅ **GO** if published today = 0 AND remaining this week > 0
-   - ⚠️ **CAUTION** if published today ≥ 1 (warn: "Already published today — consider another site")
-   - 🛑 **STOP** if published this week ≥ weekly target ("Weekly target reached — switch to another site")
-5. If STOP, suggest which site to publish on next based on the schedule above
+
+4. **Go / No-Go decision:**
+   - ✅ **GO** — published today = 0 AND published this week < 3
+   - ⚠️ **CAUTION** — published today ≥ 1 → "Already published today — try another site"
+   - 🛑 **STOP** — published this week ≥ 3 → "Weekly limit reached — switch site"
+5. If **STOP** or **CAUTION**, suggest which site to publish on next by checking the other sites' stats.
 
 ### Phase 1: Research & Plan (Gemini 3.1 Pro)
 <!-- progress: "🔍 Phase 1/8: Researching keywords & reading context files..." -->
@@ -154,26 +161,27 @@ Before writing ANY content, read the context files for the target site:
 
 ### Phase 5: Code Implementation (Claude Opus 4.5)
 <!-- progress: "💻 Phase 5/8: Adding article to codebase..." -->
-21. Add article to site's data file (e.g., `articles.js`)
-22. Reference the hero image in the article metadata (if supported)
-23. Verify icon is imported in BlogList component
-24. Add programmatic SEO pages if applicable
+21. Add article to site's data file or database (e.g., `articles.js` or Supabase `blog_posts` table)
+22. **⚠️ CRITICAL — Supabase Insert Scripts**: Always use the **service_role key** (NOT the anon key) in seed/insert scripts. The anon key is blocked by RLS on INSERT (returns `401 / 42501`). Look for `"role":"service_role"` in the base64 JWT payload from existing working scripts.
+23. Reference the hero image in the article metadata (if supported)
+24. Verify icon is imported in BlogList component
+25. Add programmatic SEO pages if applicable
 
 ### Phase 6: Build & Deployment (Claude Opus 4.5)
 <!-- progress: "🚀 Phase 6/8: Building & deploying to production..." -->
 // turbo-all
-25. `npm run build` — Verify production build
-26. `git add -A` — Stage all changes
-27. `git commit -m "content: descriptive message"` — Commit
-28. `git push origin master` — Push to production
+26. `npm run build` — Verify production build
+27. `git add -A` — Stage all changes
+28. `git commit -m "content: descriptive message"` — Commit
+29. `git push origin master` — Push to production
 
 ### Phase 7: Verify & Index (Gemini 3.1 Pro)
 <!-- progress: "🎯 Phase 7/8: Verifying on production & requesting indexing..." -->
-29. Open the article URL in browser and verify rendering
-30. Verify hero image loads correctly
-31. Submit new URL to Google Search Console
-32. Request indexing for the new page
-33. **Update target keywords** — mark topic as ✅ published
+30. Open the article URL in browser and verify rendering
+31. Verify hero image loads correctly
+32. Submit new URL to Google Search Console
+33. Request indexing for the new page
+34. **Update target keywords** — mark topic as ✅ published
 
 ---
 
