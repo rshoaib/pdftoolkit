@@ -106,7 +106,7 @@ const CompressPdf = () => {
       </div>
 
       <ToolIntro
-        paragraphs={['Large PDF files can be difficult to share via email, upload to portals, or store efficiently. This compression tool reduces file size by optimizing internal data structures, downsampling embedded images, and removing redundant metadata — all without noticeably affecting visual quality.', 'Most users see a 40–70% reduction in file size for image-heavy PDFs. Text-only documents are already compact, so compression results may vary. Choose from three compression levels depending on whether you prioritize quality or file size.']}
+        paragraphs={['Need a tinypdf compress solution? Large PDF files can be difficult to share via email, upload to portals, or store efficiently. This lightweight compression tool reduces file size by optimizing internal data structures, downsampling embedded images, and removing redundant metadata — all without noticeably affecting visual quality.', 'Most users see a 40–70% reduction in file size for image-heavy PDFs. Text-only documents are already compact, so compression results may vary. Choose from three compression levels depending on whether you prioritize quality or file size.']}
         bestFor={['Email attachments', 'Portal uploads', 'Archiving', 'Cloud storage optimization']}
       />
 

@@ -11,7 +11,7 @@ const features = [
 
 const About = () => (
   <div className="static-page">
-    <h1>About Tiny PDF Tools</h1>
+    <h1>Our Story & Mission</h1>
     <p className="about-intro">
       Tiny PDF Tools is a free, privacy-first collection of 16 professional PDF tools that run entirely in your web browser.
       Built with modern web technologies, every operation happens client-side — your files are never uploaded to any server, ever.

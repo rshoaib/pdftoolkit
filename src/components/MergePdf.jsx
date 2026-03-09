@@ -87,7 +87,7 @@ const MergePdf = () => {
       </div>
 
       <ToolIntro
-        paragraphs={['Need to combine multiple PDF files into a single document? Whether you are assembling a job application package, compiling reports, or merging scanned pages, this tool lets you join any number of PDFs into one cohesive file.', 'Simply drag and drop your PDFs, rearrange them in any order, and click merge. The combined document preserves all formatting, fonts, images, and hyperlinks from the original files. Processing happens entirely in your browser — your files are never uploaded to any server.']}
+        paragraphs={['Looking for a tiny pdf merge tool? Need to combine multiple PDF files into a single document? Whether you are assembling a job application package, compiling reports, or merging scanned pages, this lightweight tool lets you join any number of PDFs into one cohesive file.', 'Simply drag and drop your PDFs, rearrange them in any order, and click merge. The combined document preserves all formatting, fonts, images, and hyperlinks from the original files. Processing happens entirely in your browser — your files are never uploaded to any server.']}
         bestFor={['Job applications', 'Report compilation', 'Scanned documents', 'Document packages']}
       />
 

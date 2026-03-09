@@ -176,11 +176,11 @@ const ToolSelector = () => {
       <section className="hero">
         <div className="hero-badge">✨ 100% Free & Private — No Uploads</div>
         <h1 className="hero-title">
-          All-in-One <span className="gradient-text">PDF Tools</span>
+          Lightweight & Free <span className="gradient-text">PDF Tools</span>
         </h1>
         <p className="hero-subtitle">
-          Merge, split, compress, sign, watermark, encrypt, and convert PDFs entirely in your browser.
-          No uploads to any server — your files never leave your device. 16 professional tools, completely free.
+          Looking for lightweight PDF tools? Tiny PDF Tools lets you merge, split, compress, sign, and convert PDFs entirely in your browser.
+          Whether you need a tiny pdf merge or to compress files for email, everything is 100% free with no server uploads.
         </p>
       </section>
 
