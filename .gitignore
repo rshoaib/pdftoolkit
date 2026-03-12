@@ -17,6 +17,7 @@ test-result*.json
 node_modules
 dist
 dist-ssr
+.next
 *.local
 
 # Environment variables
