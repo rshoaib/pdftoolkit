@@ -8,6 +8,7 @@ import FAQSection from './FAQSection';
 import SEO from './SEO';
 import AdSlot from './AdSlot';
 import RelatedTools from './RelatedTools';
+import ToolIntro from './ToolIntro';
 import HowItWorks from './HowItWorks';
 
 const faqs = [

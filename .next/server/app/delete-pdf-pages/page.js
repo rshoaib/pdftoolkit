@@ -1,0 +1,63 @@
+(()=>{var e={};e.id=550,e.ids=[550],e.modules={10846:e=>{"use strict";e.exports=require("next/dist/compiled/next-server/app-page.runtime.prod.js")},19121:e=>{"use strict";e.exports=require("next/dist/server/app-render/action-async-storage.external.js")},29294:e=>{"use strict";e.exports=require("next/dist/server/app-render/work-async-storage.external.js")},63033:e=>{"use strict";e.exports=require("next/dist/server/app-render/work-unit-async-storage.external.js")},33873:e=>{"use strict";e.exports=require("path")},74243:(e,t,a)=>{"use strict";a.r(t),a.d(t,{GlobalError:()=>n.a,__next_app__:()=>p,pages:()=>c,routeModule:()=>m,tree:()=>d});var r=a(70260),s=a(28203),o=a(25155),n=a.n(o),i=a(67292),l={};for(let e in i)0>["default","tree","pages","GlobalError","__next_app__","routeModule"].indexOf(e)&&(l[e]=()=>i[e]);a.d(t,l);let d=["",{children:["delete-pdf-pages",{children:["__PAGE__",{},{page:[()=>Promise.resolve().then(a.bind(a,34783)),"C:\\Projects\\pdftoolkit\\src\\app\\delete-pdf-pages\\page.jsx"]}]},{}]},{layout:[()=>Promise.resolve().then(a.bind(a,98180)),"C:\\Projects\\pdftoolkit\\src\\app\\layout.jsx"],"not-found":[()=>Promise.resolve().then(a.t.bind(a,19937,23)),"next/dist/client/components/not-found-error"]}],c=["C:\\Projects\\pdftoolkit\\src\\app\\delete-pdf-pages\\page.jsx"],p={require:a,loadChunk:()=>Promise.resolve()},m=new r.AppPageRouteModule({definition:{kind:s.RouteKind.APP_PAGE,page:"/delete-pdf-pages/page",pathname:"/delete-pdf-pages",bundlePath:"",filename:"",appPaths:[]},userland:{loaderTree:d}})},8749:(e,t,a)=>{Promise.resolve().then(a.bind(a,35968))},72365:(e,t,a)=>{Promise.resolve().then(a.bind(a,69476))},28496:(e,t,a)=>{"use strict";a.d(t,{A:()=>r});let r=(0,a(41680).A)("rotate-ccw",[["path",{d:"M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8",key:"1357e3"}],["path",{d:"M3 3v5h5",key:"1xhq8a"}]])},26188:(e,t,a)=>{"use strict";a.d(t,{A:()=>r});let r=(0,a(41680).A)("square-check-big",[["path",{d:"M21 10.656V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12.344",key:"2acyp4"}],["path",{d:"m9 11 3 3L22 4",key:"1pflzl"}]])},29650:(e,t,a)=>{"use strict";a.d(t,{A:()=>r});let r=(0,a(41680).A)("square",[["rect",{width:"18",height:"18",x:"3",y:"3",rx:"2",key:"afitv7"}]])},69476:(e,t,a)=>{"use strict";a.d(t,{default:()=>y});var r=a(45512),s=a(58009),o=a(201);a(77181);var n=a(29650),i=a(26188),l=a(49656),d=a(28496),c=a(19473),p=a(41041),m=a(66790),g=a(13294),u=a(6764),f=a(3456),h=a(83724),x=a(48079);let v=[{q:"How do I delete pages from a PDF?",a:'Upload your PDF, click the pages you want to remove (they\'ll be highlighted in red), then click "Delete Selected & Download".'},{q:"Will this reduce the quality of my PDF?",a:"No. Remaining pages are copied byte-for-byte — zero re-encoding, zero quality loss."},{q:"Can I undo a deletion?",a:"Your original file is never modified. If you make a mistake, simply upload the original file again."},{q:"Is there a page limit?",a:"No hard limits. Since everything runs in your browser, performance depends on your device."},{q:"Do my files get uploaded?",a:"Never. All processing happens 100% in your browser — your files never leave your device."}],y=()=>{let e=(0,p.d)(),[t,y]=(0,s.useState)(null),[w,b]=(0,s.useState)([]),[j,P]=(0,s.useState)(new Set),[k,D]=(0,s.useState)(!1),[A,z]=(0,s.useState)(!1),[F,C]=(0,s.useState)(null),N=(0,s.useCallback)(e=>{let t=e.find(e=>"application/pdf"===e.type);t&&(y(t),b([]),P(new Set))},[]);(0,s.useEffect)(()=>{if(!t)return;let e=!1;return(async()=>{D(!0);let r=await t.arrayBuffer();C(new Uint8Array(r));let s=await Promise.resolve().then(a.bind(a,77181));s.GlobalWorkerOptions.workerSrc="/pdf.worker.min.mjs";let o=await s.getDocument({data:r}).promise,n=[];for(let t=1;t<=o.numPages;t++){let a=await o.getPage(t),r=a.getViewport({scale:.3}),s=document.createElement("canvas");s.width=r.width,s.height=r.height;let i=s.getContext("2d");if(await a.render({canvasContext:i,viewport:r}).promise,n.push({index:t-1,thumbnail:s.toDataURL("image/jpeg",.7),label:`Page ${t}`}),e)return}b(n),D(!1)})().catch(e=>{console.error(e),D(!1)}),()=>{e=!0}},[t]);let S=e=>{P(t=>{let a=new Set(t);return a.has(e)?a.delete(e):a.add(e),a})},_=async()=>{if(0!==j.size&&j.size!==w.length&&F){z(!0);try{let e=await o.PDFDocument.load(F),a=await o.PDFDocument.create(),r=w.filter(e=>!j.has(e.index)).map(e=>e.index);(await a.copyPages(e,r)).forEach(e=>a.addPage(e));let s=await a.save(),n=new Blob([s],{type:"application/pdf"}),i=URL.createObjectURL(n),l=document.createElement("a");l.href=i,l.download=`trimmed_${t.name}`,l.click(),URL.revokeObjectURL(i)}catch(t){e.error("Error: "+t.message)}finally{z(!1)}}},q=w.length-j.size;return(0,r.jsxs)("div",{className:"tool-page",children:[(0,r.jsx)(u.A,{title:"Delete PDF Pages — Remove Pages from PDF Online for Free | Tiny PDF Tools",description:"Remove unwanted pages from your PDF in seconds. Click to select, download the trimmed file. 100% free, no uploads — runs in your browser.",canonicalUrl:"https://tinypdftools.com/delete-pdf-pages",schemaType:"WebApplication",schemaData:{name:"Delete PDF Pages",url:"https://tinypdftools.com/delete-pdf-pages",applicationCategory:"Utility",operatingSystem:"Any",offers:{"@type":"Offer",price:"0",priceCurrency:"USD"},description:"Remove unwanted pages from your PDF. 100% free and private."}}),(0,r.jsxs)("div",{className:"tool-header",children:[(0,r.jsx)("h1",{className:"tool-title",children:"Delete PDF Pages"}),(0,r.jsx)("p",{className:"tool-desc",children:"Select the pages you want to remove, then download your trimmed PDF."})]}),(0,r.jsx)(x.A,{paragraphs:["Remove unwanted pages from your PDF document. Browse page thumbnails, click to select the pages you want to remove, and download a clean copy with those pages stripped out.","This is the fastest way to eliminate blank pages, duplicate sections, cover pages, or any content you do not need. The original document is never modified — you always download a new, trimmed copy. Processing is instant and fully browser-based."],bestFor:["Removing blank pages","Stripping cover pages","Cleaning scanned documents","Trimming appendices"]}),t?k?(0,r.jsxs)("div",{className:"del-loading",children:[(0,r.jsx)("div",{className:"del-spinner"}),(0,r.jsx)("p",{children:"Loading page previews…"})]}):(0,r.jsxs)("div",{className:"del-workspace",children:[(0,r.jsxs)("div",{className:"del-controls",children:[(0,r.jsxs)("div",{className:"del-info",children:[(0,r.jsx)("span",{className:"del-filename",children:t.name}),(0,r.jsx)("span",{className:"del-stats",children:j.size>0?(0,r.jsxs)(r.Fragment,{children:[(0,r.jsxs)("strong",{style:{color:"#ef4444"},children:[j.size," to delete"]})," \xb7 ",q," remaining"]}):(0,r.jsxs)(r.Fragment,{children:[w.length," pages — click pages to mark for deletion"]})})]}),(0,r.jsx)("button",{className:"btn-secondary btn-sm",onClick:()=>{j.size===w.length?P(new Set):P(new Set(w.map(e=>e.index)))},children:j.size===w.length?(0,r.jsxs)(r.Fragment,{children:[(0,r.jsx)(n.A,{size:14})," Deselect All"]}):(0,r.jsxs)(r.Fragment,{children:[(0,r.jsx)(i.A,{size:14})," Select All"]})})]}),(0,r.jsx)("div",{className:"del-grid",children:w.map(e=>(0,r.jsxs)("div",{className:`del-card ${j.has(e.index)?"del-card-selected":""}`,onClick:()=>S(e.index),children:[(0,r.jsx)("img",{src:e.thumbnail,alt:e.label,className:"del-card-img"}),(0,r.jsxs)("div",{className:"del-card-footer",children:[(0,r.jsx)("span",{className:"del-card-label",children:e.label}),j.has(e.index)?(0,r.jsx)(l.A,{size:14,style:{color:"#ef4444"}}):null]}),j.has(e.index)&&(0,r.jsx)("div",{className:"del-card-overlay",children:"✕"})]},e.index))}),(0,r.jsxs)("div",{className:"del-actions",children:[(0,r.jsxs)("button",{className:"btn-secondary",onClick:()=>{y(null),b([]),P(new Set),C(null)},children:[(0,r.jsx)(d.A,{size:16})," Choose Different File"]}),(0,r.jsxs)("button",{className:"btn-primary",onClick:_,disabled:0===j.size||j.size===w.length||A,children:[(0,r.jsx)(c.A,{size:18}),A?"Processing…":`Delete ${j.size} Page${1!==j.size?"s":""} & Download`]})]}),j.size===w.length&&w.length>0&&(0,r.jsx)("p",{style:{textAlign:"center",color:"#ef4444",fontSize:"0.9rem"},children:"You cannot delete all pages. Deselect at least one page to keep."})]}):(0,r.jsx)(m.A,{onFiles:N,accept:".pdf",multiple:!1,label:"Drop your PDF file here to remove pages"}),(0,r.jsx)(f.A,{format:"responsive",slot:process.env.NEXT_PUBLIC_AD_SLOT_IN_ARTICLE||"",className:"tool-inline-ad"}),(0,r.jsx)(g.A,{faqs:v}),(0,r.jsx)(h.A,{currentToolId:"delete-pdf-pages"}),(0,r.jsx)("style",{children:`
+        .tool-page { display: flex; flex-direction: column; gap: var(--spacing-xl); }
+        .tool-header { text-align: center; padding: var(--spacing-lg) 0; }
+        .tool-title { font-size: 2rem; font-weight: 800; margin-bottom: 8px; }
+        .tool-desc { color: var(--text-muted); font-size: 1.05rem; }
+
+        .del-loading {
+          display: flex; flex-direction: column; align-items: center; gap: 16px;
+          padding: var(--spacing-xxl); color: var(--text-muted);
+        }
+        .del-spinner {
+          width: 40px; height: 40px; border: 3px solid var(--border-light);
+          border-top-color: var(--primary); border-radius: 50%;
+          animation: del-spin 0.8s linear infinite;
+        }
+        @keyframes del-spin { to { transform: rotate(360deg); } }
+
+        .del-workspace { display: flex; flex-direction: column; gap: var(--spacing-lg); }
+        .del-controls {
+          padding: var(--spacing-lg); background: var(--bg-panel);
+          border: 1px solid var(--border-light); border-radius: var(--radius-md);
+          display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+        }
+        .del-info { display: flex; flex-direction: column; gap: 4px; }
+        .del-filename { font-weight: 700; font-size: 1.05rem; }
+        .del-stats { color: var(--text-muted); font-size: 0.9rem; }
+        .btn-sm { padding: 8px 14px; font-size: 0.85rem; }
+
+        .del-grid {
+          display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+          gap: var(--spacing-md);
+        }
+
+        .del-card {
+          position: relative; cursor: pointer;
+          border: 2px solid var(--border-light); border-radius: var(--radius-md);
+          overflow: hidden; transition: var(--transition-fast);
+          background: var(--bg-panel); user-select: none;
+        }
+        .del-card:hover { border-color: var(--border-active); transform: translateY(-2px); box-shadow: var(--shadow-glow); }
+        .del-card-selected { border-color: #ef4444 !important; opacity: 0.6; }
+        .del-card-selected:hover { border-color: #dc2626 !important; }
+
+        .del-card-img { width: 100%; display: block; pointer-events: none; }
+
+        .del-card-footer {
+          display: flex; align-items: center; justify-content: space-between;
+          padding: 6px 8px; font-size: 0.8rem; font-weight: 600; color: var(--text-muted);
+        }
+
+        .del-card-overlay {
+          position: absolute; inset: 0;
+          display: flex; align-items: center; justify-content: center;
+          font-size: 2rem; font-weight: 900; color: #ef4444;
+          background: rgba(239, 68, 68, 0.08); pointer-events: none;
+        }
+
+        .del-actions { display: flex; gap: var(--spacing-md); justify-content: center; flex-wrap: wrap; }
+
+        @media (max-width: 768px) {
+          .del-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
+        }
+      `})]})}},34783:(e,t,a)=>{"use strict";a.r(t),a.d(t,{default:()=>n,metadata:()=>o});var r=a(62740),s=a(35968);let o={title:"Delete PDF Pages — Remove Pages from PDF Online for Free | Tiny PDF Tools",description:"Remove unwanted pages from your PDF in seconds. Click to select, download the trimmed file. 100% free, no uploads — runs in your browser.",alternates:{canonical:"https://tinypdftools.com/delete-pdf-pages"}};function n(){return(0,r.jsx)(s.default,{})}},35968:(e,t,a)=>{"use strict";a.d(t,{default:()=>r});let r=(0,a(46760).registerClientReference)(function(){throw Error("Attempted to call the default export of \"C:\\\\Projects\\\\pdftoolkit\\\\src\\\\components\\\\DeletePdfPages.jsx\" from the server, but it's on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.")},"C:\\Projects\\pdftoolkit\\src\\components\\DeletePdfPages.jsx","default")}};var t=require("../../webpack-runtime.js");t.C(e);var a=e=>t(t.s=e),r=t.X(0,[406,844,201,181,508,301],()=>a(74243));module.exports=r})();
