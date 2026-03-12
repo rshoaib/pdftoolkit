@@ -1,10 +1,13 @@
 import { useState, useCallback } from 'react';
 import { PDFDocument } from 'pdf-lib';
-import { FileText, GripVertical, Trash2, Download, Plus } from 'lucide-react';
+import {  FileText, GripVertical, Trash2, Download, Plus  } from 'lucide-react';
+import { useToast } from './ToastContext';
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
 import SEO from './SEO';
-import ToolIntro from './ToolIntro';
+import AdSlot from './AdSlot';
+import RelatedTools from './RelatedTools';
+import HowItWorks from './HowItWorks';
 
 const faqs = [
   { q: 'How do I merge PDF files?', a: 'Upload two or more PDF files, drag them to set the order, then click "Merge PDFs". Your merged file will download instantly.' },
@@ -14,6 +17,7 @@ const faqs = [
 ];
 
 const MergePdf = () => {
+  const toast = useToast();
   const [files, setFiles] = useState([]);
   const [merging, setMerging] = useState(false);
   const [done, setDone] = useState(false);
@@ -59,7 +63,7 @@ const MergePdf = () => {
       URL.revokeObjectURL(url);
       setDone(true);
     } catch (err) {
-      alert('Error merging PDFs: ' + err.message);
+      toast.error('Error merging PDFs: ' + err.message);
     } finally {
       setMerging(false);
     }
@@ -146,7 +150,21 @@ const MergePdf = () => {
         </div>
       )}
 
+      {/* Ad slot immediately below workspace */}
+      <AdSlot format="responsive" slot={import.meta.env.VITE_AD_SLOT_IN_ARTICLE || ''} className="tool-inline-ad" />
+
+      <HowItWorks 
+        schemaTitle="How to merge PDF files"
+        steps={[
+          { title: "Upload PDFs", description: "Select or drag and drop two or more PDF files into the drop zone above." },
+          { title: "Rearrange Files", description: "Click and drag the files in the workspace to reorder them exactly how you want them to appear in the final merged document." },
+          { title: "Merge and Download", description: "Click the 'Merge PDFs' button. Your browser will instantly combine the files into a single PDF and download it securely." }
+        ]}
+      />
+
       <FAQSection faqs={faqs} />
+
+      <RelatedTools currentToolId="merge-pdf" />
 
       <style>{`
         .tool-page {

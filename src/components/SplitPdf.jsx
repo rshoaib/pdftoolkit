@@ -1,14 +1,18 @@
 import { useState, useCallback, useEffect } from 'react';
 import { PDFDocument } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
-import { Download, Check, ChevronLeft, ChevronRight } from 'lucide-react';
+import {  Download, Check, ChevronLeft, ChevronRight  } from 'lucide-react';
+import { useToast } from './ToastContext';
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
 import SEO from './SEO';
+import AdSlot from './AdSlot';
+import RelatedTools from './RelatedTools';
+import HowItWorks from './HowItWorks';
 import ToolIntro from './ToolIntro';
 
 // Configure PDF.js worker
-pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`;
+pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
 
 const faqs = [
   { q: 'How do I split a PDF?', a: 'Upload your PDF, select the pages you want to extract using the visual previews, then click "Split & Download". A new PDF with only your selected pages will be created.' },
@@ -18,6 +22,7 @@ const faqs = [
 ];
 
 const SplitPdf = () => {
+  const toast = useToast();
   const [file, setFile] = useState(null);
   const [pageCount, setPageCount] = useState(0);
   const [thumbnails, setThumbnails] = useState([]);
@@ -114,7 +119,7 @@ const SplitPdf = () => {
       a.click();
       URL.revokeObjectURL(url);
     } catch (err) {
-      alert('Error splitting PDF: ' + err.message);
+      toast.error('Error splitting PDF: ' + err.message);
     } finally {
       setSplitting(false);
     }
@@ -206,7 +211,22 @@ const SplitPdf = () => {
         </div>
       )}
 
+      
+      {/* Ad slot immediately below workspace */}
+      <AdSlot format="responsive" slot={import.meta.env.VITE_AD_SLOT_IN_ARTICLE || ''} className="tool-inline-ad" />
+
+      <HowItWorks 
+        schemaTitle="How to split or extract pages from a PDF"
+        steps={[
+          { title: "Upload PDF", description: "Select or drag and drop your multi-page PDF document into the designated drop zone." },
+          { title: "Select Pages", description: "Use the visual thumbnails to click on the specific pages you want to extract, or type a page range (e.g., 1-5, 8)." },
+          { title: "Split & Download", description: "Click the 'Split & Download' button. Your browser will instantly generate a new PDF containing only your selected pages." }
+        ]}
+      />
+
       <FAQSection faqs={faqs} />
+
+      <RelatedTools currentToolId="split-pdf" />
 
       <style>{`
         .tool-page { display: flex; flex-direction: column; gap: var(--spacing-xl); }

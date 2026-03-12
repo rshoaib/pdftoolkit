@@ -1,9 +1,12 @@
 import { useState, useCallback } from 'react';
 import { PDFDocument } from 'pdf-lib';
-import { Download, RotateCcw, Layers, ShieldCheck } from 'lucide-react';
+import {  Download, RotateCcw, Layers, ShieldCheck  } from 'lucide-react';
+import { useToast } from './ToastContext';
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
 import SEO from './SEO';
+import AdSlot from './AdSlot';
+import RelatedTools from './RelatedTools';
 import ToolIntro from './ToolIntro';
 
 const faqs = [
@@ -15,6 +18,7 @@ const faqs = [
 ];
 
 const FlattenPdf = () => {
+  const toast = useToast();
   const [file, setFile] = useState(null);
   const [processing, setProcessing] = useState(false);
   const [done, setDone] = useState(false);
@@ -57,7 +61,7 @@ const FlattenPdf = () => {
       });
       setDone(true);
     } catch (err) {
-      alert('Error flattening PDF: ' + err.message);
+      toast.error('Error flattening PDF: ' + err.message);
     } finally {
       setProcessing(false);
     }
@@ -179,7 +183,13 @@ const FlattenPdf = () => {
         </div>
       )}
 
+      
+      {/* Ad slot immediately below workspace */}
+      <AdSlot format="responsive" slot={import.meta.env.VITE_AD_SLOT_IN_ARTICLE || ''} className="tool-inline-ad" />
+
       <FAQSection faqs={faqs} />
+
+      <RelatedTools currentToolId="flatten-pdf" />
 
       <style>{`
         .tool-page { display: flex; flex-direction: column; gap: var(--spacing-xl); }

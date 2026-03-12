@@ -1,13 +1,16 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { PDFDocument } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
-import { Crop, Download, RefreshCw, Maximize2 } from 'lucide-react';
+import {  Crop, Download, RefreshCw, Maximize2  } from 'lucide-react';
+import { useToast } from './ToastContext';
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
 import SEO from './SEO';
+import AdSlot from './AdSlot';
+import RelatedTools from './RelatedTools';
 import ToolIntro from './ToolIntro';
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`;
+pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
 
 const faqs = [
   { q: 'How do I crop a PDF?', a: 'Upload your PDF, drag the crop handles to define the area you want to keep, then click "Crop & Download". The cropped PDF downloads instantly.' },
@@ -25,6 +28,7 @@ const PRESETS = [
 ];
 
 const CropPdf = () => {
+  const toast = useToast();
   const [file, setFile] = useState(null);
   const [pdfBytes, setPdfBytes] = useState(null);
   const [pageCount, setPageCount] = useState(0);
@@ -298,7 +302,7 @@ const CropPdf = () => {
       URL.revokeObjectURL(url);
       setDone(true);
     } catch (err) {
-      alert('Error cropping PDF: ' + err.message);
+      toast.error('Error cropping PDF: ' + err.message);
     } finally {
       setProcessing(false);
     }
@@ -467,7 +471,13 @@ const CropPdf = () => {
         </div>
       )}
 
+      
+      {/* Ad slot immediately below workspace */}
+      <AdSlot format="responsive" slot={import.meta.env.VITE_AD_SLOT_IN_ARTICLE || ''} className="tool-inline-ad" />
+
       <FAQSection faqs={faqs} />
+
+      <RelatedTools currentToolId="crop-pdf" />
 
       <style>{`
         .crop-workspace {

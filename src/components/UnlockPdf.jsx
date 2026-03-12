@@ -1,9 +1,12 @@
 import { useState, useCallback } from 'react';
 import { PDFDocument } from 'pdf-lib';
-import { Unlock, Download, RefreshCw, Eye, EyeOff, KeyRound } from 'lucide-react';
+import {  Unlock, Download, RefreshCw, Eye, EyeOff, KeyRound  } from 'lucide-react';
+import { useToast } from './ToastContext';
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
 import SEO from './SEO';
+import AdSlot from './AdSlot';
+import RelatedTools from './RelatedTools';
 import ToolIntro from './ToolIntro';
 
 const faqs = [
@@ -15,6 +18,7 @@ const faqs = [
 ];
 
 const UnlockPdf = () => {
+  const toast = useToast();
   const [file, setFile] = useState(null);
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -156,7 +160,13 @@ const UnlockPdf = () => {
         </div>
       )}
 
+      
+      {/* Ad slot immediately below workspace */}
+      <AdSlot format="responsive" slot={import.meta.env.VITE_AD_SLOT_IN_ARTICLE || ''} className="tool-inline-ad" />
+
       <FAQSection faqs={faqs} />
+
+      <RelatedTools currentToolId="unlock-pdf" />
 
       <style>{`
         .unlock-workspace {

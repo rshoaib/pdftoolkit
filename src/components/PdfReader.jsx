@@ -5,8 +5,10 @@ import DropZone from './DropZone';
 import ToolIntro from './ToolIntro';
 import FAQSection from './FAQSection';
 import SEO from './SEO';
+import AdSlot from './AdSlot';
+import RelatedTools from './RelatedTools';
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`;
+pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
 
 const faqs = [
   { q: 'Is this a full PDF reader?', a: 'Yes. It renders every page of your PDF with high fidelity using Mozilla\'s PDF.js engine — the same technology used by Firefox. You can zoom, scroll, navigate pages, rotate, and search text.' },
@@ -242,7 +244,13 @@ const PdfReader = () => {
         </div>
       )}
 
+      
+      {/* Ad slot immediately below workspace */}
+      <AdSlot format="responsive" slot={import.meta.env.VITE_AD_SLOT_IN_ARTICLE || ''} className="tool-inline-ad" />
+
       <FAQSection faqs={faqs} />
+
+      <RelatedTools currentToolId="pdf-reader" />
 
       <style>{`
         .tool-page { display: flex; flex-direction: column; gap: var(--spacing-xl); }

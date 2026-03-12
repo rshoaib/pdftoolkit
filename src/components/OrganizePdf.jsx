@@ -1,14 +1,17 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { PDFDocument } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
-import { Download, Trash2, Copy, GripVertical, RotateCcw } from 'lucide-react';
+import {  Download, Trash2, Copy, GripVertical, RotateCcw  } from 'lucide-react';
+import { useToast } from './ToastContext';
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
 import SEO from './SEO';
+import AdSlot from './AdSlot';
+import RelatedTools from './RelatedTools';
 import ToolIntro from './ToolIntro';
 
 // Configure PDF.js worker
-pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`;
+pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
 
 const faqs = [
   { q: 'How do I rearrange PDF pages?', a: 'Upload your PDF, then drag and drop the page thumbnails into the order you want. Click "Save & Download" when you\'re done.' },
@@ -18,6 +21,7 @@ const faqs = [
 ];
 
 const OrganizePdf = () => {
+  const toast = useToast();
   const [file, setFile] = useState(null);
   const [pages, setPages] = useState([]);       // { id, originalIndex, thumbnail }
   const [loading, setLoading] = useState(false);
@@ -131,7 +135,7 @@ const OrganizePdf = () => {
       a.click();
       URL.revokeObjectURL(url);
     } catch (err) {
-      alert('Error saving PDF: ' + err.message);
+      toast.error('Error saving PDF: ' + err.message);
     } finally {
       setSaving(false);
     }
@@ -225,7 +229,13 @@ const OrganizePdf = () => {
         </div>
       )}
 
+      
+      {/* Ad slot immediately below workspace */}
+      <AdSlot format="responsive" slot={import.meta.env.VITE_AD_SLOT_IN_ARTICLE || ''} className="tool-inline-ad" />
+
       <FAQSection faqs={faqs} />
+
+      <RelatedTools currentToolId="organize-pdf" />
 
       <style>{`
         .tool-page { display: flex; flex-direction: column; gap: var(--spacing-xl); }

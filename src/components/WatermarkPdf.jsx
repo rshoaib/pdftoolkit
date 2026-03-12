@@ -1,9 +1,12 @@
 import { useState, useCallback } from 'react';
 import { PDFDocument, rgb, degrees, StandardFonts } from 'pdf-lib';
-import { Droplets, Download, RefreshCw, Type, Settings } from 'lucide-react';
+import {  Droplets, Download, RefreshCw, Type, Settings  } from 'lucide-react';
+import { useToast } from './ToastContext';
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
 import SEO from './SEO';
+import AdSlot from './AdSlot';
+import RelatedTools from './RelatedTools';
 import ToolIntro from './ToolIntro';
 
 const faqs = [
@@ -24,6 +27,7 @@ const hexToRgb = (hex) => {
 };
 
 const WatermarkPdf = () => {
+  const toast = useToast();
   const [file, setFile] = useState(null);
   const [text, setText] = useState('DRAFT');
   const [fontSize, setFontSize] = useState(60);
@@ -78,7 +82,7 @@ const WatermarkPdf = () => {
       URL.revokeObjectURL(url);
       setDone(true);
     } catch (err) {
-      alert('Error watermarking PDF: ' + err.message);
+      toast.error('Error watermarking PDF: ' + err.message);
     } finally {
       setProcessing(false);
     }
@@ -279,7 +283,13 @@ const WatermarkPdf = () => {
         </div>
       )}
 
+      
+      {/* Ad slot immediately below workspace */}
+      <AdSlot format="responsive" slot={import.meta.env.VITE_AD_SLOT_IN_ARTICLE || ''} className="tool-inline-ad" />
+
       <FAQSection faqs={faqs} />
+
+      <RelatedTools currentToolId="watermark-pdf" />
 
       <style>{`
         .wm-workspace {

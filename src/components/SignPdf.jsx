@@ -1,13 +1,16 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { PDFDocument } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
-import { Download, RotateCcw, PenTool, Type, Trash2 } from 'lucide-react';
+import {  Download, RotateCcw, PenTool, Type, Trash2  } from 'lucide-react';
+import { useToast } from './ToastContext';
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
 import SEO from './SEO';
+import AdSlot from './AdSlot';
+import RelatedTools from './RelatedTools';
 import ToolIntro from './ToolIntro';
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`;
+pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
 
 const faqs = [
   { q: 'How do I sign a PDF?', a: 'Upload your PDF, draw or type your signature, then click on the page preview to place it. Adjust the position and size, then download.' },
@@ -18,6 +21,7 @@ const faqs = [
 ];
 
 const SignPdf = () => {
+  const toast = useToast();
   const [file, setFile] = useState(null);
   const [pages, setPages] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -194,7 +198,7 @@ const SignPdf = () => {
       a.click();
       URL.revokeObjectURL(url);
     } catch (err) {
-      alert('Error signing PDF: ' + err.message);
+      toast.error('Error signing PDF: ' + err.message);
     } finally {
       setSaving(false);
     }
@@ -371,7 +375,13 @@ const SignPdf = () => {
         </div>
       )}
 
+      
+      {/* Ad slot immediately below workspace */}
+      <AdSlot format="responsive" slot={import.meta.env.VITE_AD_SLOT_IN_ARTICLE || ''} className="tool-inline-ad" />
+
       <FAQSection faqs={faqs} />
+
+      <RelatedTools currentToolId="sign-pdf" />
 
       <style>{`
         .tool-page { display: flex; flex-direction: column; gap: var(--spacing-xl); }

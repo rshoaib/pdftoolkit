@@ -1,9 +1,12 @@
 import { useState, useCallback } from 'react';
 import { PDFDocument } from 'pdf-lib';
-import { Download, GripVertical, Trash2, Plus, FileImage } from 'lucide-react';
+import {  Download, GripVertical, Trash2, Plus, FileImage  } from 'lucide-react';
+import { useToast } from './ToastContext';
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
 import SEO from './SEO';
+import AdSlot from './AdSlot';
+import RelatedTools from './RelatedTools';
 import ToolIntro from './ToolIntro';
 
 const faqs = [
@@ -20,6 +23,7 @@ const PAGE_SIZES = {
 };
 
 const ImageToPdf = () => {
+  const toast = useToast();
   const [images, setImages] = useState([]);
   const [pageSize, setPageSize] = useState('a4');
   const [creating, setCreating] = useState(false);
@@ -121,7 +125,7 @@ const ImageToPdf = () => {
       a.click();
       URL.revokeObjectURL(url);
     } catch (err) {
-      alert('Error creating PDF: ' + err.message);
+      toast.error('Error creating PDF: ' + err.message);
     } finally {
       setCreating(false);
     }
@@ -215,7 +219,13 @@ const ImageToPdf = () => {
         </div>
       )}
 
+      
+      {/* Ad slot immediately below workspace */}
+      <AdSlot format="responsive" slot={import.meta.env.VITE_AD_SLOT_IN_ARTICLE || ''} className="tool-inline-ad" />
+
       <FAQSection faqs={faqs} />
+
+      <RelatedTools currentToolId="image-to-pdf" />
 
       <style>{`
         .tool-page { display: flex; flex-direction: column; gap: var(--spacing-xl); }

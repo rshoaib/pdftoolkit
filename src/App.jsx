@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import Layout from './components/Layout';
 import ToolSelector from './components/ToolSelector';
 import AnalyticsWrapper from './components/AnalyticsWrapper';
+import { ToastProvider } from './components/ToastContext';
 
 const MergePdf = lazy(() => import('./components/MergePdf'));
 const SplitPdf = lazy(() => import('./components/SplitPdf'));
@@ -83,7 +84,9 @@ const AppContent = () => {
 
 const App = () => (
   <BrowserRouter>
-    <AppContent />
+    <ToastProvider>
+      <AppContent />
+    </ToastProvider>
   </BrowserRouter>
 );
 

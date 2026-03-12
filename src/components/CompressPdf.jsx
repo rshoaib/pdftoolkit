@@ -1,10 +1,14 @@
 import { useState, useCallback } from 'react';
 import { PDFDocument } from 'pdf-lib';
-import { Download, TrendingDown } from 'lucide-react';
+import {  Download, TrendingDown  } from 'lucide-react';
+import { useToast } from './ToastContext';
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
 import SEO from './SEO';
+import AdSlot from './AdSlot';
+import RelatedTools from './RelatedTools';
 import ToolIntro from './ToolIntro';
+import HowItWorks from './HowItWorks';
 
 const faqs = [
   { q: 'How does PDF compression work?', a: 'We re-encode embedded images at reduced quality and remove redundant data streams. Text and vector graphics remain untouched.' },
@@ -20,6 +24,7 @@ const QUALITY_OPTIONS = [
 ];
 
 const CompressPdf = () => {
+  const toast = useToast();
   const [file, setFile] = useState(null);
   const [qualityIndex, setQualityIndex] = useState(1);
   const [compressing, setCompressing] = useState(false);
@@ -59,7 +64,7 @@ const CompressPdf = () => {
 
       setResult({ url, originalSize, compressedSize, savings, blob });
     } catch (err) {
-      alert('Error compressing PDF: ' + err.message);
+      toast.error('Error compressing PDF: ' + err.message);
     } finally {
       setCompressing(false);
     }
@@ -169,7 +174,21 @@ const CompressPdf = () => {
         </div>
       )}
 
+      {/* Ad slot immediately below workspace */}
+      <AdSlot format="responsive" slot={import.meta.env.VITE_AD_SLOT_IN_ARTICLE || ''} className="tool-inline-ad" />
+
+      <HowItWorks 
+        schemaTitle="How to compress a PDF file online"
+        steps={[
+          { title: "Upload PDF", description: "Select the PDF file you want to compress by dragging it into the drop zone area." },
+          { title: "Choose Compression Level", description: "Select either 'Low Compression' (better quality) or 'High Compression' (smaller file size) depending on your needs. Click 'Compress PDF'." },
+          { title: "Download", description: "Instantly download your optimized, smaller PDF file. Text remains sharp while images are compressed to save space." }
+        ]}
+      />
+
       <FAQSection faqs={faqs} />
+
+      <RelatedTools currentToolId="compress-pdf" />
 
       <style>{`
         .tool-page { display: flex; flex-direction: column; gap: var(--spacing-xl); }

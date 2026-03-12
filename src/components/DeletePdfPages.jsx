@@ -1,13 +1,16 @@
 import { useState, useCallback, useEffect } from 'react';
 import { PDFDocument } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
-import { Download, Trash2, RotateCcw, CheckSquare, Square } from 'lucide-react';
+import {  Download, Trash2, RotateCcw, CheckSquare, Square  } from 'lucide-react';
+import { useToast } from './ToastContext';
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
 import SEO from './SEO';
+import AdSlot from './AdSlot';
+import RelatedTools from './RelatedTools';
 import ToolIntro from './ToolIntro';
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`;
+pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
 
 const faqs = [
   { q: 'How do I delete pages from a PDF?', a: 'Upload your PDF, click the pages you want to remove (they\'ll be highlighted in red), then click "Delete Selected & Download".' },
@@ -18,6 +21,7 @@ const faqs = [
 ];
 
 const DeletePdfPages = () => {
+  const toast = useToast();
   const [file, setFile] = useState(null);
   const [pages, setPages] = useState([]);
   const [selected, setSelected] = useState(new Set());
@@ -103,7 +107,7 @@ const DeletePdfPages = () => {
       a.click();
       URL.revokeObjectURL(url);
     } catch (err) {
-      alert('Error: ' + err.message);
+      toast.error('Error: ' + err.message);
     } finally {
       setSaving(false);
     }
@@ -203,7 +207,13 @@ const DeletePdfPages = () => {
         </div>
       )}
 
+      
+      {/* Ad slot immediately below workspace */}
+      <AdSlot format="responsive" slot={import.meta.env.VITE_AD_SLOT_IN_ARTICLE || ''} className="tool-inline-ad" />
+
       <FAQSection faqs={faqs} />
+
+      <RelatedTools currentToolId="delete-pdf-pages" />
 
       <style>{`
         .tool-page { display: flex; flex-direction: column; gap: var(--spacing-xl); }

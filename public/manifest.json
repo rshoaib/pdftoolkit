@@ -1,0 +1,26 @@
+{
+  "name": "Tiny PDF Tools",
+  "short_name": "PDF Tools",
+  "description": "100% free, private, client-side PDF tools. Merge, split, compress, convert, and edit PDFs directly in your browser without uploading files to any server.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8f9fb",
+  "theme_color": "#e8432a",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    }
+  ]
+}

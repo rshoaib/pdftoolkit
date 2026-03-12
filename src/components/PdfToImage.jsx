@@ -2,13 +2,16 @@ import { useState, useCallback } from 'react';
 import * as pdfjsLib from 'pdfjs-dist';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
-import { Download, Image as ImageIcon } from 'lucide-react';
+import {  Download, Image as ImageIcon  } from 'lucide-react';
+import { useToast } from './ToastContext';
 import DropZone from './DropZone';
 import FAQSection from './FAQSection';
 import SEO from './SEO';
+import AdSlot from './AdSlot';
+import RelatedTools from './RelatedTools';
 import ToolIntro from './ToolIntro';
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`;
+pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
 
 const faqs = [
   { q: 'What image formats can I export to?', a: 'You can export PDF pages as PNG (lossless, best quality) or JPEG (smaller file size).' },
@@ -24,6 +27,7 @@ const DPI_OPTIONS = [
 ];
 
 const PdfToImage = () => {
+  const toast = useToast();
   const [file, setFile] = useState(null);
   const [pages, setPages] = useState([]);
   const [format, setFormat] = useState('png');
@@ -66,7 +70,7 @@ const PdfToImage = () => {
 
       setPages(results);
     } catch (err) {
-      alert('Error converting PDF: ' + err.message);
+      toast.error('Error converting PDF: ' + err.message);
     } finally {
       setConverting(false);
     }
@@ -186,7 +190,13 @@ const PdfToImage = () => {
         </div>
       )}
 
+      
+      {/* Ad slot immediately below workspace */}
+      <AdSlot format="responsive" slot={import.meta.env.VITE_AD_SLOT_IN_ARTICLE || ''} className="tool-inline-ad" />
+
       <FAQSection faqs={faqs} />
+
+      <RelatedTools currentToolId="pdf-to-image" />
 
       <style>{`
         .tool-page { display: flex; flex-direction: column; gap: var(--spacing-xl); }
