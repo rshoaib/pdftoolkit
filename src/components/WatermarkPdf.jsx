@@ -1,3 +1,4 @@
+"use client";
 import { useState, useCallback } from 'react';
 import { PDFDocument, rgb, degrees, StandardFonts } from 'pdf-lib';
 import {  Droplets, Download, RefreshCw, Type, Settings  } from 'lucide-react';
@@ -285,7 +286,7 @@ const WatermarkPdf = () => {
 
       
       {/* Ad slot immediately below workspace */}
-      <AdSlot format="responsive" slot={import.meta.env.VITE_AD_SLOT_IN_ARTICLE || ''} className="tool-inline-ad" />
+      <AdSlot format="responsive" slot={process.env.NEXT_PUBLIC_AD_SLOT_IN_ARTICLE || ''} className="tool-inline-ad" />
 
       <FAQSection faqs={faqs} />
 

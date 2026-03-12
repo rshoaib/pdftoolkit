@@ -1,3 +1,4 @@
+"use client";
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { PDFDocument } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
@@ -11,7 +12,7 @@ import RelatedTools from './RelatedTools';
 import ToolIntro from './ToolIntro';
 
 // Configure PDF.js worker
-pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
+if (typeof window !== 'undefined') { pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs'; }
 
 const faqs = [
   { q: 'How do I rearrange PDF pages?', a: 'Upload your PDF, then drag and drop the page thumbnails into the order you want. Click "Save & Download" when you\'re done.' },
@@ -47,6 +48,8 @@ const OrganizePdf = () => {
       setLoading(true);
       const bytes = await file.arrayBuffer();
       setPdfBytes(new Uint8Array(bytes));
+      const pdfjsLib = await import('pdfjs-dist');
+      pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
       const doc = await pdfjsLib.getDocument({ data: bytes }).promise;
 
       const loaded = [];
@@ -231,7 +234,7 @@ const OrganizePdf = () => {
 
       
       {/* Ad slot immediately below workspace */}
-      <AdSlot format="responsive" slot={import.meta.env.VITE_AD_SLOT_IN_ARTICLE || ''} className="tool-inline-ad" />
+      <AdSlot format="responsive" slot={process.env.NEXT_PUBLIC_AD_SLOT_IN_ARTICLE || ''} className="tool-inline-ad" />
 
       <FAQSection faqs={faqs} />
 

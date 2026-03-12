@@ -1,3 +1,4 @@
+"use client";
 import { useState, useCallback } from 'react';
 import { PDFDocument } from 'pdf-lib';
 import {  Download, GripVertical, Trash2, Plus, FileImage  } from 'lucide-react';
@@ -221,7 +222,7 @@ const ImageToPdf = () => {
 
       
       {/* Ad slot immediately below workspace */}
-      <AdSlot format="responsive" slot={import.meta.env.VITE_AD_SLOT_IN_ARTICLE || ''} className="tool-inline-ad" />
+      <AdSlot format="responsive" slot={process.env.NEXT_PUBLIC_AD_SLOT_IN_ARTICLE || ''} className="tool-inline-ad" />
 
       <FAQSection faqs={faqs} />
 

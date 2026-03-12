@@ -1,3 +1,4 @@
+"use client";
 import { useState, useCallback } from 'react';
 import { PDFDocument } from 'pdf-lib';
 import {  Lock, Download, RefreshCw, Eye, EyeOff, ShieldCheck  } from 'lucide-react';
@@ -145,7 +146,7 @@ const ProtectPdf = () => {
 
       
       {/* Ad slot immediately below workspace */}
-      <AdSlot format="responsive" slot={import.meta.env.VITE_AD_SLOT_IN_ARTICLE || ''} className="tool-inline-ad" />
+      <AdSlot format="responsive" slot={process.env.NEXT_PUBLIC_AD_SLOT_IN_ARTICLE || ''} className="tool-inline-ad" />
 
       <FAQSection faqs={faqs} />
 

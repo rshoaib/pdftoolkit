@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { tools } from '../data/tools';
 import { ArrowRight } from 'lucide-react';
 
@@ -7,12 +7,19 @@ const RelatedTools = ({ currentToolId, excludeIds = [] }) => {
   const availableTools = tools.filter(
     t => t.id !== currentToolId && !excludeIds.includes(t.id) && t.id !== 'pdf-reader'
   );
+  // Pick 3 related tools deterministically to prevent hydration errors
+  // We'll use a simple deterministic shift based on the current tool's index
+  const currentIndex = tools.findIndex(t => t.id === currentToolId);
+  const startIndex = currentIndex >= 0 ? currentIndex : 0;
   
-  // Pick 3 random tools, or grab the first 3 if shuffling isn't needed
-  // A simple determinant shuffle based on the currentToolId length or just grab related ones.
-  // We'll just take 3 tools somewhat related or random.
-  const shuffled = [...availableTools].sort(() => 0.5 - Math.random());
-  const selectedTools = shuffled.slice(0, 3);
+  const selectedTools = [];
+  for (let i = 1; i <= availableTools.length; i++) {
+    const candidate = availableTools[(startIndex + i) % availableTools.length];
+    if (candidate && !selectedTools.includes(candidate)) {
+      selectedTools.push(candidate);
+    }
+    if (selectedTools.length === 3) break;
+  }
 
   if (selectedTools.length === 0) return null;
 
@@ -21,7 +28,7 @@ const RelatedTools = ({ currentToolId, excludeIds = [] }) => {
       <h3 className="related-title">You might also like</h3>
       <div className="related-grid">
         {selectedTools.map((tool) => (
-          <Link to={`/${tool.id}`} key={tool.id} className="related-card glass-panel">
+          <Link href={`/${tool.id}`} key={tool.id} className="related-card glass-panel">
             <div className="related-card-icon" style={{ background: `${tool.color}15`, color: tool.color }}>
               <tool.icon size={22} strokeWidth={1.8} />
             </div>

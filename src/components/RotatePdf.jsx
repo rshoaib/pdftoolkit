@@ -1,3 +1,4 @@
+"use client";
 import { useState, useCallback } from 'react';
 import { PDFDocument, degrees } from 'pdf-lib';
 import {  RotateCw, Download, RefreshCw  } from 'lucide-react';
@@ -137,7 +138,7 @@ const RotatePdf = () => {
 
       
       {/* Ad slot immediately below workspace */}
-      <AdSlot format="responsive" slot={import.meta.env.VITE_AD_SLOT_IN_ARTICLE || ''} className="tool-inline-ad" />
+      <AdSlot format="responsive" slot={process.env.NEXT_PUBLIC_AD_SLOT_IN_ARTICLE || ''} className="tool-inline-ad" />
 
       <FAQSection faqs={faqs} />
 

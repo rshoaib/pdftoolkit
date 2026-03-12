@@ -1,3 +1,4 @@
+"use client";
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { PDFDocument } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
@@ -10,7 +11,7 @@ import AdSlot from './AdSlot';
 import RelatedTools from './RelatedTools';
 import ToolIntro from './ToolIntro';
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
+if (typeof window !== 'undefined') { pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs'; }
 
 const faqs = [
   { q: 'How do I sign a PDF?', a: 'Upload your PDF, draw or type your signature, then click on the page preview to place it. Adjust the position and size, then download.' },
@@ -59,6 +60,8 @@ const SignPdf = () => {
       setLoading(true);
       const bytes = await file.arrayBuffer();
       setPdfBytes(new Uint8Array(bytes));
+      const pdfjsLib = await import('pdfjs-dist');
+      pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
       const doc = await pdfjsLib.getDocument({ data: bytes }).promise;
       const loaded = [];
       for (let i = 1; i <= doc.numPages; i++) {
@@ -377,7 +380,7 @@ const SignPdf = () => {
 
       
       {/* Ad slot immediately below workspace */}
-      <AdSlot format="responsive" slot={import.meta.env.VITE_AD_SLOT_IN_ARTICLE || ''} className="tool-inline-ad" />
+      <AdSlot format="responsive" slot={process.env.NEXT_PUBLIC_AD_SLOT_IN_ARTICLE || ''} className="tool-inline-ad" />
 
       <FAQSection faqs={faqs} />
 

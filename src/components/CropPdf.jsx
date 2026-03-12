@@ -1,3 +1,4 @@
+"use client";
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { PDFDocument } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
@@ -10,7 +11,7 @@ import AdSlot from './AdSlot';
 import RelatedTools from './RelatedTools';
 import ToolIntro from './ToolIntro';
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
+if (typeof window !== 'undefined') { pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs'; }
 
 const faqs = [
   { q: 'How do I crop a PDF?', a: 'Upload your PDF, drag the crop handles to define the area you want to keep, then click "Crop & Download". The cropped PDF downloads instantly.' },
@@ -69,7 +70,9 @@ const CropPdf = () => {
 
     (async () => {
       try {
-        const doc = await pdfjsLib.getDocument({ data: pdfBytes.slice() }).promise;
+        const pdfjsLib = await import('pdfjs-dist');
+      pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
+      const doc = await pdfjsLib.getDocument({ data: pdfBytes.slice() }).promise;
         setPageCount(doc.numPages);
         const page = await doc.getPage(currentPage + 1);
         const viewport = page.getViewport({ scale: 1 });
@@ -473,7 +476,7 @@ const CropPdf = () => {
 
       
       {/* Ad slot immediately below workspace */}
-      <AdSlot format="responsive" slot={import.meta.env.VITE_AD_SLOT_IN_ARTICLE || ''} className="tool-inline-ad" />
+      <AdSlot format="responsive" slot={process.env.NEXT_PUBLIC_AD_SLOT_IN_ARTICLE || ''} className="tool-inline-ad" />
 
       <FAQSection faqs={faqs} />
 

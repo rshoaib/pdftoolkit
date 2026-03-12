@@ -1,3 +1,4 @@
+"use client";
 import { useState, useCallback, useEffect } from 'react';
 import { PDFDocument } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
@@ -10,7 +11,7 @@ import AdSlot from './AdSlot';
 import RelatedTools from './RelatedTools';
 import ToolIntro from './ToolIntro';
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
+if (typeof window !== 'undefined') { pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs'; }
 
 const faqs = [
   { q: 'How do I extract pages from a PDF?', a: 'Upload your PDF, click the pages you want to keep (they\'ll be highlighted in green), then click "Extract & Download".' },
@@ -46,6 +47,8 @@ const ExtractPdfPages = () => {
       setLoading(true);
       const bytes = await file.arrayBuffer();
       setPdfBytes(new Uint8Array(bytes));
+      const pdfjsLib = await import('pdfjs-dist');
+      pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
       const doc = await pdfjsLib.getDocument({ data: bytes }).promise;
 
       const loaded = [];
@@ -202,7 +205,7 @@ const ExtractPdfPages = () => {
 
       
       {/* Ad slot immediately below workspace */}
-      <AdSlot format="responsive" slot={import.meta.env.VITE_AD_SLOT_IN_ARTICLE || ''} className="tool-inline-ad" />
+      <AdSlot format="responsive" slot={process.env.NEXT_PUBLIC_AD_SLOT_IN_ARTICLE || ''} className="tool-inline-ad" />
 
       <FAQSection faqs={faqs} />
 

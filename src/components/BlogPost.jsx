@@ -1,5 +1,7 @@
+"use client";
 import { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
 import { Calendar, Clock, ArrowLeft, Share2 } from 'lucide-react';
 import { getPostBySlug } from '../lib/blogService';
 import SEO from './SEO';
@@ -79,7 +81,7 @@ const BlogPost = () => {
         <p style={{ color: 'var(--text-muted)', margin: '16px 0' }}>
           This blog post doesn't exist or has been removed.
         </p>
-        <Link to="/blog" className="btn-primary">← Back to Blog</Link>
+        <Link href="/blog" className="btn-primary">← Back to Blog</Link>
       </div>
     );
   }
@@ -103,7 +105,7 @@ const BlogPost = () => {
         }}
       />
       <div className="blog-post-nav">
-        <Link to="/blog" className="blog-back-link">
+        <Link href="/blog" className="blog-back-link">
           <ArrowLeft size={16} /> All Posts
         </Link>
         <button className="blog-share-btn" onClick={handleShare}>
@@ -134,7 +136,7 @@ const BlogPost = () => {
 
         {post.relatedToolLink && (
           <div className="blog-post-cta">
-            <Link to={post.relatedToolLink} className="btn-primary">
+            <Link href={post.relatedToolLink} className="btn-primary">
               Try {post.relatedToolName} →
             </Link>
           </div>

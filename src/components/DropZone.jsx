@@ -1,3 +1,4 @@
+"use client";
 import { useCallback, useState, useRef } from 'react';
 import { Upload, FileUp, X } from 'lucide-react';
 

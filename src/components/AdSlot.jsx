@@ -1,6 +1,7 @@
+"use client";
 import { useEffect, useRef } from 'react';
 
-const AD_CLIENT = import.meta.env.VITE_ADSENSE_CLIENT || '';
+const AD_CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT || '';
 
 const sizeMap = {
   banner: { width: '728px', height: '90px' },

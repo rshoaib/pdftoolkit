@@ -1,3 +1,4 @@
+"use client";
 import { useState, useCallback } from 'react';
 import * as pdfjsLib from 'pdfjs-dist';
 import JSZip from 'jszip';
@@ -11,7 +12,7 @@ import AdSlot from './AdSlot';
 import RelatedTools from './RelatedTools';
 import ToolIntro from './ToolIntro';
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
+if (typeof window !== 'undefined') { pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs'; }
 
 const faqs = [
   { q: 'What image formats can I export to?', a: 'You can export PDF pages as PNG (lossless, best quality) or JPEG (smaller file size).' },
@@ -48,6 +49,8 @@ const PdfToImage = () => {
 
     try {
       const bytes = await file.arrayBuffer();
+      const pdfjsLib = await import('pdfjs-dist');
+      pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
       const doc = await pdfjsLib.getDocument({ data: bytes }).promise;
       const scale = DPI_OPTIONS[dpiIndex].scale;
       const results = [];
@@ -192,7 +195,7 @@ const PdfToImage = () => {
 
       
       {/* Ad slot immediately below workspace */}
-      <AdSlot format="responsive" slot={import.meta.env.VITE_AD_SLOT_IN_ARTICLE || ''} className="tool-inline-ad" />
+      <AdSlot format="responsive" slot={process.env.NEXT_PUBLIC_AD_SLOT_IN_ARTICLE || ''} className="tool-inline-ad" />
 
       <FAQSection faqs={faqs} />
 

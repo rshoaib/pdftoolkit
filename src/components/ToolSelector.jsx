@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { tools } from '../data/tools';
 
@@ -66,7 +66,7 @@ const ToolSelector = () => {
       {/* Tool Cards Grid */}
       <section className="tools-grid">
         {tools.map((tool) => (
-          <Link to={`/${tool.id}`} key={tool.id} className="tool-card glass-panel">
+          <Link href={`/${tool.id}`} key={tool.id} className="tool-card glass-panel">
             <div className="tool-card-icon" style={{ background: `${tool.color}15`, color: tool.color }}>
               <tool.icon size={28} strokeWidth={1.8} />
             </div>

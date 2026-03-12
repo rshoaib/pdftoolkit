@@ -1,3 +1,4 @@
+"use client";
 import { useState, useCallback, useEffect } from 'react';
 import { PDFDocument } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
@@ -12,7 +13,7 @@ import HowItWorks from './HowItWorks';
 import ToolIntro from './ToolIntro';
 
 // Configure PDF.js worker
-pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
+if (typeof window !== 'undefined') { pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs'; }
 
 const faqs = [
   { q: 'How do I split a PDF?', a: 'Upload your PDF, select the pages you want to extract using the visual previews, then click "Split & Download". A new PDF with only your selected pages will be created.' },
@@ -45,6 +46,8 @@ const SplitPdf = () => {
 
     const loadPdf = async () => {
       const bytes = await file.arrayBuffer();
+      const pdfjsLib = await import('pdfjs-dist');
+      pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
       const doc = await pdfjsLib.getDocument({ data: bytes }).promise;
       setPageCount(doc.numPages);
 
@@ -213,7 +216,7 @@ const SplitPdf = () => {
 
       
       {/* Ad slot immediately below workspace */}
-      <AdSlot format="responsive" slot={import.meta.env.VITE_AD_SLOT_IN_ARTICLE || ''} className="tool-inline-ad" />
+      <AdSlot format="responsive" slot={process.env.NEXT_PUBLIC_AD_SLOT_IN_ARTICLE || ''} className="tool-inline-ad" />
 
       <HowItWorks 
         schemaTitle="How to split or extract pages from a PDF"

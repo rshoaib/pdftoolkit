@@ -1,5 +1,6 @@
+"use client";
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Calendar, Clock, ArrowRight, BookOpen } from 'lucide-react';
 import { getAllPosts } from '../lib/blogService';
 
@@ -32,7 +33,7 @@ const BlogList = () => {
       ) : (
         <div className="blog-grid">
           {posts.map((post) => (
-            <Link to={`/blog/${post.slug}`} key={post.slug} className="blog-card">
+            <Link href={`/blog/${post.slug}`} key={post.slug} className="blog-card">
               {post.image && (
                 <div className="blog-card-image">
                   <img src={post.image} alt={post.title} loading="lazy" />

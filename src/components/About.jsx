@@ -1,3 +1,4 @@
+"use client";
 import { Shield, Zap, Lock, Globe, Heart, Code } from 'lucide-react';
 
 const features = [

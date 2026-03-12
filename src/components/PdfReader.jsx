@@ -1,3 +1,4 @@
+"use client";
 import { useState, useCallback, useRef, useEffect } from 'react';
 import * as pdfjsLib from 'pdfjs-dist';
 import { ZoomIn, ZoomOut, ChevronLeft, ChevronRight, Maximize2, Minimize2, RotateCw, Download, Search, X } from 'lucide-react';
@@ -8,7 +9,7 @@ import SEO from './SEO';
 import AdSlot from './AdSlot';
 import RelatedTools from './RelatedTools';
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
+if (typeof window !== 'undefined') { pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs'; }
 
 const faqs = [
   { q: 'Is this a full PDF reader?', a: 'Yes. It renders every page of your PDF with high fidelity using Mozilla\'s PDF.js engine — the same technology used by Firefox. You can zoom, scroll, navigate pages, rotate, and search text.' },
@@ -42,6 +43,8 @@ const PdfReader = () => {
     setLoading(true);
     try {
       const bytes = await pdf.arrayBuffer();
+      const pdfjsLib = await import('pdfjs-dist');
+      pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
       const doc = await pdfjsLib.getDocument({ data: bytes }).promise;
       setPdfDoc(doc);
       setNumPages(doc.numPages);
@@ -246,7 +249,7 @@ const PdfReader = () => {
 
       
       {/* Ad slot immediately below workspace */}
-      <AdSlot format="responsive" slot={import.meta.env.VITE_AD_SLOT_IN_ARTICLE || ''} className="tool-inline-ad" />
+      <AdSlot format="responsive" slot={process.env.NEXT_PUBLIC_AD_SLOT_IN_ARTICLE || ''} className="tool-inline-ad" />
 
       <FAQSection faqs={faqs} />
 
