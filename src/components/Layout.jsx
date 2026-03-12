@@ -14,7 +14,7 @@ const Layout = ({ children, onNavigate }) => {
             <FileText size={24} />
           </div>
           <div className="logo-text">
-            Tiny<span className="text-highlight">PDFTools</span>
+            Tiny<span className="text-gradient">PDFTools</span>
           </div>
         </div>
         <nav className="nav">

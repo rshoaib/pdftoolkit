@@ -1,4 +1,4 @@
-// Seed script for pdftoolkit blog posts
+// Seed script for tinypdftools blog posts
 // Usage: node scripts/seed-blog.mjs
 
 const SUPABASE_URL = 'https://vovcdsutmcjkdlracgtv.supabase.co';

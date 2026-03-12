@@ -52,7 +52,7 @@ async function checkFrequency() {
   const lastPublished = posts.length > 0 ? posts[0] : null;
 
   console.log(`╔══════════════════════════════════════════════════════╗`);
-  console.log(`║  📊 Content Dashboard — pdftoolkit                    ║`);
+  console.log(`║  📊 Content Dashboard — tinypdftools                  ║`);
   console.log(`╠══════════════════════════════════════════════════════╣`);
   console.log(`║  📦 Total Articles       │ ${posts.length.toString().padEnd(26)}║`);
   console.log(`║  📅 Last Published       │ ${(lastPublished ? lastPublished.date + ' — ' + lastPublished.title.substring(0, 15) + '...' : 'None').padEnd(26)}║`);

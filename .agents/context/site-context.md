@@ -1,8 +1,8 @@
 ---
-description: Brand voice, internal links, and target keywords for pdftoolkit (TinyPDFTools)
+description: Brand voice, internal links, and target keywords for tinypdftools (TinyPDFTools)
 ---
 
-# Context — pdftoolkit (TinyPDFTools)
+# Context — tinypdftools (TinyPDFTools)
 
 ## Brand Voice
 - **Tone:** Professional, efficient, privacy-focused. Gets straight to the point.

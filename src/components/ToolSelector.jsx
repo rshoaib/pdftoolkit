@@ -176,7 +176,7 @@ const ToolSelector = () => {
       <section className="hero">
         <div className="hero-badge">✨ 100% Free & Private — No Uploads</div>
         <h1 className="hero-title">
-          Lightweight & Free <span className="gradient-text">PDF Tools</span>
+          Lightweight & Free <span className="text-gradient">PDF Tools</span>
         </h1>
         <p className="hero-subtitle">
           Looking for lightweight PDF tools? Tiny PDF Tools lets you merge, split, compress, sign, and convert PDFs entirely in your browser.
@@ -187,7 +187,7 @@ const ToolSelector = () => {
       {/* Tool Cards Grid */}
       <section className="tools-grid">
         {tools.map((tool) => (
-          <Link to={`/${tool.id}`} key={tool.id} className="tool-card">
+          <Link to={`/${tool.id}`} key={tool.id} className="tool-card glass-panel">
             <div className="tool-card-icon" style={{ background: `${tool.color}15`, color: tool.color }}>
               <tool.icon size={28} strokeWidth={1.8} />
             </div>
@@ -223,17 +223,17 @@ const ToolSelector = () => {
         <h2 className="section-title">How It Works</h2>
         <p className="section-intro">Every tool follows the same simple, three-step process. No accounts, no installations, no waiting.</p>
         <div className="steps-grid">
-          <div className="step-card">
+          <div className="step-card glass-panel">
             <div className="step-number">1</div>
             <h3>Choose Your Tool</h3>
             <p>Select any of the 16 PDF tools above. Each tool is purpose-built for a specific task — from merging and splitting to signing and encrypting. Click the tool card to get started instantly.</p>
           </div>
-          <div className="step-card">
+          <div className="step-card glass-panel">
             <div className="step-number">2</div>
             <h3>Upload Your PDF</h3>
             <p>Drag and drop your PDF file onto the upload area, or click to browse your device. The file loads directly into your browser's memory — it is never sent to any external server or cloud storage.</p>
           </div>
-          <div className="step-card">
+          <div className="step-card glass-panel">
             <div className="step-number">3</div>
             <h3>Download the Result</h3>
             <p>Make your changes and click the action button. The processed PDF downloads directly to your device in seconds. The original file is never modified, preserved, or stored anywhere — once you close the tab, it is gone.</p>
@@ -361,8 +361,6 @@ const ToolSelector = () => {
           align-items: center;
           gap: var(--spacing-md);
           padding: var(--spacing-lg);
-          background: var(--bg-panel);
-          border: 1px solid var(--border-light);
           border-radius: var(--radius-lg);
           transition: var(--transition-smooth);
           text-decoration: none;
@@ -372,7 +370,7 @@ const ToolSelector = () => {
         .tool-card:hover {
           border-color: var(--primary);
           box-shadow: var(--shadow-glow);
-          transform: translateY(-3px);
+          transform: translateY(-4px);
         }
 
         .tool-card-icon {
@@ -470,10 +468,13 @@ const ToolSelector = () => {
         }
         .step-card {
           padding: var(--spacing-xl);
-          background: var(--bg-panel);
-          border: 1px solid var(--border-light);
           border-radius: var(--radius-lg);
           text-align: center;
+          transition: var(--transition-smooth);
+        }
+        .step-card:hover {
+          box-shadow: var(--shadow-glow);
+          transform: translateY(-4px);
         }
         .step-card h3 {
           font-size: 1.1rem;
@@ -534,9 +535,6 @@ const ToolSelector = () => {
         .stat-card {
           text-align: center;
           padding: var(--spacing-xl);
-          background: var(--bg-panel);
-          border: 1px solid var(--border-light);
-          border-radius: var(--radius-lg);
         }
         .stat-number {
           font-size: 2.5rem;

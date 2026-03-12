@@ -1,20 +1,23 @@
 :root {
     /* Color Palette — Warm PDF Theme */
     --bg-app: #f8f9fb;
-    --bg-panel: #ffffff;
-    --bg-surface: #f1f3f7;
+    --bg-panel: rgba(255, 255, 255, 0.7);
+    --bg-surface: rgba(241, 243, 247, 0.5);
 
     --primary: #e8432a;
     --primary-hover: #d63520;
     --primary-glow: rgba(232, 67, 42, 0.15);
     --secondary: #ff6b35;
     --gradient: linear-gradient(135deg, #e8432a, #ff6b35);
+    /* Sleek mesh gradient background */
+    --mesh-bg: radial-gradient(at 0% 0%, rgba(232, 67, 42, 0.1) 0px, transparent 50%),
+               radial-gradient(at 100% 0%, rgba(255, 107, 53, 0.1) 0px, transparent 50%);
 
     --text-main: #1a1a2e;
     --text-muted: #5a607a;
     --text-dim: #9ca3bf;
 
-    --border-light: #e4e7ed;
+    --border-light: rgba(228, 231, 237, 0.6);
     --border-active: #cbd0dc;
 
     --success: #10b981;
@@ -43,6 +46,7 @@
     --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
     --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.12);
     --shadow-glow: 0 0 20px var(--primary-glow);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
 
     /* Animation */
     --transition-fast: 0.2s ease;
@@ -51,14 +55,17 @@
 
 [data-theme='dark'] {
     --bg-app: #0c0f1a;
-    --bg-panel: #161b2e;
-    --bg-surface: #1e2540;
+    --bg-panel: rgba(22, 27, 46, 0.6);
+    --bg-surface: rgba(30, 37, 64, 0.4);
+    --mesh-bg: radial-gradient(at 0% 0%, rgba(232, 67, 42, 0.15) 0px, transparent 50%),
+               radial-gradient(at 100% 0%, rgba(255, 107, 53, 0.15) 0px, transparent 50%);
     --text-main: #f0f2f8;
     --text-muted: #8b92b0;
     --text-dim: #5a607a;
-    --border-light: #252d45;
+    --border-light: rgba(37, 45, 69, 0.5);
     --border-active: #3a4260;
     --primary-glow: rgba(232, 67, 42, 0.25);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
 
 * {
@@ -69,12 +76,15 @@
 
 body {
     background-color: var(--bg-app);
+    background-image: var(--mesh-bg);
+    background-attachment: fixed;
     color: var(--text-main);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     min-height: 100vh;
     overflow-x: hidden;
     line-height: 1.6;
+    letter-spacing: -0.01em;
 }
 
 #root {
@@ -179,4 +189,22 @@ img {
     border-color: var(--primary);
     color: var(--primary);
     background: var(--primary-glow);
+}
+
+/* Glass panel utility */
+.glass-panel {
+    background: var(--bg-panel);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-light);
+    box-shadow: var(--glass-shadow);
+}
+
+/* Typographic utility */
+.text-gradient {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
 }
