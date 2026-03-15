@@ -1,0 +1,32 @@
+﻿node : ÔØî Failed to 
+insert "how-to-convert
+-word-to-pdf-online-fo
+r-free-no-upload": 
+400 {"code":"22P02","d
+etails":null,"hint":nu
+ll,"message":"invalid 
+input syntax for type 
+bigint: \"how-to-conve
+rt-word-to-pdf-online-
+for-free-no-upload-202
+6-guide\""}
+At line:1 char:1
++ node c:\Projects\pdf
+toolkit\scripts\seed-w
+ord-to-pdf-blog.mjs 
+2>&1 |  ...
++ ~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: (ÔØî Failed   
+  to i...-2026-gui    
+de\""}:String) []    
+, RemoteException
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+\nDone!
