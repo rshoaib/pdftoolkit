@@ -1,12 +1,14 @@
+"use client";
+import { useState, useMemo } from 'react';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Search } from 'lucide-react';
 import { tools } from '../data/tools';
 
 const ToolSelector = () => {
   const faqData = [
     {
-      question: 'Are all 16 PDF tools really free?',
-      answer: 'Yes. Every tool on Tiny PDF Tools is completely free with no usage limits, no daily caps, and no premium tiers. There is no account to create and nothing to install. We generate revenue through non-intrusive display ads, which allows us to keep every tool free for everyone.',
+      question: 'Are all 18 PDF tools really free?',
+      answer: 'Yes. Every tool on Tiny PDF Tools is completely free with no usage limits, no daily caps, and no premium tiers. There is no account to create and nothing to install. We keep every tool free for everyone.',
     },
     {
       question: 'Do my PDF files get uploaded to a server?',
@@ -29,6 +31,35 @@ const ToolSelector = () => {
       answer: 'Absolutely. Many professionals use Tiny PDF Tools for contracts, invoices, proposals, and financial reports. Since files are processed entirely in your browser, there is no risk of data exposure through third-party servers. This makes our tools particularly well-suited for sensitive business documents.',
     },
   ];
+
+  const [search, setSearch] = useState('');
+  const [category, setCategory] = useState('all');
+
+  const categories = [
+    { key: 'all', label: 'All Tools' },
+    { key: 'convert', label: 'Convert' },
+    { key: 'edit', label: 'Edit' },
+    { key: 'security', label: 'Security' },
+    { key: 'organize', label: 'Organize' },
+  ];
+
+  const toolCategories = {
+    'merge-pdf': 'organize', 'split-pdf': 'organize', 'organize-pdf': 'organize',
+    'delete-pdf-pages': 'organize', 'extract-pdf-pages': 'organize',
+    'compress-pdf': 'edit', 'rotate-pdf': 'edit', 'crop-pdf': 'edit',
+    'watermark-pdf': 'edit', 'add-page-numbers': 'edit', 'flatten-pdf': 'edit', 'sign-pdf': 'edit',
+    'pdf-to-image': 'convert', 'image-to-pdf': 'convert', 'pdf-reader': 'convert',
+    'protect-pdf': 'security', 'unlock-pdf': 'security',
+  };
+
+  const filteredTools = useMemo(() => {
+    return tools.filter(t => {
+      const matchesSearch = !search || t.title.toLowerCase().includes(search.toLowerCase())
+        || t.description.toLowerCase().includes(search.toLowerCase());
+      const matchesCategory = category === 'all' || toolCategories[t.id] === category;
+      return matchesSearch && matchesCategory;
+    });
+  }, [search, category]);
 
   return (
     <div className="tool-selector">
@@ -63,9 +94,34 @@ const ToolSelector = () => {
         </p>
       </section>
 
+      {/* Search & Filter */}
+      <section className="search-filter-section">
+        <div className="search-bar">
+          <Search size={18} className="search-icon" />
+          <input
+            type="text"
+            placeholder="Search tools... (e.g. merge, compress, sign)"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="search-input"
+          />
+        </div>
+        <div className="category-pills">
+          {categories.map(c => (
+            <button
+              key={c.key}
+              className={`category-pill ${category === c.key ? 'category-pill-active' : ''}`}
+              onClick={() => setCategory(c.key)}
+            >
+              {c.label}
+            </button>
+          ))}
+        </div>
+      </section>
+
       {/* Tool Cards Grid */}
       <section className="tools-grid">
-        {tools.map((tool) => (
+        {filteredTools.map((tool) => (
           <Link href={`/${tool.id}`} key={tool.id} className="tool-card glass-panel">
             <div className="tool-card-icon" style={{ background: `${tool.color}15`, color: tool.color }}>
               <tool.icon size={28} strokeWidth={1.8} />
@@ -79,6 +135,9 @@ const ToolSelector = () => {
             </div>
           </Link>
         ))}
+        {filteredTools.length === 0 && (
+          <p className="no-results">No tools match your search. Try a different keyword.</p>
+        )}
       </section>
 
       {/* Trust Badges */}
@@ -105,7 +164,7 @@ const ToolSelector = () => {
           <div className="step-card glass-panel">
             <div className="step-number">1</div>
             <h3>Choose Your Tool</h3>
-            <p>Select any of the 16 PDF tools above. Each tool is purpose-built for a specific task — from merging and splitting to signing and encrypting. Click the tool card to get started instantly.</p>
+            <p>Select any of the 18 PDF tools above. Each tool is purpose-built for a specific task — from merging and splitting to signing and encrypting. Click the tool card to get started instantly.</p>
           </div>
           <div className="step-card glass-panel">
             <div className="step-number">2</div>
@@ -153,7 +212,7 @@ const ToolSelector = () => {
       {/* Stats */}
       <section className="stats-section">
         <div className="stat-card">
-          <div className="stat-number">16</div>
+          <div className="stat-number">18</div>
           <div className="stat-label">Free PDF Tools</div>
         </div>
         <div className="stat-card">
@@ -227,6 +286,81 @@ const ToolSelector = () => {
           max-width: 560px;
           margin: 0 auto;
           line-height: 1.7;
+        }
+
+        .search-filter-section {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: var(--spacing-md);
+        }
+
+        .search-bar {
+          display: flex;
+          align-items: center;
+          gap: var(--spacing-sm);
+          padding: 10px 20px;
+          background: var(--bg-panel);
+          border: 1px solid var(--border-light);
+          border-radius: var(--radius-full);
+          width: 100%;
+          max-width: 480px;
+          transition: var(--transition-fast);
+        }
+        .search-bar:focus-within {
+          border-color: var(--primary);
+          box-shadow: 0 0 0 3px var(--primary-glow);
+        }
+        .search-icon {
+          color: var(--text-dim);
+          flex-shrink: 0;
+        }
+        .search-input {
+          border: none;
+          background: transparent;
+          outline: none;
+          font-family: inherit;
+          font-size: 0.95rem;
+          color: var(--text-main);
+          width: 100%;
+        }
+        .search-input::placeholder {
+          color: var(--text-dim);
+        }
+
+        .category-pills {
+          display: flex;
+          gap: var(--spacing-sm);
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+        .category-pill {
+          padding: 6px 16px;
+          border-radius: var(--radius-full);
+          font-size: 0.85rem;
+          font-weight: 500;
+          color: var(--text-muted);
+          background: var(--bg-surface);
+          border: 1px solid var(--border-light);
+          transition: var(--transition-fast);
+          cursor: pointer;
+        }
+        .category-pill:hover {
+          border-color: var(--primary);
+          color: var(--primary);
+        }
+        .category-pill-active {
+          background: var(--primary);
+          color: #fff;
+          border-color: var(--primary);
+        }
+
+        .no-results {
+          grid-column: 1 / -1;
+          text-align: center;
+          color: var(--text-muted);
+          font-size: 1rem;
+          padding: var(--spacing-xl) 0;
         }
 
         .tools-grid {

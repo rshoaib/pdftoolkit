@@ -1,13 +1,28 @@
 "use client";
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Moon, Sun, FileText, Coffee } from 'lucide-react';
+import { usePathname } from 'next/navigation';
+import { Moon, Sun, FileText, Coffee, Menu, X } from 'lucide-react';
 import { useTheme } from '../hooks/useTheme';
 import AdSlot from '../components/AdSlot';
 import CookieConsent from '../components/CookieConsent';
 
 export default function ClientLayout({ children }) {
   const { theme, toggleTheme } = useTheme();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  // Close menu on route change
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
+
+  // Lock body scroll when menu is open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen]);
 
   return (
     <div className="layout">
@@ -20,7 +35,9 @@ export default function ClientLayout({ children }) {
             Tiny<span className="text-gradient">PDFTools</span>
           </div>
         </Link>
-        <nav className="nav">
+
+        {/* Desktop nav */}
+        <nav className="nav nav-desktop">
           <button className="theme-btn" onClick={toggleTheme} title="Toggle Theme" aria-label="Toggle dark mode">
             {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
           </button>
@@ -29,7 +46,37 @@ export default function ClientLayout({ children }) {
           <Link href="/contact" className="nav-link">Contact</Link>
           <Link href="/blog" className="nav-link">Blog</Link>
         </nav>
+
+        {/* Mobile controls */}
+        <div className="nav-mobile-controls">
+          <button className="theme-btn" onClick={toggleTheme} title="Toggle Theme" aria-label="Toggle dark mode">
+            {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+          </button>
+          <button
+            className="hamburger-btn"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          >
+            {menuOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </header>
+
+      {/* Mobile drawer overlay */}
+      {menuOpen && <div className="mobile-overlay" onClick={() => setMenuOpen(false)} />}
+
+      {/* Mobile drawer menu */}
+      <nav className={`mobile-drawer ${menuOpen ? 'mobile-drawer-open' : ''}`}>
+        <Link href="/" className="mobile-nav-link">Home</Link>
+        <Link href="/about" className="mobile-nav-link">About</Link>
+        <Link href="/contact" className="mobile-nav-link">Contact</Link>
+        <Link href="/blog" className="mobile-nav-link">Blog</Link>
+        <Link href="/merge-pdf" className="mobile-nav-link">Merge PDF</Link>
+        <Link href="/compress-pdf" className="mobile-nav-link">Compress PDF</Link>
+        <Link href="/split-pdf" className="mobile-nav-link">Split PDF</Link>
+        <Link href="/pdf-to-image" className="mobile-nav-link">PDF to Image</Link>
+        <Link href="/sign-pdf" className="mobile-nav-link">Sign PDF</Link>
+      </nav>
 
       <main className="main-content">
         {children}
