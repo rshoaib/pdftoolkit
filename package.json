@@ -11,7 +11,6 @@
     "ping": "node scripts/ping-search-engines.js"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.98.0",
     "file-saver": "^2.0.5",
     "jszip": "^3.10.1",
     "lucide-react": "^0.562.0",
