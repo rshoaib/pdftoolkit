@@ -1,3 +1,4 @@
+import ToolSeoContent from '../../components/ToolSeoContent';
 import WatermarkPdf from '../../components/WatermarkPdf';
 
 export const metadata = {
@@ -7,5 +8,8 @@ export const metadata = {
 };
 
 export default function Page() {
-  return <WatermarkPdf />;
+  return <>
+    <WatermarkPdf />
+    <ToolSeoContent toolId="watermark-pdf" />
+  </>
 }

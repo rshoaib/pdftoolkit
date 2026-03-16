@@ -1,3 +1,4 @@
+import ToolSeoContent from '../../components/ToolSeoContent';
 import RotatePdf from '../../components/RotatePdf';
 
 export const metadata = {
@@ -7,5 +8,8 @@ export const metadata = {
 };
 
 export default function Page() {
-  return <RotatePdf />;
+  return <>
+    <RotatePdf />
+    <ToolSeoContent toolId="rotate-pdf" />
+  </>
 }

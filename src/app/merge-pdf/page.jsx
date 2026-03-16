@@ -1,3 +1,4 @@
+import ToolSeoContent from '../../components/ToolSeoContent';
 import MergePdf from '../../components/MergePdf';
 
 export const metadata = {
@@ -7,5 +8,8 @@ export const metadata = {
 };
 
 export default function Page() {
-  return <MergePdf />;
+  return <>
+    <MergePdf />
+    <ToolSeoContent toolId="merge-pdf" />
+  </>
 }

@@ -1,3 +1,4 @@
+import ToolSeoContent from '../../components/ToolSeoContent';
 import UnlockPdf from '../../components/UnlockPdf';
 
 export const metadata = {
@@ -7,5 +8,8 @@ export const metadata = {
 };
 
 export default function Page() {
-  return <UnlockPdf />;
+  return <>
+    <UnlockPdf />
+    <ToolSeoContent toolId="unlock-pdf" />
+  </>
 }

@@ -1,3 +1,4 @@
+import ToolSeoContent from '../../components/ToolSeoContent';
 import ImageToPdf from '../../components/ImageToPdf';
 
 export const metadata = {
@@ -7,5 +8,8 @@ export const metadata = {
 };
 
 export default function Page() {
-  return <ImageToPdf />;
+  return <>
+    <ImageToPdf />
+    <ToolSeoContent toolId="image-to-pdf" />
+  </>
 }

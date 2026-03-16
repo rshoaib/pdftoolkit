@@ -1,3 +1,4 @@
+import ToolSeoContent from '../../components/ToolSeoContent';
 import DeletePdfPages from '../../components/DeletePdfPages';
 
 export const metadata = {
@@ -7,5 +8,8 @@ export const metadata = {
 };
 
 export default function Page() {
-  return <DeletePdfPages />;
+  return <>
+    <DeletePdfPages />
+    <ToolSeoContent toolId="delete-pdf-pages" />
+  </>
 }

@@ -1,3 +1,4 @@
+import ToolSeoContent from '../../components/ToolSeoContent';
 import ProtectPdf from '../../components/ProtectPdf';
 
 export const metadata = {
@@ -7,5 +8,8 @@ export const metadata = {
 };
 
 export default function Page() {
-  return <ProtectPdf />;
+  return <>
+    <ProtectPdf />
+    <ToolSeoContent toolId="protect-pdf" />
+  </>
 }

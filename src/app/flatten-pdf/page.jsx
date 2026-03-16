@@ -1,3 +1,4 @@
+import ToolSeoContent from '../../components/ToolSeoContent';
 import FlattenPdf from '../../components/FlattenPdf';
 
 export const metadata = {
@@ -7,5 +8,8 @@ export const metadata = {
 };
 
 export default function Page() {
-  return <FlattenPdf />;
+  return <>
+    <FlattenPdf />
+    <ToolSeoContent toolId="flatten-pdf" />
+  </>
 }

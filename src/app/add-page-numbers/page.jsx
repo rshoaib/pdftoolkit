@@ -1,3 +1,4 @@
+import ToolSeoContent from '../../components/ToolSeoContent';
 import AddPageNumbers from '../../components/AddPageNumbers';
 
 export const metadata = {
@@ -7,5 +8,8 @@ export const metadata = {
 };
 
 export default function Page() {
-  return <AddPageNumbers />;
+  return <>
+    <AddPageNumbers />
+    <ToolSeoContent toolId="add-page-numbers" />
+  </>
 }

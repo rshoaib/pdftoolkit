@@ -1,3 +1,4 @@
+import ToolSeoContent from '../../components/ToolSeoContent';
 import CropPdf from '../../components/CropPdf';
 
 export const metadata = {
@@ -7,5 +8,8 @@ export const metadata = {
 };
 
 export default function Page() {
-  return <CropPdf />;
+  return <>
+    <CropPdf />
+    <ToolSeoContent toolId="crop-pdf" />
+  </>
 }

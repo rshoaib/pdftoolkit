@@ -1,3 +1,4 @@
+import ToolSeoContent from '../../components/ToolSeoContent';
 import CompressPdf from '../../components/CompressPdf';
 
 export const metadata = {
@@ -7,5 +8,8 @@ export const metadata = {
 };
 
 export default function Page() {
-  return <CompressPdf />;
+  return <>
+    <CompressPdf />
+    <ToolSeoContent toolId="compress-pdf" />
+  </>
 }

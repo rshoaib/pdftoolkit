@@ -1,3 +1,4 @@
+import ToolSeoContent from '../../components/ToolSeoContent';
 import SignPdf from '../../components/SignPdf';
 
 export const metadata = {
@@ -7,5 +8,8 @@ export const metadata = {
 };
 
 export default function Page() {
-  return <SignPdf />;
+  return <>
+    <SignPdf />
+    <ToolSeoContent toolId="sign-pdf" />
+  </>
 }

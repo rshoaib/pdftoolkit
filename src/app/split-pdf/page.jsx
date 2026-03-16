@@ -1,3 +1,4 @@
+import ToolSeoContent from '../../components/ToolSeoContent';
 import SplitPdf from '../../components/SplitPdf';
 
 export const metadata = {
@@ -7,5 +8,8 @@ export const metadata = {
 };
 
 export default function Page() {
-  return <SplitPdf />;
+  return <>
+    <SplitPdf />
+    <ToolSeoContent toolId="split-pdf" />
+  </>
 }

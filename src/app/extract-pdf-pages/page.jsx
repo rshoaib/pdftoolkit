@@ -1,3 +1,4 @@
+import ToolSeoContent from '../../components/ToolSeoContent';
 import ExtractPdfPages from '../../components/ExtractPdfPages';
 
 export const metadata = {
@@ -7,5 +8,8 @@ export const metadata = {
 };
 
 export default function Page() {
-  return <ExtractPdfPages />;
+  return <>
+    <ExtractPdfPages />
+    <ToolSeoContent toolId="extract-pdf-pages" />
+  </>
 }
