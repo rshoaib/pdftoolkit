@@ -424,20 +424,8 @@ const ToolSelector = () => {
         .featured-grid .tool-card {
           padding: var(--spacing-xl);
           background: var(--bg-panel);
-          border: 2px solid transparent;
-          background-clip: padding-box;
+          border: 2px solid var(--border-light);
           position: relative;
-        }
-        
-        .featured-grid .tool-card::before {
-          content: '';
-          position: absolute;
-          inset: -2px;
-          border-radius: inherit;
-          z-index: -1;
-          background: var(--gradient);
-          opacity: 0.1;
-          transition: var(--transition-smooth);
         }
         
         .featured-grid .tool-card-title {
@@ -474,10 +462,6 @@ const ToolSelector = () => {
           border-color: var(--primary);
           box-shadow: var(--shadow-glow);
           transform: translateY(-4px);
-        }
-        
-        .featured-grid .tool-card:hover::before {
-          opacity: 1;
         }
 
         .tool-card-icon {
