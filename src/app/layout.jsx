@@ -3,6 +3,7 @@ import ClientLayout from './ClientLayout';
 import { ToastProvider } from '../components/ToastContext';
 
 export const metadata = {
+  metadataBase: new URL('https://tinypdftools.com'),
   title: 'Tiny PDF Tools - Free Online PDF Tools | Merge, Split, Compress',
   description: 'Free online PDF tools that run 100% in your browser. Merge, split, compress PDFs, convert PDF to images and images to PDF. No uploads, no accounts — 100% private.',
   openGraph: {

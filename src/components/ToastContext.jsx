@@ -77,7 +77,7 @@ export const ToastProvider = ({ children }) => {
           border-radius: var(--radius-md);
           box-shadow: var(--shadow-lg);
           pointer-events: auto;
-          animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1), fadeOut 0.3s ease-out 3.7s;
+          animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, fadeOut 0.3s ease-out 3.7s forwards;
           max-width: 400px;
         }
 
@@ -101,15 +101,10 @@ export const ToastProvider = ({ children }) => {
         .toast-close:hover {
           color: var(--text-main);
         }
-
-        @keyframes slideIn {
-          from { transform: translateX(100%); opacity: 0; }
-          to { transform: translateX(0); opacity: 1; }
-        }
         
         @keyframes fadeOut {
-          from { opacity: 1; }
-          to { opacity: 0; }
+          from { opacity: 1; transform: scale(1); }
+          to { opacity: 0; transform: scale(0.95); }
         }
 
         @media (max-width: 600px) {

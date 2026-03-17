@@ -83,6 +83,8 @@ const DropZone = ({ onFiles, accept = '.pdf', multiple = true, label = 'Drop you
         }
         .dropzone-active {
           transform: scale(1.01);
+          animation: pulse-soft 1.5s infinite;
+          animation: pulse-soft 1.5s infinite;
         }
         .dropzone-content {
           display: flex;

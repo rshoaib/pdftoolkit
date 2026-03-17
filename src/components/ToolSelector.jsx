@@ -121,8 +121,13 @@ const ToolSelector = () => {
 
       {/* Tool Cards Grid */}
       <section className="tools-grid">
-        {filteredTools.map((tool) => (
-          <Link href={`/${tool.id}`} key={tool.id} className="tool-card glass-panel">
+        {filteredTools.map((tool, index) => (
+          <Link 
+            href={`/${tool.id}`} 
+            key={tool.id} 
+            className="tool-card glass-panel"
+            style={{ animationDelay: `${index * 0.05}s` }}
+          >
             <div className="tool-card-icon" style={{ background: `${tool.color}15`, color: tool.color }}>
               <tool.icon size={28} strokeWidth={1.8} />
             </div>
@@ -263,6 +268,7 @@ const ToolSelector = () => {
           font-weight: 600;
           border-radius: var(--radius-full);
           margin-bottom: var(--spacing-lg);
+          animation: float 3s ease-in-out infinite;
         }
 
         .hero-title {
@@ -379,11 +385,19 @@ const ToolSelector = () => {
           text-decoration: none;
           color: inherit;
           cursor: pointer;
+          opacity: 0;
+          animation: fadeSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
+        
+        @keyframes fadeSlideUp {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
         .tool-card:hover {
           border-color: var(--primary);
           box-shadow: var(--shadow-glow);
-          transform: translateY(-4px);
+          transform: translateY(-4px) !important;
         }
 
         .tool-card-icon {
