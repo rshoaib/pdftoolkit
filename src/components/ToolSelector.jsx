@@ -52,6 +52,17 @@ const ToolSelector = () => {
     'protect-pdf': 'security', 'unlock-pdf': 'security',
   };
 
+  const popularToolIds = ['merge-pdf', 'split-pdf', 'compress-pdf', 'pdf-to-image', 'protect-pdf', 'sign-pdf'];
+
+  const popularArr = useMemo(() => {
+    // Maintain the order defined in popularToolIds
+    return popularToolIds.map(id => tools.find(t => t.id === id)).filter(Boolean);
+  }, []);
+
+  const otherTools = useMemo(() => {
+    return tools.filter(t => !popularToolIds.includes(t.id));
+  }, []);
+
   const filteredTools = useMemo(() => {
     return tools.filter(t => {
       const matchesSearch = !search || t.title.toLowerCase().includes(search.toLowerCase())
@@ -60,6 +71,15 @@ const ToolSelector = () => {
       return matchesSearch && matchesCategory;
     });
   }, [search, category]);
+
+  const filteredOtherTools = useMemo(() => {
+    return otherTools.filter(t => {
+      const matchesSearch = !search || t.title.toLowerCase().includes(search.toLowerCase())
+        || t.description.toLowerCase().includes(search.toLowerCase());
+      const matchesCategory = category === 'all' || toolCategories[t.id] === category;
+      return matchesSearch && matchesCategory;
+    });
+  }, [otherTools, search, category]);
 
   return (
     <div className="tool-selector">
@@ -82,68 +102,88 @@ const ToolSelector = () => {
         }}
       />
 
-      {/* Hero */}
+      {/* Hero Section */}
       <section className="hero">
         <div className="hero-badge">✨ 100% Free & Private — No Uploads</div>
         <h1 className="hero-title">
-          Lightweight & Free <span className="text-gradient">PDF Tools</span>
+          Lightweight & Free <br className="desktop-break"/><span className="text-gradient">PDF Tools</span>
         </h1>
         <p className="hero-subtitle">
-          Looking for lightweight PDF tools? Tiny PDF Tools lets you merge, split, compress, sign, and convert PDFs entirely in your browser.
-          Whether you need a tiny pdf merge or to compress files for email, everything is 100% free with no server uploads.
+          Merge, split, compress, sign, and convert PDFs directly in your browser. 
+          Everything processes <strong>locally</strong> — your documents are never uploaded to a server.
         </p>
-      </section>
-
-      {/* Search & Filter */}
-      <section className="search-filter-section">
-        <div className="search-bar">
-          <Search size={18} className="search-icon" />
-          <input
-            type="text"
-            placeholder="Search tools... (e.g. merge, compress, sign)"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="search-input"
-          />
-        </div>
-        <div className="category-pills">
-          {categories.map(c => (
-            <button
-              key={c.key}
-              className={`category-pill ${category === c.key ? 'category-pill-active' : ''}`}
-              onClick={() => setCategory(c.key)}
-            >
-              {c.label}
-            </button>
-          ))}
+        
+        {/* Search */}
+        <div className="search-bar-container">
+          <div className="search-bar">
+            <Search size={18} className="search-icon" />
+            <input
+              type="text"
+              placeholder="Search 18 free tools... (e.g. merge, compress, sign)"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="search-input"
+            />
+          </div>
         </div>
       </section>
 
-      {/* Tool Cards Grid */}
-      <section className="tools-grid">
-        {filteredTools.map((tool, index) => (
-          <Link 
-            href={`/${tool.id}`} 
-            key={tool.id} 
-            className="tool-card glass-panel"
-            style={{ animationDelay: `${index * 0.05}s` }}
-          >
-            <div className="tool-card-icon" style={{ background: `${tool.color}15`, color: tool.color }}>
-              <tool.icon size={28} strokeWidth={1.8} />
+      {/* 
+        If user is actively typing in search, show traditional grid of ALL filtered tools.
+        If user is NOT searching, show the engineered layout (Popular vs Tabs).
+      */}
+      {search ? (
+        <section className="search-results-section content-section">
+          <h2 className="section-title">Search Results</h2>
+          <div className="tools-grid">
+            {filteredTools.map((tool, index) => (
+              <ToolCard key={tool.id} tool={tool} index={index} />
+            ))}
+            {filteredTools.length === 0 && (
+              <p className="no-results">No tools match your search "{search}".</p>
+            )}
+          </div>
+        </section>
+      ) : (
+        <>
+          {/* POPULAR TOOLS SECTION (Top 6) */}
+          <section className="popular-tools-section content-section">
+            <h2 className="section-title">Most Popular Tools</h2>
+            <div className="tools-grid featured-grid">
+              {popularArr.map((tool, index) => (
+                <ToolCard key={tool.id} tool={tool} index={index} isFeatured={true} />
+              ))}
             </div>
-            <div className="tool-card-body">
-              <h3 className="tool-card-title">{tool.title}</h3>
-              <p className="tool-card-desc">{tool.description}</p>
+          </section>
+
+          {/* CATEGORIZED TOOLS TABS (Remaining 12) */}
+          <section className="categorized-tools-section content-section">
+            <div className="category-header">
+              <h2 className="section-title">More PDF Tools</h2>
+              <div className="category-tabs">
+                {categories.map(c => (
+                  <button
+                    key={c.key}
+                    className={`category-tab ${category === c.key ? 'category-tab-active' : ''}`}
+                    onClick={() => setCategory(c.key)}
+                  >
+                    {c.label}
+                  </button>
+                ))}
+              </div>
             </div>
-            <div className="tool-card-arrow">
-              <ArrowRight size={18} />
+            
+            <div className="tools-grid">
+              {filteredOtherTools.map((tool, index) => (
+                <ToolCard key={tool.id} tool={tool} index={index} />
+              ))}
+              {filteredOtherTools.length === 0 && (
+                <p className="no-results">No remaining tools in this category.</p>
+              )}
             </div>
-          </Link>
-        ))}
-        {filteredTools.length === 0 && (
-          <p className="no-results">No tools match your search. Try a different keyword.</p>
-        )}
-      </section>
+          </section>
+        </>
+      )}
 
       {/* Trust Badges */}
       <section className="trust-section">
@@ -256,8 +296,12 @@ const ToolSelector = () => {
 
         .hero {
           text-align: center;
-          padding: var(--spacing-xxl) 0 var(--spacing-lg);
+          padding: calc(var(--spacing-xxl) * 1.5) 0 var(--spacing-lg);
+          max-width: 800px;
+          margin: 0 auto;
         }
+
+        .desktop-break { display: block; }
 
         .hero-badge {
           display: inline-block;
@@ -272,53 +316,47 @@ const ToolSelector = () => {
         }
 
         .hero-title {
-          font-size: clamp(2rem, 5vw, 3.2rem);
+          font-size: clamp(2.2rem, 6vw, 4rem);
           font-weight: 800;
           line-height: 1.15;
-          letter-spacing: -1px;
+          letter-spacing: -2px;
           margin-bottom: var(--spacing-md);
-        }
-
-        .gradient-text {
-          background: var(--gradient);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
         }
 
         .hero-subtitle {
           font-size: 1.15rem;
           color: var(--text-muted);
-          max-width: 560px;
-          margin: 0 auto;
+          max-width: 600px;
+          margin: 0 auto var(--spacing-xl);
           line-height: 1.7;
         }
 
-        .search-filter-section {
+        .search-bar-container {
           display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: var(--spacing-md);
+          justify-content: center;
+          margin: 0 auto;
         }
 
         .search-bar {
           display: flex;
           align-items: center;
           gap: var(--spacing-sm);
-          padding: 10px 20px;
+          padding: 12px 24px;
           background: var(--bg-panel);
-          border: 1px solid var(--border-light);
+          border: 2px solid var(--border-light);
           border-radius: var(--radius-full);
           width: 100%;
-          max-width: 480px;
-          transition: var(--transition-fast);
+          max-width: 520px;
+          box-shadow: var(--shadow-sm);
+          transition: var(--transition-smooth);
         }
         .search-bar:focus-within {
           border-color: var(--primary);
-          box-shadow: 0 0 0 3px var(--primary-glow);
+          box-shadow: 0 0 0 4px var(--primary-glow);
+          transform: translateY(-2px);
         }
         .search-icon {
-          color: var(--text-dim);
+          color: var(--primary);
           flex-shrink: 0;
         }
         .search-input {
@@ -326,46 +364,54 @@ const ToolSelector = () => {
           background: transparent;
           outline: none;
           font-family: inherit;
-          font-size: 0.95rem;
+          font-size: 1.05rem;
           color: var(--text-main);
           width: 100%;
+          font-weight: 500;
         }
         .search-input::placeholder {
           color: var(--text-dim);
+          font-weight: 400;
         }
 
-        .category-pills {
+        .category-header {
           display: flex;
-          gap: var(--spacing-sm);
-          flex-wrap: wrap;
-          justify-content: center;
+          flex-direction: column;
+          align-items: center;
+          margin-bottom: var(--spacing-xl);
         }
-        .category-pill {
-          padding: 6px 16px;
-          border-radius: var(--radius-full);
-          font-size: 0.85rem;
-          font-weight: 500;
-          color: var(--text-muted);
+
+        .category-tabs {
+          display: inline-flex;
           background: var(--bg-surface);
+          padding: 4px;
+          border-radius: var(--radius-lg);
+          margin-top: var(--spacing-md);
           border: 1px solid var(--border-light);
-          transition: var(--transition-fast);
-          cursor: pointer;
         }
-        .category-pill:hover {
-          border-color: var(--primary);
+        
+        .category-tab {
+          padding: 8px 24px;
+          border-radius: var(--radius-md);
+          font-size: 0.95rem;
+          font-weight: 600;
+          color: var(--text-muted);
+          transition: var(--transition-fast);
+        }
+        .category-tab:hover {
           color: var(--primary);
         }
-        .category-pill-active {
-          background: var(--primary);
-          color: #fff;
-          border-color: var(--primary);
+        .category-tab-active {
+          background: var(--bg-panel);
+          color: var(--text-main);
+          box-shadow: var(--shadow-sm);
         }
 
         .no-results {
           grid-column: 1 / -1;
           text-align: center;
           color: var(--text-muted);
-          font-size: 1rem;
+          font-size: 1.1rem;
           padding: var(--spacing-xl) 0;
         }
 
@@ -373,6 +419,34 @@ const ToolSelector = () => {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
           gap: var(--spacing-lg);
+        }
+
+        .featured-grid .tool-card {
+          padding: var(--spacing-xl);
+          background: var(--bg-panel);
+          border: 2px solid transparent;
+          background-clip: padding-box;
+          position: relative;
+        }
+        
+        .featured-grid .tool-card::before {
+          content: '';
+          position: absolute;
+          inset: -2px;
+          border-radius: inherit;
+          z-index: -1;
+          background: var(--gradient);
+          opacity: 0.1;
+          transition: var(--transition-smooth);
+        }
+        
+        .featured-grid .tool-card-title {
+          font-size: 1.25rem;
+        }
+        
+        .featured-grid .tool-card-icon {
+          width: 64px;
+          height: 64px;
         }
 
         .tool-card {
@@ -386,6 +460,8 @@ const ToolSelector = () => {
           color: inherit;
           cursor: pointer;
           opacity: 0;
+          background: var(--bg-surface);
+          border: 1px solid var(--border-light);
           animation: fadeSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
         
@@ -397,7 +473,11 @@ const ToolSelector = () => {
         .tool-card:hover {
           border-color: var(--primary);
           box-shadow: var(--shadow-glow);
-          transform: translateY(-4px) !important;
+          transform: translateY(-4px);
+        }
+        
+        .featured-grid .tool-card:hover::before {
+          opacity: 1;
         }
 
         .tool-card-icon {
@@ -419,10 +499,11 @@ const ToolSelector = () => {
           font-size: 1.1rem;
           font-weight: 700;
           margin-bottom: 4px;
+          color: var(--text-main);
         }
 
         .tool-card-desc {
-          font-size: 0.88rem;
+          font-size: 0.9rem;
           color: var(--text-muted);
           line-height: 1.5;
         }
@@ -431,6 +512,7 @@ const ToolSelector = () => {
           flex-shrink: 0;
           color: var(--text-dim);
           transition: var(--transition-fast);
+          padding: 8px;
         }
         .tool-card:hover .tool-card-arrow {
           color: var(--primary);
@@ -442,37 +524,40 @@ const ToolSelector = () => {
           justify-content: center;
           gap: var(--spacing-lg);
           flex-wrap: wrap;
+          padding-top: var(--spacing-xl);
+          border-top: 1px solid var(--border-light);
         }
 
         .trust-badge {
           display: flex;
           align-items: center;
-          gap: 8px;
-          padding: 10px 20px;
+          gap: 10px;
+          padding: 12px 24px;
           background: var(--bg-panel);
           border: 1px solid var(--border-light);
           border-radius: var(--radius-full);
-          font-size: 0.9rem;
+          font-size: 0.95rem;
           color: var(--text-muted);
-          font-weight: 500;
+          font-weight: 600;
+          box-shadow: var(--shadow-sm);
         }
 
-
         .content-section {
-          max-width: 900px;
+          max-width: 1040px;
           margin: 0 auto;
           width: 100%;
         }
         .section-title {
-          font-size: 1.8rem;
+          font-size: 2.2rem;
           font-weight: 800;
           text-align: center;
           margin-bottom: var(--spacing-sm);
+          letter-spacing: -0.5px;
         }
         .section-intro {
           text-align: center;
           color: var(--text-muted);
-          font-size: 1.05rem;
+          font-size: 1.1rem;
           line-height: 1.7;
           max-width: 700px;
           margin: 0 auto var(--spacing-xl);
@@ -491,7 +576,7 @@ const ToolSelector = () => {
         .steps-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: var(--spacing-lg);
+          gap: var(--spacing-xl);
         }
         .step-card {
           padding: var(--spacing-xl);
@@ -504,41 +589,45 @@ const ToolSelector = () => {
           transform: translateY(-4px);
         }
         .step-card h3 {
-          font-size: 1.1rem;
+          font-size: 1.15rem;
           font-weight: 700;
           margin-bottom: var(--spacing-sm);
         }
         .step-card p {
-          font-size: 0.9rem;
+          font-size: 0.95rem;
           color: var(--text-muted);
           line-height: 1.6;
         }
         .step-number {
-          width: 48px;
-          height: 48px;
-          margin: 0 auto var(--spacing-md);
+          width: 54px;
+          height: 54px;
+          margin: 0 auto var(--spacing-lg);
           display: flex;
           align-items: center;
           justify-content: center;
           background: var(--gradient);
           color: #fff;
           font-weight: 800;
-          font-size: 1.3rem;
+          font-size: 1.4rem;
           border-radius: var(--radius-full);
+          box-shadow: var(--shadow-glow);
         }
 
         .comparison-table-wrap {
           overflow-x: auto;
           margin-bottom: var(--spacing-md);
+          background: var(--bg-panel);
+          border-radius: var(--radius-lg);
+          border: 1px solid var(--border-light);
         }
         .comparison-table {
           width: 100%;
           border-collapse: collapse;
-          font-size: 0.92rem;
+          font-size: 0.95rem;
         }
         .comparison-table th,
         .comparison-table td {
-          padding: 12px 16px;
+          padding: 16px 20px;
           text-align: left;
           border-bottom: 1px solid var(--border-light);
         }
@@ -550,6 +639,9 @@ const ToolSelector = () => {
           letter-spacing: 0.5px;
           color: var(--text-muted);
         }
+        .comparison-table tr:last-child td {
+          border-bottom: none;
+        }
         .comparison-table td:last-child {
           color: var(--primary);
         }
@@ -558,24 +650,25 @@ const ToolSelector = () => {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
           gap: var(--spacing-lg);
+          background: var(--gradient);
+          color: #fff;
+          border-radius: var(--radius-lg);
+          padding: var(--spacing-xl);
         }
         .stat-card {
           text-align: center;
-          padding: var(--spacing-xl);
+          padding: var(--spacing-md);
         }
         .stat-number {
-          font-size: 2.5rem;
+          font-size: 3rem;
           font-weight: 800;
-          background: var(--gradient);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
           margin-bottom: 4px;
+          text-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         .stat-label {
-          font-size: 0.9rem;
-          color: var(--text-muted);
-          font-weight: 500;
+          font-size: 0.95rem;
+          font-weight: 600;
+          opacity: 0.9;
         }
 
         .faq-list {
@@ -596,7 +689,7 @@ const ToolSelector = () => {
         .faq-question {
           padding: var(--spacing-lg);
           font-weight: 600;
-          font-size: 1rem;
+          font-size: 1.05rem;
           cursor: pointer;
           list-style: none;
           display: flex;
@@ -606,9 +699,9 @@ const ToolSelector = () => {
         .faq-question::-webkit-details-marker { display: none; }
         .faq-question::after {
           content: '+';
-          font-size: 1.3rem;
+          font-size: 1.5rem;
           font-weight: 300;
-          color: var(--text-muted);
+          color: var(--text-dim);
           transition: transform 0.2s;
         }
         .faq-item[open] .faq-question::after {
@@ -618,11 +711,28 @@ const ToolSelector = () => {
         .faq-answer {
           padding: 0 var(--spacing-lg) var(--spacing-lg);
           color: var(--text-muted);
-          font-size: 0.95rem;
+          font-size: 0.98rem;
           line-height: 1.7;
         }
 
         @media (max-width: 768px) {
+          .desktop-break { display: none; }
+          .hero-title {
+            font-size: 2.2rem;
+          }
+          .search-bar {
+            padding: 10px 20px;
+          }
+           .category-tabs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            width: 100%;
+            gap: 4px;
+          }
+          .category-tab {
+            text-align: center;
+            padding: 10px 8px;
+          }
           .tools-grid {
             grid-template-columns: 1fr;
           }
@@ -630,22 +740,46 @@ const ToolSelector = () => {
             gap: var(--spacing-sm);
           }
           .trust-badge {
-            font-size: 0.8rem;
-            padding: 8px 14px;
+            font-size: 0.85rem;
+            padding: 10px 16px;
+            width: calc(50% - 4px);
+            justify-content: center;
           }
           .steps-grid {
             grid-template-columns: 1fr;
           }
           .stats-section {
             grid-template-columns: repeat(2, 1fr);
+            border-radius: 0;
+            margin: 0 calc(-1 * var(--spacing-xl));
           }
           .section-title {
-            font-size: 1.4rem;
+            font-size: 1.8rem;
           }
         }
       `}</style>
     </div>
   );
 };
+
+// Component for a Tool Card
+const ToolCard = ({ tool, index, isFeatured = false }) => (
+  <Link 
+    href={`/${tool.id}`} 
+    className="tool-card"
+    style={{ animationDelay: `${index * 0.05}s` }}
+  >
+    <div className="tool-card-icon" style={{ background: `${tool.color}15`, color: tool.color }}>
+      <tool.icon size={isFeatured ? 32 : 28} strokeWidth={isFeatured ? 2 : 1.8} />
+    </div>
+    <div className="tool-card-body">
+      <h3 className="tool-card-title">{tool.title}</h3>
+      <p className="tool-card-desc">{tool.description}</p>
+    </div>
+    <div className="tool-card-arrow">
+      <ArrowRight size={isFeatured ? 20 : 18} />
+    </div>
+  </Link>
+);
 
 export default ToolSelector;
