@@ -21,7 +21,7 @@ async function checkFrequency() {
     process.exit(1);
   }
 
-  const today = new Date('2026-03-11T00:00:00.000Z'); // using the system time date provided
+  const today = new Date('2026-03-20T21:05:19+03:00'); // using the system time date provided
   
   // Calculate start of current week (Monday)
   const currentDay = today.getDay(); // 0 is Sunday, 1 is Monday... 3 is Weds
