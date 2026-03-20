@@ -76,4 +76,5 @@ description: Brand voice, internal links, and target keywords for tinypdftools (
 23. ~~"How to Remove Blank Pages from a PDF Online for Free (No Upload) — 2026 Guide"~~ ✅
 24. ~~"How to Combine JPG Images into One PDF Online for Free (No Upload)"~~ ✅
 25. ~~"Why Client-Side PDF Tools are Safer Than Cloud Editors (2026)"~~ ✅
-26. ~~"How to Email a Large PDF (Compress It Under 25MB for Free) — 2026 Guide"~~ ✅
+79. ~~"How to Email a Large PDF (Compress It Under 25MB for Free) — 2026 Guide"~~ ✅
+80. ~~"How to Make PDF Smaller Than 500KB (Free 2026 Guide)"~~ ✅

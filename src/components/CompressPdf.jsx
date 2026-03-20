@@ -24,7 +24,7 @@ const QUALITY_OPTIONS = [
   { label: 'High Compression (Smallest)', quality: 0.35, scale: 0.6 },
 ];
 
-const CompressPdf = () => {
+const CompressPdf = ({ title, description, seoOverride = {} }) => {
   const toast = useToast();
   const [file, setFile] = useState(null);
   const [qualityIndex, setQualityIndex] = useState(1);

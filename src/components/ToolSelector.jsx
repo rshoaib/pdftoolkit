@@ -4,32 +4,32 @@ import Link from 'next/link';
 import { ArrowRight, Search } from 'lucide-react';
 import { tools } from '../data/tools';
 
-const ToolSelector = () => {
+const ToolSelector = ({ recentPosts = [] }) => {
   const faqData = [
     {
-      question: 'Are all 18 PDF tools really free?',
-      answer: 'Yes. Every tool on Tiny PDF Tools is completely free with no usage limits, no daily caps, and no premium tiers. There is no account to create and nothing to install. We keep every tool free for everyone.',
+      question: 'How do I compress a PDF without losing quality?',
+      answer: 'You can compress a PDF without losing visual quality by using our "Compress PDF" tool. It intelligently downsamples embedded images and removes redundant metadata while keeping your text and vector graphics crisp. Choose the "Low Compression" option for the best visual retention.'
     },
     {
-      question: 'Do my PDF files get uploaded to a server?',
-      answer: 'No. Every tool processes files 100% in your browser using JavaScript and the pdf-lib library. Your files never leave your device. You can verify this yourself by opening Developer Tools (F12), going to the Network tab, and processing any PDF — you will see zero file uploads.',
+      question: 'Is it safe to edit and merge PDF files online?',
+      answer: 'Yes, if you use a client-side tool like TinyPDFTools. Unlike traditional cloud services that upload your documents, our tools process your PDFs 100% locally in your web browser. This means your sensitive tax records, contracts, and medical documents never leave your device.'
     },
     {
-      question: 'What browsers and devices are supported?',
-      answer: 'Tiny PDF Tools works on all modern browsers including Chrome, Firefox, Edge, Safari, and Brave. The tools work on desktop computers, laptops, tablets, and mobile phones. No software installation or browser extension is required.',
+      question: 'How can I merge multiple PDFs into one document for free?',
+      answer: 'Use our free "Merge PDF" tool. Simply drag and drop your PDF files into the browser window, visually arrange them in the correct order, and click merge. It combines your files instantly without any upload limits or premium restrictions.'
     },
     {
-      question: 'Is there a file size limit for PDFs?',
-      answer: 'There is no hard file size limit. Since all processing happens in your browser\'s memory, very large PDFs (over 100 MB) may take longer to process depending on your device\'s available RAM. For most documents under 50 MB, processing is near-instant.',
+      question: 'How do I make a PDF file size smaller for an email attachment?',
+      answer: 'Email providers usually limit attachments to 20MB or 25MB. To bypass this, use our "Compress PDF" utility and select the "High Compression" setting. This will drastically reduce the file size, allowing you to easily email dense, multi-page documents.'
     },
     {
-      question: 'How is this different from Adobe Acrobat or Smallpdf?',
-      answer: 'The key difference is privacy and cost. Adobe Acrobat costs $22.99/month and requires account creation. Smallpdf limits free users to 2 tasks per day and uploads files to their servers. Tiny PDF Tools is completely free, requires no account, and processes everything in your browser — your files never touch a remote server.',
+      question: 'Can I password protect a PDF for free with AES encryption?',
+      answer: 'Absolutely. Navigate to our "Protect PDF" tool, upload your document, and enter a secure password. We apply bank-grade AES-256 encryption directly inside your browser to lock the file, ensuring only authorized users can open it.'
     },
     {
-      question: 'Can I use these tools for business and commercial documents?',
-      answer: 'Absolutely. Many professionals use Tiny PDF Tools for contracts, invoices, proposals, and financial reports. Since files are processed entirely in your browser, there is no risk of data exposure through third-party servers. This makes our tools particularly well-suited for sensitive business documents.',
-    },
+      question: 'How do I permanently rotate and save a PDF document?',
+      answer: 'If your scanned PDF is sideways or upside down, use our "Rotate PDF" tool. You can rotate all pages by 90 or 180 degrees. Once you click download, the orientation is saved permanently without needing Adobe Acrobat.'
+    }
   ];
 
   const [search, setSearch] = useState('');
@@ -273,6 +273,34 @@ const ToolSelector = () => {
           <div className="stat-label">Usage Limit</div>
         </div>
       </section>
+
+      {/* Latest Blog Posts */}
+      {recentPosts && recentPosts.length > 0 && (
+        <section className="content-section blog-preview-section">
+          <h2 className="section-title">Latest PDF Guides & Tutorials</h2>
+          <p className="section-intro">Master PDF editing with our free guides, tips, and security tutorials.</p>
+          <div className="blog-grid">
+            {recentPosts.map((post) => (
+              <Link href={`/blog/${post.slug}`} key={post.id} className="blog-card glass-panel">
+                {post.image && (
+                  <div className="blog-card-image">
+                    <img src={post.image} alt={post.title} loading="lazy" />
+                  </div>
+                )}
+                <div className="blog-card-content">
+                  <span className="blog-card-category">{post.category}</span>
+                  <h3 className="blog-card-title">{post.title}</h3>
+                  <p className="blog-card-excerpt">{post.excerpt}</p>
+                  <span className="blog-card-read-more">Read Guide <ArrowRight size={14} /></span>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <div className="view-all-blogs">
+            <Link href="/blog" className="btn-secondary">View All Articles</Link>
+          </div>
+        </section>
+      )}
 
       {/* FAQ */}
       <section className="content-section">
@@ -697,6 +725,85 @@ const ToolSelector = () => {
           color: var(--text-muted);
           font-size: 0.98rem;
           line-height: 1.7;
+        }
+
+        .blog-preview-section {
+          margin-top: var(--spacing-xxl);
+        }
+        .blog-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: var(--spacing-lg);
+          margin-bottom: var(--spacing-xl);
+        }
+        .blog-card {
+          display: flex;
+          flex-direction: column;
+          border-radius: var(--radius-lg);
+          overflow: hidden;
+          text-decoration: none;
+          color: inherit;
+          transition: var(--transition-smooth);
+        }
+        .blog-card:hover {
+          transform: translateY(-4px);
+          box-shadow: var(--shadow-glow);
+        }
+        .blog-card-image {
+          height: 160px;
+          overflow: hidden;
+          border-bottom: 1px solid var(--border-light);
+        }
+        .blog-card-image img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.5s ease;
+        }
+        .blog-card:hover .blog-card-image img {
+          transform: scale(1.05);
+        }
+        .blog-card-content {
+          padding: var(--spacing-lg);
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+        }
+        .blog-card-category {
+          font-size: 0.75rem;
+          font-weight: 600;
+          color: var(--primary);
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          margin-bottom: var(--spacing-xs);
+        }
+        .blog-card-title {
+          font-size: 1.1rem;
+          font-weight: 700;
+          margin-bottom: var(--spacing-sm);
+          line-height: 1.3;
+        }
+        .blog-card-excerpt {
+          font-size: 0.9rem;
+          color: var(--text-muted);
+          line-height: 1.5;
+          margin-bottom: var(--spacing-md);
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+        .blog-card-read-more {
+          margin-top: auto;
+          font-size: 0.85rem;
+          font-weight: 600;
+          color: var(--primary);
+          display: flex;
+          align-items: center;
+          gap: 4px;
+        }
+        .view-all-blogs {
+          text-align: center;
         }
 
         @media (max-width: 768px) {

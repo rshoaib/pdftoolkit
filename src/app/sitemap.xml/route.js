@@ -55,13 +55,23 @@ async function fetchBlogSlugs() {
   }
 }
 
+import { programmaticPages } from '../../data/programmaticPages';
+
 export async function GET() {
   const today = new Date().toISOString().split('T')[0];
   const blogRoutes = await fetchBlogSlugs();
 
+  const programmaticRoutes = programmaticPages.map((p) => ({
+    path: `/p/${p.slug}`,
+    priority: '0.8',
+    freq: 'weekly',
+    lastmod: today,
+  }));
+
   const allRoutes = [
     ...toolRoutes.map((r) => ({ ...r, lastmod: today })),
     ...blogRoutes.map((r) => ({ ...r, lastmod: r.lastmod || today })),
+    ...programmaticRoutes,
   ];
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>

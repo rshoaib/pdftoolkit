@@ -18,7 +18,7 @@ const faqs = [
   { q: 'Can I reorder pages before merging?', a: 'Yes! Drag the file cards to rearrange the order before merging.' },
 ];
 
-const MergePdf = () => {
+const MergePdf = ({ title, description }) => {
   const toast = useToast();
   const [files, setFiles] = useState([]);
   const [merging, setMerging] = useState(false);
@@ -88,8 +88,8 @@ const MergePdf = () => {
         }}
       />
       <div className="tool-header">
-        <h1 className="tool-title">Merge PDF</h1>
-        <p className="tool-desc">Combine multiple PDF files into a single document. Drag to reorder.</p>
+        <h1 className="tool-title">{title || "Merge PDF"}</h1>
+        <p className="tool-desc">{description || "Combine multiple PDF files into a single document. Drag to reorder."}</p>
       </div>
 
       <ToolIntro

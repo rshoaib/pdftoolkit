@@ -12,11 +12,12 @@ export const toolContent = {
       'Click "Merge PDFs" to combine all files into a single document.',
       'Download your merged PDF instantly — no email or signup required.',
     ],
-    details: 'Unlike most online PDF tools, Tiny PDF Tools processes everything locally using JavaScript. Your files never leave your device, which makes this the most privacy-friendly way to merge PDFs. The tool supports unlimited file sizes and there is no cap on the number of files you can combine in one session.',
+    details: 'Unlike most online PDF tools, Tiny PDF Tools processes everything locally using JavaScript. Your files never leave your device, which makes this the most privacy-friendly way to merge PDFs. The tool supports unlimited file sizes and there is no cap on the number of files you can combine in one session. \n\n**Top 3 Use Cases for Merging PDFs:**\n1. Combining monthly invoices into a single tax document.\n2. Merging scanned contract pages before sending them to a client.\n3. Assembling a digital portfolio or job application package.\n\n**Browser Compatibility:**\nOur local merging engine works seamlessly on Chrome, Firefox, Safari, and Edge without installing extensions.',
     faqs: [
-      { q: 'Is there a file size limit for merging PDFs?', a: 'No. Since processing happens in your browser, there is no server-side upload limit. However, very large files (500MB+) may be slower on older devices.' },
-      { q: 'Are my files uploaded to a server?', a: 'No. All processing happens locally in your browser. Your files never leave your device.' },
-      { q: 'Can I reorder pages after merging?', a: 'Yes. Use our Organize PDF tool to rearrange individual pages after merging.' },
+      { q: 'How do I combine PDF files on Mac without Adobe?', a: 'Our tool is fully compatible with macOS Safari and Chrome. You don\'t need to purchase Adobe Acrobat or use Preview. Just drag your files into the browser and click merge.' },
+      { q: 'Can I merge PDFs offline?', a: 'Yes! Once the webpage loads, you can disconnect from the internet and the tool will still merge your files securely since all processing happens in your browser.' },
+      { q: 'Is there a file size limit for merging PDFs?', a: 'No strict server limits exist because files are never uploaded. However, combining very large files (e.g., over 500MB) depends entirely on your device\'s available RAM.' },
+      { q: 'Can I combine images and PDFs together?', a: 'To combine images, first use our "Image to PDF" tool to convert them, and then merge the resulting PDFs using this tool.' }
     ],
   },
   'split-pdf': {
@@ -28,11 +29,12 @@ export const toolContent = {
       'Click "Split PDF" to generate your new file(s).',
       'Download the resulting PDFs directly to your device.',
     ],
-    details: 'Splitting a PDF is useful when you need to share part of a document without revealing the full file. For example, sending only pages 3–5 of a contract, or isolating a specific form from a bundle. Everything runs in your browser — your data stays private.',
+    details: 'Splitting a PDF is useful when you need to share part of a document without revealing the full file. For example, sending only pages 3–5 of a contract, or isolating a specific form from a bundle. Everything runs in your browser — your data stays private. \n\n**Common Use Cases:**\n- Extracting a single invoice from a 50-page monthly statement.\n- Separating a signed page from a massive legal contract.\n- Splitting a large scanned book into individual chapters.\n\n**Accuracy and Speed:**\nBecause we use WebAssembly to split files locally, you can extract pages from a 1,000-page PDF in seconds. There is no waiting for uploads or server queues.',
     faqs: [
-      { q: 'Can I split a PDF into individual pages?', a: 'Yes. Select "Split every 1 page" to create a separate PDF for each page of your document.' },
-      { q: 'Does splitting reduce file quality?', a: 'No. The split is lossless — the original content, fonts, and images are preserved exactly.' },
-      { q: 'Can I split a password-protected PDF?', a: 'You will need to unlock the PDF first using our Unlock PDF tool, then split it.' },
+      { q: 'How do I extract a single page from a PDF?', a: 'Just upload your document, enter the specific page number in the range box (e.g., "5"), and click split. You will instantly download a new PDF containing only page 5.' },
+      { q: 'Can I split a PDF into multiple separate files?', a: 'Yes! Select the "Split" method and choose to extract every page. A 10-page document will be converted into a perfectly organized ZIP file containing 10 individual PDFs.' },
+      { q: 'Will splitting reduce file quality?', a: 'No. The split is mathematically lossless. The pages are copied exactly as they exist in the original file, so fonts, images, and formatting stay perfect.' },
+      { q: 'Is it free to extract pages from large PDFs?', a: 'Yes, TinyPDFTools does not impose premium limits based on file size or page count. You can split massive documents for free.' }
     ],
   },
   'compress-pdf': {
@@ -44,11 +46,12 @@ export const toolContent = {
       'Click "Compress" to process the file.',
       'Download your compressed PDF and compare the file sizes.',
     ],
-    details: 'PDF compression works by re-encoding the images inside the document at a lower resolution or quality setting. Text, vector graphics, and metadata are not affected. This makes it ideal for PDFs with scanned pages or embedded photographs, where the images account for most of the file size.',
+    details: 'PDF compression works by re-encoding the images inside the document at a lower resolution or quality setting. Text, vector graphics, and metadata are not affected. This makes it ideal for PDFs with scanned pages or embedded photographs, where the images account for most of the file size. \n\n**Before vs After Compression:**\nA 15MB scanned document can typically be reduced to under 2MB using the "High Compression" setting, making it perfectly sized for strict email attachments.\n\n**Security Notice:**\nUnlike cloud compressors that store your documents for hours, our compressor runs within your browser\'s memory. The moment you close the tab, the data is gone.',
     faqs: [
-      { q: 'How much smaller will my PDF be?', a: 'It depends on the content. Image-heavy PDFs can shrink by 50–90%. Text-only PDFs have little room for compression.' },
-      { q: 'Will compression affect text quality?', a: 'No. Only embedded images are re-encoded. Text, fonts, and vector graphics remain unchanged.' },
-      { q: 'Is this tool free to use?', a: 'Yes. Tiny PDF Tools is 100% free with no hidden limits or watermarks.' },
+      { q: 'How can I reduce PDF file size for email?', a: 'Most email clients restrict attachments to 20MB or 25MB. Upload your file here, select "High Compression", and your PDF will instantly be reduced to a fraction of its original size while remaining readable.' },
+      { q: 'Can I compress a PDF to exactly 100KB?', a: 'While you cannot specify an exact output size, selecting the highest compression level will aggressively shrink the file. For text-heavy documents, it often results in sizes well under 100KB.' },
+      { q: 'Will compression blur my text?', a: 'No. Our intelligent engine only targets embedded raster images (like photos or scans). True text and vector shapes remain perfectly crisp and pixel-perfect.' },
+      { q: 'Is it safe to compress tax or medical PDFs online?', a: 'Yes, but ONLY if the tool is client-side like TinyPDFTools. Because your highly sensitive documents are never transmitted to our servers, there is zero risk of data interception.' }
     ],
   },
   'pdf-to-image': {
@@ -108,11 +111,12 @@ export const toolContent = {
       'Click "Protect PDF" to encrypt the file.',
       'Download your secured PDF and share it safely.',
     ],
-    details: 'AES-256 is the same encryption standard used by governments and financial institutions. Once protected, the PDF cannot be opened without the correct password. Remember to share the password with your recipient through a separate channel (like a phone call or text message) — never include it in the same email as the file.',
+    details: 'AES-256 is the same encryption standard used by governments and financial institutions. Once protected, the PDF cannot be opened without the correct password. Remember to share the password with your recipient through a separate channel (like a phone call or text message) — never include it in the same email as the file. \n\n**Why Local Encryption Matters:**\nWhen you use cloud-based PDF protectors, you are uploading your unencrypted, highly sensitive document to a remote server and trusting them to delete it. Our tool runs locally. The file is encrypted directly inside your computer\'s memory, ensuring true zero-knowledge privacy.',
     faqs: [
-      { q: 'What encryption does this use?', a: 'AES-256 bit encryption, the current industry standard for document security.' },
-      { q: 'Can I remove the password later?', a: 'Yes. Use our Unlock PDF tool with the original password to remove protection.' },
-      { q: 'Is my password stored anywhere?', a: 'No. Everything happens in your browser. We never see or store your password.' },
+      { q: 'How do I password protect a PDF for free?', a: 'Upload your document to our tool, type a secure password, and click protect. The tool will download a new, encrypted copy of your PDF without charging you any fees.' },
+      { q: 'Can someone brute-force the PDF password?', a: 'Because we use AES-256 encryption, brute-forcing a strong password (8+ mixed characters) would take modern supercomputers millions of years. However, a weak password like "1234" can be easily guessed, so always choose complex passwords.' },
+      { q: 'Is it safe to encrypt financial records online?', a: 'Yes, but only if processing is 100% client-side. TinyPDFTools never uploads your file, meaning your financial records are never exposed to the internet.' },
+      { q: 'Can I lock a PDF from being printed or copied?', a: 'Currently, our tool applies an "open" password, meaning the entire document is locked from being viewed. We plan to add specific permission controls (like disabling printing) in a future update.' }
     ],
   },
   'unlock-pdf': {

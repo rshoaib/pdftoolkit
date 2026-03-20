@@ -17,7 +17,7 @@ const faqs = [
   { q: 'What encryption level is used?', a: 'pdf-lib uses AES-256 encryption, which is the industry standard for secure PDF documents.' },
 ];
 
-const ProtectPdf = () => {
+const ProtectPdf = ({ title, description }) => {
   const toast = useToast();
   const [file, setFile] = useState(null);
   const [password, setPassword] = useState('');
@@ -78,8 +78,8 @@ const ProtectPdf = () => {
         }}
       />
       <div className="tool-header">
-        <h1 className="tool-title">Protect PDF</h1>
-        <p className="tool-desc">Add password protection to your PDF files. AES-256 encryption, 100% in your browser.</p>
+        <h1 className="tool-title">{title || "Protect PDF"}</h1>
+        <p className="tool-desc">{description || "Add password protection to your PDF files. AES-256 encryption, 100% in your browser."}</p>
       </div>
 
       <ToolIntro

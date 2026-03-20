@@ -22,7 +22,7 @@ const faqs = [
   { q: 'What is the page range format?', a: 'You can enter ranges like "1-3, 5, 7-10" to select specific pages.' },
 ];
 
-const SplitPdf = () => {
+const SplitPdf = ({ title, description }) => {
   const toast = useToast();
   const [file, setFile] = useState(null);
   const [pageCount, setPageCount] = useState(0);
@@ -153,8 +153,8 @@ const SplitPdf = () => {
         }}
       />
       <div className="tool-header">
-        <h1 className="tool-title">Split PDF</h1>
-        <p className="tool-desc">Select pages to extract from your PDF document.</p>
+        <h1 className="tool-title">{title || "Split PDF"}</h1>
+        <p className="tool-desc">{description || "Select pages to extract from your PDF document."}</p>
       </div>
 
       <ToolIntro
