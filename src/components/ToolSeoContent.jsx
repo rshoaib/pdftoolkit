@@ -8,18 +8,9 @@ export default function ToolSeoContent({ toolId }) {
   const content = toolContent[toolId];
   if (!content) return null;
 
-  const faqJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: content.faqs.map((faq) => ({
-      '@type': 'Question',
-      name: faq.q,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: faq.a,
-      },
-    })),
-  };
+  // NOTE: FAQPage JSON-LD is already injected by the FAQSection component
+  // inside each tool component. Only inject HowTo schema here to avoid
+  // "Duplicate field FAQPage" errors in Google Rich Results Test.
 
   const howToJsonLd = {
     '@context': 'https://schema.org',
@@ -34,10 +25,6 @@ export default function ToolSeoContent({ toolId }) {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }}
