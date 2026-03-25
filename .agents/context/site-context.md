@@ -151,6 +151,7 @@ description: Brand voice, internal links, and target keywords for tinypdftools (
 | 26 | How to Email a Large PDF | ✅ |
 | 27 | How to Make PDF Smaller Than 500KB | ✅ |
 | 28 | How to Combine Tax Documents into a Single PDF | ✅ |
+| 29 | What is a Flattened PDF? (And Why You Need One in 2026) | ✅ |
 
 ---
 
@@ -160,7 +161,7 @@ description: Brand voice, internal links, and target keywords for tinypdftools (
 
 | Priority | Keyword | Score | Tool Link | Competition |
 |---|---|---|---|---|
-| 🔴 1 | "what is a flattened pdf and why do i need one" | 18/20 | → `/flatten-pdf` | Very Low (forums, thin articles) |
+| ✅ Published | "what is a flattened pdf and why do i need one" | 18/20 | → `/flatten-pdf` | Very Low (forums, thin articles) |
 | 🔴 2 | "how to fix a rotated pdf scan" | 18/20 | → `/rotate-pdf` | Very Low (Reddit, generic guides) |
 | 🔴 3 | "how to print pdf without margins" | 17/20 | → `/crop-pdf` | Low (mix of small blogs) |
 | 🔴 4 | "how to reorder pages in a pdf free" | 17/20 | → Organize tool | Low (overlaps existing angle) |
