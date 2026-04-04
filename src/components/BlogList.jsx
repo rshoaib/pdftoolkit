@@ -1,20 +1,7 @@
-"use client";
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Calendar, Clock, ArrowRight, BookOpen } from 'lucide-react';
-import { getAllPosts } from '../lib/blogService';
+import { Calendar, Clock, ArrowRight } from 'lucide-react';
 
-const BlogList = () => {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    getAllPosts().then((data) => {
-      setPosts(data);
-      setLoading(false);
-    });
-  }, []);
-
+const BlogList = ({ posts = [] }) => {
   return (
     <div className="tool-page">
       <div className="tool-header">
@@ -22,11 +9,7 @@ const BlogList = () => {
         <p className="tool-desc">Tips, tutorials, and guides for working with PDFs.</p>
       </div>
 
-      {loading ? (
-        <div style={{ textAlign: 'center', padding: '60px 0', color: 'var(--text-muted)' }}>
-          Loading posts…
-        </div>
-      ) : posts.length === 0 ? (
+      {posts.length === 0 ? (
         <div style={{ textAlign: 'center', padding: '60px 0', color: 'var(--text-muted)' }}>
           No posts yet. Check back soon!
         </div>
