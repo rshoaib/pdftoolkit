@@ -1,10 +1,6 @@
 "use client";
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
 import { Calendar, Clock, ArrowLeft, Share2 } from 'lucide-react';
-import { getPostBySlug } from '../lib/blogService';
-import SEO from './SEO';
 
 // Simple markdown-to-HTML converter
 function renderMarkdown(md) {
@@ -45,18 +41,7 @@ function renderMarkdown(md) {
   return '<p>' + html + '</p>';
 }
 
-const BlogPost = () => {
-  const { slug } = useParams();
-  const [post, setPost] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    getPostBySlug(slug).then((data) => {
-      setPost(data);
-      setLoading(false);
-    });
-  }, [slug]);
-
+const BlogPost = ({ post }) => {
   const handleShare = () => {
     if (navigator.share) {
       navigator.share({ title: post.title, url: window.location.href });
@@ -66,42 +51,24 @@ const BlogPost = () => {
     }
   };
 
-  if (loading) {
-    return (
-      <div style={{ textAlign: 'center', padding: '80px 0', color: 'var(--text-muted)' }}>
-        Loading…
-      </div>
-    );
-  }
-
-  if (!post) {
-    return (
-      <div className="tool-page" style={{ textAlign: 'center', padding: '80px 0' }}>
-        <h1>Post Not Found</h1>
-        <p style={{ color: 'var(--text-muted)', margin: '16px 0' }}>
-          This blog post doesn't exist or has been removed.
-        </p>
-        <Link href="/blog" className="btn-primary">← Back to Blog</Link>
-      </div>
-    );
-  }
-
   return (
     <div className="blog-post-page">
-      <SEO 
-        title={`${post.title} | Tiny PDF Tools`}
-        description={post.excerpt || post.title}
-        schemaType="Article"
-        schemaData={{
-          headline: post.title,
-          image: post.image ? [window.location.origin + post.image] : [],
-          datePublished: post.date, // Assuming post.date exists
-          author: { "@type": "Person", "name": "Rizwan" },
-          publisher: {
-            "@type": "Organization",
-            "name": "Tiny PDF Tools",
-            "logo": { "@type": "ImageObject", "url": window.location.origin + "/favicon.svg" }
-          }
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: post.title,
+            image: post.image ? [`https://tinypdftools.com${post.image}`] : [],
+            datePublished: post.date,
+            author: { "@type": "Person", name: "Rizwan" },
+            publisher: {
+              "@type": "Organization",
+              name: "Tiny PDF Tools",
+              logo: { "@type": "ImageObject", url: "https://tinypdftools.com/favicon.svg" }
+            }
+          })
         }}
       />
       <div className="blog-post-nav">

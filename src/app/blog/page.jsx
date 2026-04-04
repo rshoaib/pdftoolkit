@@ -1,4 +1,5 @@
 import BlogList from '../../components/BlogList';
+import { getAllPosts } from '../../lib/blogService';
 
 export const metadata = {
   title: 'Blog — PDF Tips, Tutorials & Guides | Tiny PDF Tools',
@@ -6,6 +7,7 @@ export const metadata = {
   alternates: { canonical: 'https://tinypdftools.com/blog' }
 };
 
-export default function Page() {
-  return <BlogList />;
+export default async function Page() {
+  const posts = await getAllPosts();
+  return <BlogList posts={posts} />;
 }

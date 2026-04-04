@@ -1,8 +1,10 @@
 import BlogPost from '../../../components/BlogPost';
 import { getPostBySlug } from '../../../lib/blogService';
+import { notFound } from 'next/navigation';
 
 export async function generateMetadata({ params }) {
-  const post = await getPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
   if (!post) {
     return { title: 'Post Not Found | Tiny PDF Tools' };
   }
@@ -32,6 +34,9 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default function Page() {
-  return <BlogPost />;
+export default async function Page({ params }) {
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
+  if (!post) notFound();
+  return <BlogPost post={post} />;
 }
