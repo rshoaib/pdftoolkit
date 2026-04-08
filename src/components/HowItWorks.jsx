@@ -18,24 +18,6 @@ const HowItWorks = ({ steps = [], schemaTitle = "How to use this tool" }) => {
         ))}
       </div>
 
-      {/* Inject HowTo JSON-LD Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "HowTo",
-            "name": schemaTitle,
-            "step": steps.map((step, index) => ({
-              "@type": "HowToStep",
-              "position": index + 1,
-              "name": step.title,
-              "text": step.description,
-            }))
-          })
-        }}
-      />
-
       <style>{`
         .how-it-works-section {
           margin-top: var(--spacing-xxl);

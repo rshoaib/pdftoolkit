@@ -29,6 +29,19 @@ const toolRoutes = [
   { path: '/terms', priority: '0.3', freq: 'yearly' },
 ];
 
+// Slugs that 301 redirect to canonical versions — exclude from sitemap
+const redirectedSlugs = new Set([
+  'how-to-fix-a-rotated-pdf-scan',
+  'best-free-pdf-tools-online',
+  'how-to-organize-rearrange-pdf-pages-free',
+  'how-to-add-watermark-to-pdf-free',
+  'convert-images-to-pdf-free',
+  'convert-pdf-to-image-jpg-png',
+  'how-to-split-pdf-pages-free',
+  'how-to-rotate-pdf-pages',
+  'pdf-security-best-practices-2026',
+]);
+
 async function fetchBlogSlugs() {
   if (!SUPABASE_URL || !SUPABASE_KEY) return [];
 
@@ -46,12 +59,14 @@ async function fetchBlogSlugs() {
 
     if (!res.ok) return [];
     const data = await res.json();
-    return data.map((p) => ({
-      path: `/blog/${p.slug}`,
-      lastmod: p.date ? p.date.split('T')[0] : undefined,
-      priority: '0.7',
-      freq: 'monthly',
-    }));
+    return data
+      .filter((p) => !redirectedSlugs.has(p.slug))
+      .map((p) => ({
+        path: `/blog/${p.slug}`,
+        lastmod: p.date ? p.date.split('T')[0] : undefined,
+        priority: '0.7',
+        freq: 'monthly',
+      }));
   } catch {
     return [];
   }
