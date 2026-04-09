@@ -2,7 +2,7 @@ import ToolSeoContent from '../../components/ToolSeoContent';
 import PdfToImage from '../../components/PdfToImage';
 
 export const metadata = {
-  title: 'PDF to Image — Convert PDF Pages to JPG/PNG Online | Tiny PDF Tools',
+  title: 'PDF to Image — Convert PDF to JPG/PNG Free | TinyPDF',
   description: 'Convert PDF pages to high-quality JPG or PNG images. Download individually or as a ZIP. 100% free, no uploads required.',
   alternates: { canonical: 'https://tinypdftools.com/pdf-to-image' },
   openGraph: {

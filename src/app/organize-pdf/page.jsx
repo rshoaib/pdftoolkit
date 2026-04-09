@@ -2,7 +2,7 @@ import ToolSeoContent from '../../components/ToolSeoContent';
 import OrganizePdf from '../../components/OrganizePdf';
 
 export const metadata = {
-  title: 'Organize PDF — Rearrange, Delete & Duplicate Pages Online | Tiny PDF Tools',
+  title: 'Organize PDF — Rearrange & Reorder Pages | TinyPDF',
   description: 'Drag and drop to reorder PDF pages, delete unwanted pages, or duplicate them. 100% free, no uploads, runs in your browser.',
   alternates: { canonical: 'https://tinypdftools.com/organize-pdf' },
   openGraph: {
