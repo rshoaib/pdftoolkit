@@ -2,7 +2,7 @@ import ToolSeoContent from '../../components/ToolSeoContent';
 import CropPdf from '../../components/CropPdf';
 
 export const metadata = {
-  title: 'Crop PDF — Trim PDF Margins & Pages Online for Free | Tiny PDF Tools',
+  title: 'Crop PDF Online Free — Trim Margins & Pages | TinyPDF',
   description: 'Crop and trim PDF pages visually. Drag to select the area to keep, then download instantly. 100% free, no uploads — runs in your browser.',
   alternates: { canonical: 'https://tinypdftools.com/crop-pdf' },
   openGraph: {
