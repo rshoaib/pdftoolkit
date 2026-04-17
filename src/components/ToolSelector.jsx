@@ -3,6 +3,7 @@ import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { ArrowRight, Search } from 'lucide-react';
 import { tools } from '../data/tools';
+import BlogHero from './BlogHero';
 
 const ToolSelector = ({ recentPosts = [] }) => {
   const faqData = [
@@ -282,11 +283,9 @@ const ToolSelector = ({ recentPosts = [] }) => {
           <div className="blog-grid">
             {recentPosts.map((post) => (
               <Link href={`/blog/${post.slug}`} key={post.id} className="blog-card glass-panel">
-                {post.image && (
-                  <div className="blog-card-image">
-                    <img src={post.image} alt={post.title} loading="lazy" />
-                  </div>
-                )}
+                <div className="blog-card-image">
+                  <BlogHero category={post.category} variant="card" />
+                </div>
                 <div className="blog-card-content">
                   <span className="blog-card-category">{post.category}</span>
                   <h3 className="blog-card-title">{post.title}</h3>
@@ -753,15 +752,10 @@ const ToolSelector = ({ recentPosts = [] }) => {
           height: 160px;
           overflow: hidden;
           border-bottom: 1px solid var(--border-light);
-        }
-        .blog-card-image img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
           transition: transform 0.5s ease;
         }
-        .blog-card:hover .blog-card-image img {
-          transform: scale(1.05);
+        .blog-card:hover .blog-card-image {
+          transform: scale(1.02);
         }
         .blog-card-content {
           padding: var(--spacing-lg);

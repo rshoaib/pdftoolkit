@@ -23,13 +23,11 @@ export async function generateMetadata({ params }) {
       type: 'article',
       publishedTime: post.date,
       authors: ['Rizwan'],
-      ...(post.image && { images: [{ url: `https://tinypdftools.com${post.image}`, width: 1200, height: 630, alt: post.title }] }),
     },
     twitter: {
-      card: 'summary_large_image',
+      card: 'summary',
       title: post.title,
       description: post.excerpt || post.title,
-      ...(post.image && { images: [`https://tinypdftools.com${post.image}`] }),
     },
   };
 }

@@ -6,18 +6,20 @@ Free online PDF tools that run 100% in your browser. No uploads, no accounts —
 
 ## Features
 
-- **Merge PDFs** — Combine multiple PDF files into one
-- **Split PDF** — Extract specific pages from a PDF
-- **Compress PDF** — Reduce PDF file size
-- **PDF to Images** — Convert PDF pages to JPG/PNG
-- **Images to PDF** — Convert images into a PDF document
+- **Merge / Split / Compress** PDFs
+- **PDF ↔ Images** (JPG, PNG, WebP)
+- **Rotate / Crop / Organize / Extract / Delete** pages
+- **Protect / Unlock** with AES-256
+- **Watermark / Sign / Flatten / Add Page Numbers**
+- **PDF Reader** (zoom, navigate, search)
 
 ## Tech Stack
 
-- **Frontend:** React 19 + React Router 7
-- **Build:** Vite 5
+- **Framework:** Next.js 16 (App Router) + React 19
 - **PDF Engine:** pdf-lib + pdfjs-dist (client-side)
+- **Blog CMS:** Supabase (REST)
 - **Styling:** Vanilla CSS with dark/light theme
+- **Icons:** lucide-react
 - **Analytics:** Google Analytics 4 (react-ga4)
 - **Hosting:** Vercel
 
@@ -25,9 +27,10 @@ Free online PDF tools that run 100% in your browser. No uploads, no accounts —
 
 ```bash
 npm install
-npm run dev        # Start dev server
-npm run build      # Production build + sitemap
-npm run preview    # Preview production build
+npm run dev        # Start Next dev server
+npm run build      # Production build
+npm run start      # Serve production build locally
+npm run ping       # Ping search engines with sitemap
 ```
 
 ## Environment Variables
@@ -35,11 +38,10 @@ npm run preview    # Preview production build
 Copy `.env.example` to `.env.local` and fill in values:
 
 ```
-VITE_GA_ID=G-XXXXXXXXXX
-VITE_ADSENSE_CLIENT=
-VITE_AD_SLOT_FOOTER=
+NEXT_PUBLIC_SUPABASE_URL=...
+NEXT_PUBLIC_SUPABASE_ANON_KEY=...
 ```
 
 ## Deployment
 
-Push to `main` → Vercel auto-deploys to [tinypdftools.com](https://tinypdftools.com)
+Push to `main` → Vercel auto-deploys to [tinypdftools.com](https://tinypdftools.com).

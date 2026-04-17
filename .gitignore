@@ -37,3 +37,6 @@ dist-ssr
 *.sw?
 
 .vercel
+
+# Claude / Cowork worktrees & local agent metadata
+.claude

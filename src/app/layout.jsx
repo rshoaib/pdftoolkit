@@ -12,13 +12,11 @@ export const metadata = {
     url: 'https://tinypdftools.com',
     siteName: 'Tiny PDF Tools',
     type: 'website',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Tiny PDF Tools — Free PDF Tools, 100% Private' }],
   },
   twitter: {
-    card: 'summary_large_image',
+    card: 'summary',
     title: 'Tiny PDF Tools - Free Online PDF Tools',
     description: 'Free PDF tools that run entirely in your browser. No uploads, 100% private.',
-    images: ['/og-image.png'],
   },
 };
 

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
+import BlogHero from './BlogHero';
 
 const BlogList = ({ posts = [] }) => {
   return (
@@ -17,11 +18,9 @@ const BlogList = ({ posts = [] }) => {
         <div className="blog-grid">
           {posts.map((post) => (
             <Link href={`/blog/${post.slug}`} key={post.slug} className="blog-card">
-              {post.image && (
-                <div className="blog-card-image">
-                  <img src={post.image} alt={post.title} loading="lazy" />
-                </div>
-              )}
+              <div className="blog-card-image">
+                <BlogHero category={post.category} variant="card" />
+              </div>
               <div className="blog-card-body">
                 <span className="blog-card-category">{post.category}</span>
                 <h2 className="blog-card-title">{post.title}</h2>
@@ -65,15 +64,10 @@ const BlogList = ({ posts = [] }) => {
           width: 100%;
           height: 200px;
           overflow: hidden;
-        }
-        .blog-card-image img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
           transition: transform 0.3s ease;
         }
-        .blog-card:hover .blog-card-image img {
-          transform: scale(1.05);
+        .blog-card:hover .blog-card-image {
+          transform: scale(1.03);
         }
         .blog-card-body {
           padding: var(--spacing-lg);

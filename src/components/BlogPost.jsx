@@ -1,6 +1,7 @@
 "use client";
 import Link from 'next/link';
 import { Calendar, Clock, ArrowLeft, Share2 } from 'lucide-react';
+import BlogHero from './BlogHero';
 
 // Simple markdown-to-HTML converter
 function renderMarkdown(md) {
@@ -60,7 +61,6 @@ const BlogPost = ({ post }) => {
             "@context": "https://schema.org",
             "@type": "Article",
             headline: post.title,
-            image: post.image ? [`https://tinypdftools.com${post.image}`] : [],
             datePublished: post.date,
             author: { "@type": "Person", name: "Rizwan" },
             publisher: {
@@ -90,11 +90,7 @@ const BlogPost = ({ post }) => {
           </div>
         </header>
 
-        {post.image && (
-          <div className="blog-post-hero">
-            <img src={post.image} alt={post.title} />
-          </div>
-        )}
+        <BlogHero category={post.category} variant="hero" />
 
         <div
           className="blog-post-content"
@@ -182,16 +178,6 @@ const BlogPost = ({ post }) => {
           display: flex;
           align-items: center;
           gap: 6px;
-        }
-        .blog-post-hero {
-          border-radius: var(--radius-lg);
-          overflow: hidden;
-          margin-bottom: var(--spacing-xl);
-        }
-        .blog-post-hero img {
-          width: 100%;
-          height: auto;
-          display: block;
         }
         .blog-post-content {
           font-size: 1.05rem;
