@@ -90,7 +90,7 @@ const BlogPost = ({ post }) => {
           </div>
         </header>
 
-        <BlogHero category={post.category} variant="hero" />
+        <BlogHero slug={post.slug} title={post.title} category={post.category} variant="hero" />
 
         <div
           className="blog-post-content"

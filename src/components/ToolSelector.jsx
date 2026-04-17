@@ -284,7 +284,7 @@ const ToolSelector = ({ recentPosts = [] }) => {
             {recentPosts.map((post) => (
               <Link href={`/blog/${post.slug}`} key={post.id} className="blog-card glass-panel">
                 <div className="blog-card-image">
-                  <BlogHero category={post.category} variant="card" />
+                  <BlogHero slug={post.slug} title={post.title} category={post.category} variant="card" />
                 </div>
                 <div className="blog-card-content">
                   <span className="blog-card-category">{post.category}</span>

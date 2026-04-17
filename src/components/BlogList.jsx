@@ -19,7 +19,7 @@ const BlogList = ({ posts = [] }) => {
           {posts.map((post) => (
             <Link href={`/blog/${post.slug}`} key={post.slug} className="blog-card">
               <div className="blog-card-image">
-                <BlogHero category={post.category} variant="card" />
+                <BlogHero slug={post.slug} title={post.title} category={post.category} variant="card" />
               </div>
               <div className="blog-card-body">
                 <span className="blog-card-category">{post.category}</span>
