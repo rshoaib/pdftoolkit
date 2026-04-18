@@ -42,6 +42,17 @@ const redirectedSlugs = new Set([
   'pdf-security-best-practices-2026',
 ]);
 
+// Normalize any Supabase date value (ISO 8601 "2026-04-18T20:32:14Z",
+// Postgres timestamptz "2026-04-18 20:32:14.640653+00", or plain
+// "2026-04-18") into the YYYY-MM-DD form required by the sitemap spec.
+// GSC flags anything else as "Invalid date" and the sitemap fails.
+function toIsoDate(value) {
+  if (!value) return undefined;
+  const d = new Date(value);
+  if (Number.isNaN(d.getTime())) return undefined;
+  return d.toISOString().split('T')[0];
+}
+
 async function fetchBlogSlugs() {
   if (!SUPABASE_URL || !SUPABASE_KEY) return [];
 
@@ -63,7 +74,7 @@ async function fetchBlogSlugs() {
       .filter((p) => !redirectedSlugs.has(p.slug))
       .map((p) => ({
         path: `/blog/${p.slug}`,
-        lastmod: p.date ? p.date.split('T')[0] : undefined,
+        lastmod: toIsoDate(p.date),
         priority: '0.7',
         freq: 'monthly',
       }));
