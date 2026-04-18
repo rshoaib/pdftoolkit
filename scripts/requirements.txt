@@ -1,0 +1,12 @@
+# Python dependencies for scripts/gsc_audit.py
+#
+# Install with:
+#   pip install -r scripts/requirements.txt
+#
+# Pinned with compatible-release (~=) so future scheduled runs get patch-level
+# security fixes without breaking on a surprise major bump. The audit script
+# uses only stable, long-settled API surface from these packages.
+
+google-auth~=2.49
+google-api-python-client~=2.194
+requests~=2.32
