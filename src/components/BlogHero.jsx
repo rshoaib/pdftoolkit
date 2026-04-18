@@ -7,6 +7,7 @@ import {
   Mail, Printer, Hash, FileMinus, FileOutput, Trash2, ArrowDownUp,
   Tag, Receipt, Edit3, EyeOff, FileImage, Files, FilePlus,
 } from 'lucide-react';
+import { SCENES, resolveScene } from './BlogHeroScenes';
 
 /**
  * Every post gets a visually distinct hero. Two axes drive uniqueness:
@@ -197,6 +198,13 @@ const BlogHero = ({ slug, title, category, variant = 'hero' }) => {
   // Stable id per slug so hydration matches SSR output.
   const pid = `bh-${(h >>> 0).toString(36)}`;
 
+  // On the post-page hero, try to resolve a topical scene illustration
+  // (two merged docs for "merge", scissor cut for "split", etc.) so the
+  // banner actually depicts the article rather than showing one centered
+  // lucide icon. Cards keep the simple icon for visual punch at small size.
+  const sceneName = variant === 'hero' ? resolveScene({ slug, title, category }) : null;
+  const SceneFn = sceneName ? SCENES[sceneName] : null;
+
   return (
     <div className={`blog-hero-svg blog-hero-svg--${variant}`}>
       <div
@@ -210,12 +218,15 @@ const BlogHero = ({ slug, title, category, variant = 'hero' }) => {
           aria-hidden="true"
         >
           {Pattern(pid)}
+          {SceneFn && SceneFn()}
         </svg>
-        <Icon
-          className="blog-hero-svg-icon"
-          strokeWidth={1.5}
-          aria-hidden="true"
-        />
+        {!SceneFn && (
+          <Icon
+            className="blog-hero-svg-icon"
+            strokeWidth={1.5}
+            aria-hidden="true"
+          />
+        )}
       </div>
 
       <style>{`
