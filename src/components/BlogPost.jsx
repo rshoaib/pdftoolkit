@@ -3,6 +3,52 @@ import Link from 'next/link';
 import { Calendar, Clock, ArrowLeft, Share2 } from 'lucide-react';
 import BlogHero from './BlogHero';
 
+// If the content pipeline prepended a bespoke inline <svg> illustration to
+// post.content, pull it off the top so we can render it as the hero instead
+// of the generated BlogHero. Returns { hero, body } where hero is the SVG
+// string (or null) and body is the remaining content.
+//
+// The hero container is a fixed 16:5 banner (see .blog-post-inline-hero
+// below), so we also normalize the extracted <svg> to:
+//   - preserveAspectRatio="xMidYMid slice" — crop edges instead of
+//     letterboxing when the SVG's natural viewBox is taller than 16:5
+//   - width/height stripped — let CSS drive sizing
+// so older posts that embedded a 1200x630 (16:9) SVG still fit the
+// compact banner cleanly.
+function normalizeHeroSvg(svg) {
+  if (!svg) return svg;
+  let out = svg;
+  // Drop any fixed width/height on the root <svg> so CSS can size it.
+  out = out.replace(
+    /^(<svg\b[^>]*?)\s+width="[^"]*"/i,
+    '$1',
+  );
+  out = out.replace(
+    /^(<svg\b[^>]*?)\s+height="[^"]*"/i,
+    '$1',
+  );
+  // Force slice preserveAspectRatio. Replace an existing one or inject.
+  if (/preserveAspectRatio=/i.test(out)) {
+    out = out.replace(
+      /preserveAspectRatio="[^"]*"/i,
+      'preserveAspectRatio="xMidYMid slice"',
+    );
+  } else {
+    out = out.replace(/^<svg\b/i, '<svg preserveAspectRatio="xMidYMid slice"');
+  }
+  return out;
+}
+
+function splitLeadingSvg(content) {
+  if (!content) return { hero: null, body: '' };
+  const trimmed = content.trimStart();
+  if (!trimmed.startsWith('<svg')) return { hero: null, body: content };
+  // Match the first complete <svg>...</svg> block (non-greedy, multiline).
+  const match = trimmed.match(/^<svg\b[\s\S]*?<\/svg>\s*/i);
+  if (!match) return { hero: null, body: content };
+  return { hero: normalizeHeroSvg(match[0].trim()), body: trimmed.slice(match[0].length) };
+}
+
 // Simple markdown-to-HTML converter
 function renderMarkdown(md) {
   if (!md) return '';
@@ -43,6 +89,10 @@ function renderMarkdown(md) {
 }
 
 const BlogPost = ({ post }) => {
+  // If the post body starts with a bespoke inline SVG, use it as the hero
+  // (and drop it from the body) so we don't render two heroes stacked.
+  const { hero: inlineHeroSvg, body: contentBody } = splitLeadingSvg(post.content);
+
   const handleShare = () => {
     if (navigator.share) {
       navigator.share({ title: post.title, url: window.location.href });
@@ -90,11 +140,18 @@ const BlogPost = ({ post }) => {
           </div>
         </header>
 
-        <BlogHero slug={post.slug} title={post.title} category={post.category} variant="hero" />
+        {inlineHeroSvg ? (
+          <div
+            className="blog-post-inline-hero"
+            dangerouslySetInnerHTML={{ __html: inlineHeroSvg }}
+          />
+        ) : (
+          <BlogHero slug={post.slug} title={post.title} category={post.category} variant="hero" />
+        )}
 
         <div
           className="blog-post-content"
-          dangerouslySetInnerHTML={{ __html: renderMarkdown(post.content) }}
+          dangerouslySetInnerHTML={{ __html: renderMarkdown(contentBody) }}
         />
 
         {post.relatedToolLink && (
@@ -251,6 +308,27 @@ const BlogPost = ({ post }) => {
           display: flex;
           justify-content: center;
           margin: var(--spacing-xxl) 0;
+        }
+        .blog-post-inline-hero {
+          width: 100%;
+          aspect-ratio: 16 / 5;
+          max-height: 260px;
+          border-radius: var(--radius-lg);
+          overflow: hidden;
+          margin-bottom: var(--spacing-xl);
+          background: var(--bg-surface);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .blog-post-inline-hero svg {
+          display: block;
+          width: 100%;
+          height: 100%;
+          /* The SVG itself carries preserveAspectRatio="xMidYMid slice"
+             (set by splitLeadingSvg when the post content leads with an
+             inline SVG) so scenes centered in the viewBox stay readable
+             even when the container clips a taller natural aspect. */
         }
       `}</style>
     </div>
