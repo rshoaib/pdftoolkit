@@ -8,7 +8,7 @@ Auto-publish one SEO-friendly, PDF-focused article to tinypdftools.com by commit
 
 - Repo root: the working directory (contains `src/`, `public/`, `package.json`).
 - Posts directory: `src/data/blogPosts/` — one `<slug>.json` file per post.
-- Post shape (must match the JSON loaded by `rowToPost` in the previous Supabase-based service, and what `BlogList.jsx` / `BlogPost.jsx` read):
+- Post shape (must match what `src/lib/blogService.js` reads from disk and what `BlogList.jsx` / `BlogPost.jsx` render):
   - `id` (string) — any stable unique id; timestamp-as-string (`"1729393200000"`) or UUID is fine. Not surfaced in the UI; exists only for React keys.
   - `slug` (string, kebab-case, UNIQUE across all files)
   - `title` (string)
