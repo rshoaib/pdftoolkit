@@ -1,6 +1,7 @@
+import { getAllPosts } from '../../lib/blogService';
+import { programmaticPages } from '../../data/programmaticPages';
+
 const DOMAIN = 'https://tinypdftools.com';
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
 // Static tool pages
 const toolRoutes = [
@@ -42,7 +43,7 @@ const redirectedSlugs = new Set([
   'pdf-security-best-practices-2026',
 ]);
 
-// Normalize any Supabase date value (ISO 8601 "2026-04-18T20:32:14Z",
+// Normalize any post date value (ISO 8601 "2026-04-18T20:32:14Z",
 // Postgres timestamptz "2026-04-18 20:32:14.640653+00", or plain
 // "2026-04-18") into the YYYY-MM-DD form required by the sitemap spec.
 // GSC flags anything else as "Invalid date" and the sitemap fails.
@@ -53,41 +54,21 @@ function toIsoDate(value) {
   return d.toISOString().split('T')[0];
 }
 
-async function fetchBlogSlugs() {
-  if (!SUPABASE_URL || !SUPABASE_KEY) return [];
-
-  try {
-    const res = await fetch(
-      `${SUPABASE_URL}/rest/v1/blog_posts?select=slug,date&order=date.desc`,
-      {
-        headers: {
-          apikey: SUPABASE_KEY,
-          Authorization: `Bearer ${SUPABASE_KEY}`,
-        },
-        next: { revalidate: 3600 }, // cache for 1 hour
-      }
-    );
-
-    if (!res.ok) return [];
-    const data = await res.json();
-    return data
-      .filter((p) => !redirectedSlugs.has(p.slug))
-      .map((p) => ({
-        path: `/blog/${p.slug}`,
-        lastmod: toIsoDate(p.date),
-        priority: '0.7',
-        freq: 'monthly',
-      }));
-  } catch {
-    return [];
-  }
+async function blogRoutesFromPosts() {
+  const posts = await getAllPosts();
+  return posts
+    .filter((p) => !redirectedSlugs.has(p.slug))
+    .map((p) => ({
+      path: `/blog/${p.slug}`,
+      lastmod: toIsoDate(p.date),
+      priority: '0.7',
+      freq: 'monthly',
+    }));
 }
-
-import { programmaticPages } from '../../data/programmaticPages';
 
 export async function GET() {
   const today = new Date().toISOString().split('T')[0];
-  const blogRoutes = await fetchBlogSlugs();
+  const blogRoutes = await blogRoutesFromPosts();
 
   const programmaticRoutes = programmaticPages.map((p) => ({
     path: `/p/${p.slug}`,

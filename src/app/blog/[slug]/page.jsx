@@ -1,6 +1,14 @@
 import BlogPost from '../../../components/BlogPost';
-import { getPostBySlug } from '../../../lib/blogService';
+import { getAllPosts, getPostBySlug } from '../../../lib/blogService';
 import { notFound } from 'next/navigation';
+
+// Pre-render one static page per post at build time.
+export async function generateStaticParams() {
+  const posts = await getAllPosts();
+  return posts.map((p) => ({ slug: p.slug }));
+}
+
+export const dynamicParams = false;
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;

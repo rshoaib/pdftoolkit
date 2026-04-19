@@ -1,95 +1,63 @@
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-const REST_BASE = SUPABASE_URL ? `${SUPABASE_URL}/rest/v1/blog_posts` : null;
+// Blog posts are stored as JSON files in src/data/blogPosts/.
+// Previously this module fetched from Supabase REST — that backend has been
+// retired. Posts now ship with the Vercel build, so there are no network
+// calls, no env vars, and no cache layer to worry about.
+//
+// To publish a new post: drop a <slug>.json file into src/data/blogPosts/
+// matching the Post shape below, commit, and push. Vercel redeploys
+// automatically.
+//
+// Post shape (must match what BlogList.jsx and BlogPost.jsx read):
+//   { id, slug, title, excerpt, content, date, displayDate, readTime,
+//     category, relatedToolLink, relatedToolName, image }
 
-const headers = SUPABASE_KEY
-  ? {
-      apikey: SUPABASE_KEY,
-      Authorization: `Bearer ${SUPABASE_KEY}`,
-      'Content-Type': 'application/json',
-    }
-  : {};
+import fs from 'node:fs';
+import path from 'node:path';
 
-// Cache
-const CACHE_TTL = 5 * 60 * 1000;
+const POSTS_DIR = path.join(process.cwd(), 'src', 'data', 'blogPosts');
+
+// Read + sort once per server process. Next.js reuses the module between
+// requests, so this acts as a build/runtime cache without any TTL logic.
 let cachedPosts = null;
-let cacheTime = 0;
 
-function isCacheValid() {
-  return cachedPosts && Date.now() - cacheTime < CACHE_TTL;
-}
+function loadPosts() {
+  if (cachedPosts) return cachedPosts;
 
-function rowToPost(r) {
-  return {
-    id: String(r.id),
-    slug: r.slug,
-    title: r.title,
-    excerpt: r.excerpt,
-    content: r.content,
-    date: r.date,
-    displayDate: r.display_date,
-    readTime: r.read_time,
-    category: r.category,
-    relatedToolLink: r.related_tool_link,
-    relatedToolName: r.related_tool_name,
-    image: r.image || null,
-  };
+  let files;
+  try {
+    files = fs.readdirSync(POSTS_DIR);
+  } catch (err) {
+    console.warn('[blogService] posts directory missing:', err.message);
+    cachedPosts = [];
+    return cachedPosts;
+  }
+
+  const posts = [];
+  for (const file of files) {
+    if (!file.endsWith('.json')) continue;
+    try {
+      const raw = fs.readFileSync(path.join(POSTS_DIR, file), 'utf8');
+      posts.push(JSON.parse(raw));
+    } catch (err) {
+      console.warn(`[blogService] skipping ${file}:`, err.message);
+    }
+  }
+
+  // Newest first, matching the previous `order=date.desc` query.
+  posts.sort((a, b) => {
+    const da = new Date(a.date).getTime();
+    const db = new Date(b.date).getTime();
+    return (isNaN(db) ? 0 : db) - (isNaN(da) ? 0 : da);
+  });
+
+  cachedPosts = posts;
+  return cachedPosts;
 }
 
 export async function getAllPosts() {
-  if (isCacheValid()) return cachedPosts;
-  if (!REST_BASE) return [];
-
-  try {
-    const res = await fetch(
-      `${REST_BASE}?select=*&order=date.desc`,
-      { headers }
-    );
-
-    if (!res.ok) {
-      console.warn('[blogService] REST API error:', res.status);
-      return [];
-    }
-
-    const data = await res.json();
-
-    if (!data || data.length === 0) {
-      console.warn('[blogService] No posts returned');
-      return [];
-    }
-
-    cachedPosts = data.map(rowToPost);
-    cacheTime = Date.now();
-    return cachedPosts;
-  } catch (err) {
-    console.warn('[blogService] Network error:', err);
-    return [];
-  }
+  return loadPosts();
 }
 
 export async function getPostBySlug(slug) {
-  if (!REST_BASE) return null;
-
-  // Try cache first
-  if (isCacheValid()) {
-    return cachedPosts.find((p) => p.slug === slug) || null;
-  }
-
-  try {
-    const res = await fetch(
-      `${REST_BASE}?select=*&slug=eq.${encodeURIComponent(slug)}&limit=1`,
-      { headers }
-    );
-
-    if (!res.ok) {
-      console.warn('[blogService] REST API error:', res.status);
-      return null;
-    }
-
-    const data = await res.json();
-    return data && data.length > 0 ? rowToPost(data[0]) : null;
-  } catch (err) {
-    console.warn('[blogService] Network error:', err);
-    return null;
-  }
+  return loadPosts().find((p) => p.slug === slug) || null;
 }
