@@ -39,6 +39,45 @@ Use standard file tools (Read, Write, Bash). There is no database or storage MCP
 
 ## STEPS
 
+### 0. PRE-FLIGHT — clean stale lock junk and refuse to start on a dirty slate
+
+Before generating anything, confirm the repo is in a state we can safely commit + push to. If the previous run left behind unpushed commits, untracked posts, or git-lock droppings, deal with that BEFORE writing new content. Proceeding on top of broken state has historically masked silent push failures for weeks.
+
+```bash
+# 0a. Remove stale lock-VARIANT droppings only (never live locks).
+# These non-standard names come from prior failure paths or from sync/AV
+# software intercepting the live lock; they are safe to delete.
+shopt -s nullglob
+for f in .git/index.lock.bak* .git/index.lock.tmp* .git/index.lock.refresh-* .git/index.lock.old \
+         .git/HEAD.lock.bak*  .git/HEAD.lock.tmp*  .git/HEAD.lock.refresh-* \
+         .git/next-index-*.lock .git/next-index-*.lock.tmp_*; do
+  rm -f -- "$f"
+done
+shopt -u nullglob
+
+# 0b. If a LIVE lock is present, ABORT — another git process is running
+# (or a prior run crashed mid-write). Do not work around it.
+for f in .git/index.lock .git/HEAD.lock; do
+  if [ -e "$f" ]; then
+    echo "ABORT: live lock present: $f. Resolve manually before re-running." >&2
+    exit 1
+  fi
+done
+
+# 0c. Audit prior-run residue — unpushed commits + untracked posts.
+git fetch origin main --quiet
+unpushed=$(git log --oneline origin/main..HEAD)
+untracked=$(git ls-files --others --exclude-standard src/data/blogPosts/)
+if [ -n "$unpushed" ] || [ -n "$untracked" ]; then
+  echo "ABORT: previous-run residue detected." >&2
+  echo "Unpushed commits:" >&2; echo "$unpushed" >&2
+  echo "Untracked posts:"  >&2; echo "$untracked" >&2
+  exit 1
+fi
+```
+
+If pre-flight aborts, STOP. Emit a report listing what was found and ask the operator to push/reset locally before another run is triggered. Do NOT generate a new post on top of unresolved residue.
+
 ### 1. AUDIT EXISTING POSTS
 
 ```bash
@@ -135,13 +174,41 @@ Validate JSON before committing:
 node -e "JSON.parse(require('fs').readFileSync('src/data/blogPosts/<slug>.json','utf8'))"
 ```
 
-Commit and push:
+Commit, push, and HARD-VERIFY the push actually reached origin. The pipeline's previous behavior of "push and hope" masked silent failures — every check below must pass or the run aborts.
 
 ```bash
 git add src/data/blogPosts/<slug>.json public/blog-images/hero-<slug>.svg   # omit hero path if not created
 git commit -m "blog: add <title>"
 git push origin main
 ```
+
+HARD VERIFY — every check is mandatory; partial pass = failure:
+
+```bash
+git fetch origin main --quiet
+
+# (a) No commits remain ahead of origin/main.
+if [ -n "$(git log --oneline origin/main..HEAD)" ]; then
+  echo "ABORT: push did not reach origin/main. Unpushed:"
+  git log --oneline origin/main..HEAD
+  exit 1
+fi
+
+# (b) The new post is present in origin/main's tree.
+if ! git ls-tree -r origin/main -- "src/data/blogPosts/<slug>.json" | grep -q .; then
+  echo "ABORT: src/data/blogPosts/<slug>.json is not in origin/main."
+  exit 1
+fi
+
+# (c) No untracked files left behind in the posts dir.
+if [ -n "$(git ls-files --others --exclude-standard src/data/blogPosts/)" ]; then
+  echo "ABORT: untracked files remain in src/data/blogPosts/:"
+  git ls-files --others --exclude-standard src/data/blogPosts/
+  exit 1
+fi
+```
+
+If any check fails, STOP and emit a failure report. **Do NOT** retry by deleting/renaming `.git/*.lock` files, do not amend or force-push, do not skip the verify. If `index.lock` reappears mid-run, that's a signal another process holds the repo — investigate, don't paper over.
 
 Vercel begins a production build on push. Expected build time: ~60–120 seconds.
 
@@ -183,6 +250,9 @@ Report the issue — do NOT rewrite history or force-push. Roll forward with a f
 - No cadence rules inside the run — only slug collision gate.
 - No post-shape changes at runtime. If a field you want doesn't exist (e.g., `author`), drop it — update `BlogPost.jsx` + `generateMetadata` first in a separate commit.
 - On WebSearch/WebFetch/git-push failure mid-run, stop and emit a report. Don't retry aggressively or force-push.
+- **NEVER rename, copy, or "back up" git lock files** (`.git/*.lock` → `.bak`, `.tmp`, `.old`, `.refresh-*`, etc.) as a workaround for lock contention. ABORT and report instead — investigate the holder, don't sidestep it. Lock-rename workarounds are exactly what masked silent push failures previously.
+- **NEVER skip the post-push HARD VERIFY block.** All three checks (no unpushed commits, file present in `origin/main`, no untracked files) are mandatory.
+- **NEVER generate a new post on top of pre-flight residue.** If Step 0 finds unpushed commits or untracked posts, abort and ask the operator to resolve before re-running.
 - No false privacy claims about competitors. Only claim "browser-only / no uploads" for operations this site actually performs client-side.
 
 ## SUCCESS CRITERIA
