@@ -704,7 +704,7 @@ def main() -> int:
         report_sections.append("")
         report_sections.append(f"Expected service account key at `{CRED_PATH}` but it was not found.")
         report_sections.append("Audit aborted. Place the service account JSON at the project root and re-run.")
-        REPORT_PATH.write_text("\n".join(report_sections))
+        REPORT_PATH.write_text("\n".join(report_sections), encoding="utf-8")
         log(f"wrote (credentials missing) {REPORT_PATH}")
         return 2
 
@@ -724,7 +724,7 @@ def main() -> int:
         report_sections.append("## ⛔ Authentication failed")
         report_sections.append("")
         report_sections.append(f"`{type(e).__name__}: {e}`")
-        REPORT_PATH.write_text("\n".join(report_sections))
+        REPORT_PATH.write_text("\n".join(report_sections), encoding="utf-8")
         log(f"auth failed: {e}")
         return 2
 
@@ -783,7 +783,7 @@ def main() -> int:
     final.append("---\n")
     final.append(f"_Data windows: current={CUR_START.isoformat()}→{CUR_END.isoformat()}, previous={PREV_START.isoformat()}→{PREV_END.isoformat()} (GSC lag ~{GSC_LAG_DAYS} days)._\n")
 
-    REPORT_PATH.write_text("\n\n".join(final))
+    REPORT_PATH.write_text("\n\n".join(final), encoding="utf-8")
     log(f"wrote {REPORT_PATH}")
     print(str(REPORT_PATH))
     return 0
