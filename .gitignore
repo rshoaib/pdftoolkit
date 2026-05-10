@@ -25,6 +25,10 @@ dist-ssr
 .env.local
 .env*.local
 
+# API credentials (GSC service account, PageSpeed Insights key)
+.gsc-service-account.json
+.psi-api-key
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
