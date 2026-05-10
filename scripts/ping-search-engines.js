@@ -11,7 +11,11 @@
  *   node scripts/ping-search-engines.js
  *   node scripts/ping-search-engines.js --site=https://example.com
  *
- * Runs automatically as part of the /deploy workflow.
+ * Runs automatically on every Vercel production build via vercel.json's
+ * buildCommand (`next build && (node scripts/ping-search-engines.js || true)`).
+ * The `|| true` is intentional — a failing IndexNow endpoint must never
+ * break the build, since the script catches per-endpoint errors internally
+ * but a process-level abort would still bubble up.
  */
 
 const DEFAULTS = {

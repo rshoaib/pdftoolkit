@@ -1,6 +1,6 @@
 {
   "framework": "nextjs",
-  "buildCommand": "next build",
+  "buildCommand": "next build && (node scripts/ping-search-engines.js || true)",
   "installCommand": "npm install",
   "headers": [
     {
