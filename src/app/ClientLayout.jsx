@@ -9,7 +9,7 @@ import AdSlot from '../components/AdSlot';
 import CookieConsent from '../components/CookieConsent';
 
 export default function ClientLayout({ children }) {
-  const { theme, toggleTheme } = useTheme();
+  const { theme, toggleTheme, mounted } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
 
@@ -39,7 +39,7 @@ export default function ClientLayout({ children }) {
         {/* Desktop nav */}
         <nav className="nav nav-desktop">
           <button className="theme-btn" onClick={toggleTheme} title="Toggle Theme" aria-label="Toggle dark mode">
-            {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+            {mounted && (theme === 'light' ? <Moon size={18} /> : <Sun size={18} />)}
           </button>
           <Link href="/" className="nav-link">Home</Link>
           <Link href="/about" className="nav-link">About</Link>
@@ -50,7 +50,7 @@ export default function ClientLayout({ children }) {
         {/* Mobile controls */}
         <div className="nav-mobile-controls">
           <button className="theme-btn" onClick={toggleTheme} title="Toggle Theme" aria-label="Toggle dark mode">
-            {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+            {mounted && (theme === 'light' ? <Moon size={18} /> : <Sun size={18} />)}
           </button>
           <button
             className="hamburger-btn"
