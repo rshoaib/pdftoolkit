@@ -26,6 +26,7 @@ Pick from `.agents/context/target-keywords.md`. Inspect existing posts first to 
 - Never more than 1 lane per run. Never more than 1 post created.
 - Never fabricate browser/spec/PDF format facts. Verify via Adobe PDF spec, ISO 32000, browser caniuse.
 - Never delete content. Never force-push. Never `--no-verify`.
+- **Never write to Supabase.** This site is file-based (Next.js — content lives under `app/blog/` in the repo). The only legitimate target for new content is a git commit on the default branch. If you see a Supabase MCP connector attached to this routine, ignore it for content writes — that connector is shared across all routines but only `easyorder-bot` legitimately uses Supabase for content. Writing content to Supabase from this routine will contaminate the orderviachat database (verified incident: 2026-05-14 with online-image-shrinker).
 
 ## After the change
 
