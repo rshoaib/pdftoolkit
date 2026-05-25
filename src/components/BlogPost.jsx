@@ -49,6 +49,29 @@ function splitLeadingSvg(content) {
   return { hero: normalizeHeroSvg(match[0].trim()), body: trimmed.slice(match[0].length) };
 }
 
+// Extract Q&A pairs from a "## Frequently Asked Questions" (or "## FAQs")
+// section. Each Q is an H3 and the A is the paragraph(s) until the next H3
+// or H2. Returns [] if no recognizable section exists or fewer than 2 pairs.
+function extractFaqs(content) {
+  if (!content) return [];
+  const sectionMatch = content.match(/##\s*(?:Frequently Asked Questions|FAQs?)\s*\n([\s\S]*?)(?=\n##\s|$)/i);
+  if (!sectionMatch) return [];
+  const body = sectionMatch[1];
+  const faqs = [];
+  const re = /###\s+(.+?)\n([\s\S]*?)(?=\n###\s|$)/g;
+  let m;
+  while ((m = re.exec(body)) !== null) {
+    const question = m[1].trim();
+    const answer = m[2]
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+      .replace(/[*_`>]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+    if (question && answer) faqs.push({ question, answer });
+  }
+  return faqs.length >= 2 ? faqs : [];
+}
+
 // Simple markdown-to-HTML converter
 function renderMarkdown(md) {
   if (!md) return '';
@@ -92,6 +115,7 @@ const BlogPost = ({ post }) => {
   // If the post body starts with a bespoke inline SVG, use it as the hero
   // (and drop it from the body) so we don't render two heroes stacked.
   const { hero: inlineHeroSvg, body: contentBody } = splitLeadingSvg(post.content);
+  const faqs = extractFaqs(post.content);
 
   const handleShare = () => {
     if (navigator.share) {
@@ -121,6 +145,22 @@ const BlogPost = ({ post }) => {
           })
         }}
       />
+      {faqs.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: faqs.map((f) => ({
+                "@type": "Question",
+                name: f.question,
+                acceptedAnswer: { "@type": "Answer", text: f.answer }
+              }))
+            })
+          }}
+        />
+      )}
       <div className="blog-post-nav">
         <Link href="/blog" className="blog-back-link">
           <ArrowLeft size={16} /> All Posts

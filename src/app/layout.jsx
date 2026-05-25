@@ -6,6 +6,9 @@ export const metadata = {
   metadataBase: new URL('https://tinypdftools.com'),
   title: 'Tiny PDF Tools - Free Online PDF Tools | Merge, Split, Compress',
   description: 'Free online PDF tools that run 100% in your browser. Merge, split, compress PDFs, convert PDF to images and images to PDF. No uploads, no accounts — 100% private.',
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     title: 'Tiny PDF Tools - Free Online PDF Tools',
     description: 'Merge, split, compress PDFs and convert between PDF and images. 100% client-side, no uploads required.',
@@ -17,6 +20,35 @@ export const metadata = {
     card: 'summary',
     title: 'Tiny PDF Tools - Free Online PDF Tools',
     description: 'Free PDF tools that run entirely in your browser. No uploads, 100% private.',
+  },
+};
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Tiny PDF Tools',
+  alternateName: ['TinyPDF Tools', 'tinypdftools', 'Tiny PDF'],
+  url: 'https://tinypdftools.com',
+  logo: 'https://tinypdftools.com/favicon.svg',
+  description: 'Free online PDF tools that run 100% in your browser. Merge, split, compress, convert PDFs with no uploads.',
+  sameAs: [
+    'https://www.producthunt.com/products/tiny-pdf-tools',
+  ],
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Tiny PDF Tools',
+  alternateName: 'TinyPDF Tools',
+  url: 'https://tinypdftools.com',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: 'https://tinypdftools.com/blog?q={search_term_string}',
+    },
+    'query-input': 'required name=search_term_string',
   },
 };
 
@@ -38,6 +70,14 @@ export default function RootLayout({ children }) {
             document.documentElement.setAttribute('data-theme', t);
           })();
         `}} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
       </head>
       <body>
         <ToastProvider>
